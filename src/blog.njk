@@ -1,0 +1,121 @@
+---
+layout: layouts/base.njk
+title: "MITRA Magazine &mdash; Interior Design Trends &amp; Home Guides"
+description: "Read expert tips on modular kitchen design, budget planning for Indian home interiors, BWP plywood guides, and styling small apartments."
+---
+
+{% block extraCss %}
+  <link rel="preload" href="/css/pages/blog.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/blog.css"></noscript>
+{% endblock %}
+
+{% set articles = [
+  {
+    img: "images/external/ext_c32bea9c.jpg",
+    cat: "kitchen",
+    catName: "Kitchen Design",
+    title: "Modular Kitchen Layouts: Parallel vs. L-Shape layouts",
+    desc: "Which kitchen shape works best for medium-sized Indian apartments? We compare cabinet storage volumes and walkway clearances.",
+    date: "July 2, 2026",
+    read: "5 min read"
+  },
+  {
+    img: "images/external/ext_8639f45a.jpg",
+    cat: "budget",
+    catName: "Budget Planning",
+    title: "Home Renovation Budgets: Where to save, where to invest",
+    desc: "Don't cut corners on carcass plywood or hinge fixtures. Learn which styling accents can be swapped for affordable laminates.",
+    date: "June 28, 2026",
+    read: "7 min read"
+  },
+  {
+    img: "images/external/ext_256aa008.jpg",
+    cat: "materials",
+    catName: "Material Guides",
+    title: "What is BWP Plywood, and does your kitchen need it?",
+    desc: "An honest breakdown of Boiling Water Proof (BWP) plywood ratings vs BWR and commercial MR grade sheets.",
+    date: "June 15, 2026",
+    read: "4 min read"
+  },
+  {
+    img: "images/external/ext_e7238d6f.jpg",
+    cat: "small-home",
+    catName: "Small Homes",
+    title: "5 Space-Saving furniture layouts for 2BHK apartments",
+    desc: "Maximize square footage using wall-beds, sliding partition TV consoles, and storage-bench dining corners.",
+    date: "June 10, 2026",
+    read: "6 min read"
+  }
+] %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bPills = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.blog-card');
+    
+    bPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        bPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        
+        const filterVal = pill.getAttribute('data-filter');
+        cards.forEach(card => {
+          if (filterVal === 'all' || card.getAttribute('data-cat') === filterVal) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<!-- BLOG HERO -->
+    <section class="blog-hero">
+      <div class="wrap" style="position:relative; z-index:1;">
+        <span class="eyebrow" style="color:var(--gold);">MITRA Magazine</span>
+        <h1><span>Interior ideas </span><span>&amp; budget planning.</span></h1>
+        <p style="color:rgba(255,255,255,0.8); max-width:600px; margin:0 auto; font-size:17px;">Real numbers for real Indian homes &mdash; what modular fittings actually cost, material guides, and small home ideas.</p>
+      </div>
+    </section>
+
+    <!-- MAGAZINE CARDS -->
+    <section class="wrap blog-sec">
+      <!-- Categories filters -->
+      <div class="filters reveal" role="tablist" aria-label="Blog Categories">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Articles</button>
+        <button class="filter-btn" data-filter="budget" role="tab" aria-selected="false">Budget Planning</button>
+        <button class="filter-btn" data-filter="materials" role="tab" aria-selected="false">Material Guides</button>
+        <button class="filter-btn" data-filter="kitchen" role="tab" aria-selected="false">Kitchen Design</button>
+        <button class="filter-btn" data-filter="small-home" role="tab" aria-selected="false">Small Homes</button>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="blog-grid reveal delay-1" id="blogGrid">
+        {% for art in articles %}
+        <div class="blog-card reveal in" data-cat="{{ art.cat }}">
+          <div class="b-card-img">
+            {% image art.img, art.title, "(max-width: 768px) 100vw, 50vw", "", "lazy" %}
+          </div>
+          <div class="b-card-content">
+            <span class="b-cat">{{ art.catName }}</span>
+            <h3>{{ art.title }}</h3>
+            <p>{{ art.desc }}</p>
+            <div class="b-card-meta">
+              <span><i data-lucide="calendar"></i> {{ art.date }}</span> &nbsp;&bull;&nbsp; <span><i data-lucide="clock"></i> {{ art.read }}</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Lead gate newsletter -->
+      <div class="newsletter-box reveal">
+        <h3>Join the MITRA Design Club</h3>
+        <p>Get real interior budget breakdowns, wood material guides, and local trends directly in your inbox. No spam, ever.</p>
+        <form class="nl-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!'); this.reset();">
+          <input type="email" placeholder="Your Email Address" required>
+          <button type="submit" class="btn btn-gold">Subscribe</button>
+        </form>
+      </div>
+    </section>

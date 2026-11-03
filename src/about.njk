@@ -1,0 +1,109 @@
+---
+layout: layouts/base.njk
+title: "About MITRA &mdash; Our Story, Team &amp; Philosophy"
+description: "Learn about MITRA Interior &amp; Constructions. Read our story, meet our design team, and discover why we believe luxury craftsmanship should work with every budget."
+---
+
+{% block extraCss %}
+  <link rel="preload" href="/css/pages/about.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/about.css"></noscript>
+{% endblock %}
+
+<!-- ABOUT HERO -->
+    <section class="about-hero">
+      <div class="wrap" style="position:relative; z-index:1;">
+        <span class="eyebrow" style="color:var(--gold);">Why We Exist</span>
+        <h1 class="reveal-text"><span>Where architecture </span><span>meets everyday living.</span></h1>
+        <p style="color:rgba(255,255,255,0.8); max-width:650px; margin:0 auto; font-size:18px;">We believe architecture is a dialogue between precision and emotion. Meet the makers crafting spaces built to inspire, built to last, and built around you.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 1: PHILOSOPHY -->
+    <section class="wrap story-grid alternate">
+      <div class="story-content reveal">
+        <span class="eyebrow">Our Philosophy</span>
+        <h2>Why MITRA Exists</h2>
+        <p>A home is not just a selection of rooms or a collection of cabinet parameters; it is a physical container for your daily life. We believe the spaces we occupy shape who we are—affecting our moods, our routines, and the memories we build.</p>
+        <p>MITRA was founded to challenge the compromise between high-end architectural design and transparent, honest implementation. We exist to bring emotional resonance, absolute pricing transparency, and uncompromising structural integrity to every home we design and construct.</p>
+      </div>
+      <div class="story-img reveal delay-1">
+        {% image "images/external/ext_19adbf15.jpg", "MITRA design studio workspace showing material samples", "100vw", "", "auto" %}
+      </div>
+    </section>
+
+    <!-- SECTION 2: CRAFTSMANSHIP & DETAILS -->
+    <section class="wrap story-grid">
+      <div class="story-img reveal">
+        {% image "images/external/ext_45525aa8.jpg", "Architectural material finishes and craftsmanship joinery", "100vw", "", "auto" %}
+      </div>
+      <div class="story-content reveal delay-1">
+        <span class="eyebrow">The Details</span>
+        <h2>What Craftsmanship Means</h2>
+        <p>To us, craftsmanship is the invisible alignment of a joint, the tactile warmth of premium veneer, and the silent, soft-close glide of a drawer channel. It is detail made visible. We believe that true luxury does not shout; it performs reliably day after day, year after year.</p>
+        <p>By operating our own modular manufacturing facility, sourcing certified BWP plywood directly, and adhering to strict engineering tolerances, we guarantee that the final physical handover matches the beauty of the initial 3D design board.</p>
+      </div>
+    </section>
+
+    <!-- FOUNDER'S MESSAGE -->
+    <section class="founder-sec">
+      <div class="wrap founder-container reveal">
+        <div class="founder-quote">
+          <svg class="quote-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21c3 0 7-1 7-8V5H3v8h4c0 5-4 7-4 8zm11 0c3 0 7-1 7-8V5h-7v8h4c0 5-4 7-4 8z" fill="var(--gold)" stroke="none"/></svg>
+          <blockquote>
+            "Honesty is the most premium material we work with. At MITRA, we believe that building a home is a trust covenant. We don't hide margins, we don't compromise on timber grade, and we design with the deep respect that your space deserves."
+          </blockquote>
+          <cite>
+            <strong>Arjun Ramakrishnan</strong>
+            <span>Founder &amp; Principal Architect</span>
+          </cite>
+        </div>
+        <div class="founder-img">
+          {% image "images/about/about_person1.jpg", "Arjun Ramakrishnan, Founder of MITRA", "100vw", "founder-photo", "auto" %}
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET THE TEAM -->
+    <section class="team">
+      <div class="wrap">
+        <div class="sec-head center reveal">
+          <span class="eyebrow">The Makers</span>
+          <h2>Meet the MITRA Team</h2>
+          <p>A collective of architectural designers, project managers, and craft specialists committed to honest home building.</p>
+        </div>
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <div class="team-card reveal">
+            <div class="team-img-wrap">
+              {% image "images/external/ext_0600e772.jpg", "Vikramaditya Rao, Senior Project Architect", "100vw", "", "auto" %}
+            </div>
+            <div class="team-info">
+              <h4>Vikramaditya Rao</h4>
+              <span>Senior Project Architect</span>
+              <p>With 14 years in civil construction and architectural engineering, Vikram leads technical site execution and turnkey delivery.</p>
+            </div>
+          </div>
+          <!-- Member 2 -->
+          <div class="team-card reveal delay-1">
+            <div class="team-img-wrap">
+              {% image "images/external/ext_af9b7d47.jpg", "Meera Iyer, Head of Design", "100vw", "", "auto" %}
+            </div>
+            <div class="team-info">
+              <h4>Meera Iyer</h4>
+              <span>Head of Design</span>
+              <p>Meera oversees the visual aesthetics and custom space planning layouts, ensuring ergonomics blend with personal styles.</p>
+            </div>
+          </div>
+          <!-- Member 3 -->
+          <div class="team-card reveal delay-2">
+            <div class="team-img-wrap">
+              {% image "images/external/ext_4efcb8fb.jpg", "Suresh Kumar, Master Joiner", "100vw", "", "auto" %}
+            </div>
+            <div class="team-info">
+              <h4>Suresh Kumar</h4>
+              <span>Production Lead &amp; Master Joiner</span>
+              <p>Suresh manages our modular manufacturing unit, guaranteeing that cabinet joints and edge-banding stand up to years of use.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

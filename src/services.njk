@@ -1,0 +1,163 @@
+---
+layout: layouts/base.njk
+title: "Our Services &mdash; Modular Kitchens, Wardrobes &amp; Construction"
+description: "Discover our core services at MITRA: Modular Kitchens, Wardrobes, false ceilings, complete home renovations, commercial space design, and villa construction."
+---
+
+{% block extraCss %}
+  <link rel="preload" href="/css/pages/services.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/services.css"></noscript>
+{% endblock %}
+
+<!-- SERVICES HERO -->
+    <section class="services-hero">
+      <div class="wrap" style="position:relative; z-index:1;">
+        <span class="eyebrow" style="color:var(--gold);">Scope of Work</span>
+        <h1><span>Designed Without </span><span>Compromise.</span></h1>
+        <p style="color:rgba(255,255,255,0.8); max-width:600px; margin:0 auto; font-size:17px;">From cabinetry fabrication to foundation engineering. Explore our specialized services built with transparent cost parameters.</p>
+      </div>
+    </section>
+
+    <!-- SERVICES LIST -->
+    <section class="wrap services-grid">
+      
+      <!-- 1. Modular Kitchen -->
+      <div class="service-item-card reveal" id="kitchens">
+        <div class="s-card-img">
+          {% image "images/external/ext_d8e42ed6.jpg", "L-shape modern kitchen", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Modular Kitchens</h3>
+          <p>L-shape, U-shape, straight and parallel layouts engineered to optimize kitchen ergonomics. Manufactured with moisture-proof BWP plywood and soft-close hardware.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/modular-kitchens.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Wardrobes -->
+      <div class="service-item-card reveal delay-1" id="wardrobes">
+        <div class="s-card-img">
+          {% image "images/external/ext_b85b5fb2.jpg", "Sliding glass wardrobe", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Wardrobes</h3>
+          <p>Custom sliding and swing-door wardrobes built with robust inner partitions, soft-close sliders, and elegant laminate/acrylic exterior panel selections.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/wardrobes.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. False Ceilings -->
+      <div class="service-item-card reveal delay-2" id="ceilings">
+        <div class="s-card-img">
+          {% image "images/external/ext_763dcaab.jpg", "Minimal false ceiling with LED profiles", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>False Ceilings</h3>
+          <p>Gypsum and POP ceilings integrating warm cove illumination, spotlight cuts, and acoustic panels to define the modern room experience.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/false-ceilings.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Living Rooms -->
+      <div class="service-item-card reveal" id="living">
+        <div class="s-card-img">
+          {% image "images/external/ext_66ab1be8.jpg", "Bespoke luxury living room design", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Living Rooms</h3>
+          <p>Bespoke living room space layouts, customized wall paneling, and designer partition units matching your house theme.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/living-rooms.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4b. TV Units -->
+      <div class="service-item-card reveal delay-1" id="tv">
+        <div class="s-card-img">
+          {% image "images/external/ext_4d0a1c9d.jpg", "Modern TV console wall paneling", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>TV Units</h3>
+          <p>Entertainment consoles with integrated cable-routing channels, showcase niches, and decorative back panels.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/tv-units.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Bedrooms -->
+      <div class="service-item-card reveal delay-2" id="bedrooms">
+        <div class="s-card-img">
+          {% image "images/external/ext_ee6ca881.jpg", "Premium master bed suite", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Bedrooms</h3>
+          <p>Cohesive bed frame joinery, headboard padding configurations, matching nightstands, study tables, and dressers built to maximize quiet storage comfort.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/bedrooms.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Custom Furniture -->
+      <div class="service-item-card reveal" id="furniture">
+        <div class="s-card-img">
+          {% image "images/external/ext_f5d4229d.jpg", "Bespoke solid wood furniture design", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Custom Furniture</h3>
+          <p>Bespoke dining tables, designer consoles, storage benches, and divider screens manufactured in our material studio with exact wood/ply specifications.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/custom-furniture.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Home Renovation -->
+      <div class="service-item-card reveal delay-1" id="renovation">
+        <div class="s-card-img">
+          {% image "images/external/ext_8639f45a.jpg", "Tiled flooring renovation", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Home Renovation</h3>
+          <p>Complete structural redesign: wall knock-downs, electrical wiring replacements, fresh plumbing line setups, tile/wood flooring, and wall paintings.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/home-renovation.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Construction -->
+      <div class="service-item-card reveal delay-2" id="construction">
+        <div class="s-card-img">
+          {% image "images/external/ext_1623c7e5.jpg", "Villa construction foundation and columns", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Civil Construction</h3>
+          <p>Foundation layout excavating, column raising, RCC structural slabs, brick masonry wall work, exterior plastering, and waterproofing engineering.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/civil-construction.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Commercial Interiors -->
+      <div class="service-item-card reveal" id="commercial">
+        <div class="s-card-img">
+          {% image "images/external/ext_7ee86be5.jpg", "Corporate desk workstations", "100vw", "", "auto" %}
+        </div>
+        <div class="s-card-body">
+          <h3>Commercial Interiors</h3>
+          <p>Functional layout drafting for offices, matching retail counters, cabins, acoustical meeting rooms, and receptionist lobby counters.</p>
+          <div class="s-card-footer" style="justify-content: flex-end;">
+            <a href="/commercial-interiors.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 13px;">View Designs</a>
+          </div>
+        </div>
+      </div>
+
+    </section>

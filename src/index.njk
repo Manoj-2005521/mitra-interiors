@@ -1,0 +1,705 @@
+---
+layout: layouts/base.njk
+title: "MITRA Interior & Constructions &mdash; Works with Every Budget"
+description: "MITRA Interior & Constructions designs and builds modular kitchens, wardrobes, home interiors, and full construction projects &mdash; with transparent, fixed pricing for every budget."
+---
+
+{% block preload %}
+  {% preloadImage "images/hero/hero_slide_1.png", "100vw" %}
+  {% prefetchImage "images/hero/hero_slide_2.png", "100vw" %}
+  {% prefetchImage "images/hero/hero_slide_3.png", "100vw" %}
+  {% prefetchImage "images/hero/hero_slide_4.png", "100vw" %}
+  {% prefetchImage "images/hero/hero_slide_5.png", "100vw" %}
+{% endblock %}
+
+
+<!-- 1. HERO SLIDER -->
+    <section class="hero-slider" aria-roledescription="carousel" aria-label="Featured Interior Collections">
+
+      <!-- Custom Cursor -->
+      <div class="hero-cursor" aria-hidden="true">
+        <svg class="hero-cursor__progress" width="56" height="56" viewBox="0 0 56 56">
+          <circle class="hero-cursor__bg" cx="28" cy="28" r="24" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2.5"></circle>
+          <circle class="hero-cursor__circle" cx="28" cy="28" r="24" fill="none" stroke="#2C2720" stroke-width="2.5" stroke-dasharray="150.8" stroke-dashoffset="150.8"></circle>
+        </svg>
+        <div class="hero-cursor__inner">
+          <img class="hero-cursor__thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="" aria-hidden="true">
+          <div class="hero-cursor__icon"></div>
+        </div>
+      </div>
+
+      <!-- Slide 1: Brand Story (Text Left, Image Right) -->
+      <div class="hero-slide active" data-slide="0" data-layout="left" aria-label="Slide 1: Where Architecture Meets Everyday Living">
+        <div class="hero-slide__base"></div>
+        <div class="hero-slide__room" data-parallax="room">
+          {% image "images/hero/hero_slide_1.png", "Luxury modern home interior showcasing exquisite craftsmanship and architectural design", "100vw", "", "high" %}
+        </div>
+        <div class="hero-slide__glow" data-parallax="glow"></div>
+        <div class="hero-slide__gradient"></div>
+        <div class="hero-slide__content" data-parallax="text">
+          <span class="hero-eyebrow">DESIGNED FOR LIFE</span>
+          <h1 class="hero-heading">Where Architecture<br>Meets Everyday Living</h1>
+          <p class="hero-desc">Spaces designed to inspire, crafted to last, built around you.</p>
+          <div class="hero-cta-group">
+            <a href="contact.html" class="hero-cta">Book Free Site Visit</a>
+            <a href="projects.html" class="hero-cta hero-cta--secondary">Explore Our Projects <span class="cta-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Living Room (Text Right, Image Left) -->
+      <div class="hero-slide" data-slide="1" data-layout="right" aria-label="Slide 2: Living Room Collection">
+        <div class="hero-slide__base"></div>
+        <div class="hero-slide__room" data-parallax="room">
+          {% image "images/hero/hero_slide_2.png", "Modern luxury living room with double-height ceiling and warm beige palette", "100vw", "", "auto" %}
+        </div>
+        <div class="hero-slide__glow" data-parallax="glow"></div>
+        <div class="hero-slide__gradient"></div>
+        <div class="hero-slide__content" data-parallax="text">
+          <span class="hero-eyebrow">DESIGNED TO IMPRESS</span>
+          <h1 class="hero-heading">Designed Around<br>the Way You Live</h1>
+          <p class="hero-desc">Living spaces that balance elegance and comfort — every detail considered, every finish hand-selected.</p>
+          <div class="hero-cta-group">
+            <a href="living-rooms.html" class="hero-cta">Explore Living Rooms</a>
+            <a href="projects.html" class="hero-cta hero-cta--secondary">Explore Our Projects <span class="cta-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Wardrobes (Text Left, Image Right) -->
+      <div class="hero-slide" data-slide="2" data-layout="left" aria-label="Slide 3: Wardrobe Collection">
+        <div class="hero-slide__base"></div>
+        <div class="hero-slide__room" data-parallax="room">
+          {% image "images/hero/hero_slide_3.png", "Luxury walk-in wardrobe with glass-fronted doors and warm LED backlighting", "100vw", "", "auto" %}
+        </div>
+        <div class="hero-slide__glow" data-parallax="glow"></div>
+        <div class="hero-slide__gradient"></div>
+        <div class="hero-slide__content" data-parallax="text">
+          <span class="hero-eyebrow">PRECISION MEETS ELEGANCE</span>
+          <h1 class="hero-heading">Storage Crafted with<br>Precision and Elegance</h1>
+          <p class="hero-desc">Walk-in wardrobes and modular storage built with premium finishes, hidden lighting, and intelligent organisation.</p>
+          <div class="hero-cta-group">
+            <a href="wardrobes.html" class="hero-cta">Explore Wardrobes</a>
+            <a href="projects.html" class="hero-cta hero-cta--secondary">Explore Our Projects <span class="cta-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Full Home (Text Right, Image Left) -->
+      <div class="hero-slide" data-slide="3" data-layout="right" aria-label="Slide 4: Complete Home Interiors">
+        <div class="hero-slide__base"></div>
+        <div class="hero-slide__room" data-parallax="room">
+          {% image "images/hero/hero_slide_4.png", "Contemporary luxury villa interior with open-plan kitchen and living area", "100vw", "", "auto" %}
+        </div>
+        <div class="hero-slide__glow" data-parallax="glow"></div>
+        <div class="hero-slide__gradient"></div>
+        <div class="hero-slide__content" data-parallax="text">
+          <span class="hero-eyebrow">COMPLETE TRANSFORMATION</span>
+          <h1 class="hero-heading">Complete Interiors.<br>Seamless Execution.</h1>
+          <p class="hero-desc">From concept to handover — kitchens, wardrobes, ceilings, lighting, and every surface, delivered on time and on budget.</p>
+          <div class="hero-cta-group">
+            <a href="home-renovation.html" class="hero-cta">Explore Home Renovation</a>
+            <a href="projects.html" class="hero-cta hero-cta--secondary">Explore Our Projects <span class="cta-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Commercial (Text Left, Image Right) -->
+      <div class="hero-slide" data-slide="4" data-layout="left" aria-label="Slide 5: Commercial Interiors">
+        <div class="hero-slide__base"></div>
+        <div class="hero-slide__room" data-parallax="room">
+          {% image "images/hero/hero_slide_5.png", "Premium modern office interior with glass cabins and wood finishes", "100vw", "", "auto" %}
+        </div>
+        <div class="hero-slide__glow" data-parallax="glow"></div>
+        <div class="hero-slide__gradient"></div>
+        <div class="hero-slide__content" data-parallax="text">
+          <span class="hero-eyebrow">BUILT FOR BUSINESS</span>
+          <h1 class="hero-heading">Modern Workspaces<br>That Elevate Business</h1>
+          <p class="hero-desc">Premium office interiors with glass cabins, collaboration zones, and finishes that reflect your brand's ambition.</p>
+          <div class="hero-cta-group">
+            <a href="commercial-interiors.html" class="hero-cta">Explore Workspaces</a>
+            <a href="projects.html" class="hero-cta hero-cta--secondary">Explore Our Projects <span class="cta-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination Dots -->
+      <div class="hero-dots" role="tablist" aria-label="Slide navigation">
+        <button class="hero-dot active" role="tab" aria-selected="true" aria-label="Go to slide 1" data-dot="0"><span>1</span></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Go to slide 2" data-dot="1"><span>2</span></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Go to slide 3" data-dot="2"><span>3</span></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Go to slide 4" data-dot="3"><span>4</span></button>
+        <button class="hero-dot" role="tab" aria-selected="false" aria-label="Go to slide 5" data-dot="4"><span>5</span></button>
+      </div>
+
+      <!-- Live region for accessibility -->
+      <div class="hero-live sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    </section>
+
+    <!-- Joinery SVG Divider -->
+    <div class="joinery-container reveal" aria-hidden="true">
+      <svg class="joinery" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 20 H420 L440 5 L460 35 L480 5 L500 35 L520 20 H1200" stroke="#BBAE9B" stroke-width="2" fill="none" />
+      </svg>
+    </div>
+
+    <!-- 2. TRUST STRIP SECTION -->
+    <section class="strip">
+      <div class="strip-bg">
+        {% image "images/external/ext_cb50637b.jpg", "MITRA construction site showing meticulous craftsmanship in progress", "100vw", "", "auto" %}
+      </div>
+      <div class="wrap strip-grid">
+        <div class="strip-item reveal">
+          <div class="n" data-count="50" data-suffix="+">0</div>
+          <div class="l">Interiors &amp; Construction Projects Delivered</div>
+        </div>
+        <div class="strip-item reveal delay-1">
+          <div class="n" data-count="15" data-suffix="+">0</div>
+          <div class="l">Years in Business</div>
+        </div>
+        <div class="strip-item reveal delay-2">
+          <div class="n" data-count="100" data-suffix="%">0</div>
+          <div class="l">On-Time Handovers</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SERVICES SECTION -->
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="sec-head reveal-blur">
+          <span class="eyebrow">What We Build</span>
+          <h2 class="reveal-text">Every corner of your home, covered.</h2>
+          <p>From a single modular wardrobe to full villa construction &mdash; one expert team, one project manager, one fixed quote.</p>
+        </div>
+        <div class="svc-layout">
+          <div class="svc-list reveal-left" id="svcList">
+            {% for service in services %}
+            <div class="svc-row {% if loop.first %}active{% endif %}" role="button" tabindex="0" aria-label="View details for {{ service.t }}" data-index="{{ loop.index0 }}" data-url="{{ service.url }}">
+              <div class="st">
+                <span class="si">0{{ loop.index }}</span>
+                <h3>{{ service.t }}</h3>
+              </div>
+              <span class="arrow" aria-hidden="true"><i data-lucide="arrow-right"></i></span>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="svc-visual reveal-right delay-2" id="svcVisual">
+            {% for service in services %}
+            <div class="svc-gallery-group {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}" data-url="{{ service.url }}">
+              <div class="svc-gallery-item svc-item-main">{% image service.imgs[0], service.t, "(max-width: 768px) 100vw, 50vw", "", "lazy" %}</div>
+              <div class="svc-gallery-item svc-item-sub1">{% image service.imgs[1], service.t, "(max-width: 768px) 100vw, 30vw", "", "lazy" %}</div>
+              <div class="svc-gallery-item svc-item-sub2">{% image service.imgs[2], service.t, "(max-width: 768px) 100vw, 30vw", "", "lazy" %}</div>
+            </div>
+            {% endfor %}
+            <div class="cap" id="svcCaption">{{ services[0].t }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PROJECTS SECTION -->
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <div class="sec-head reveal-blur">
+          <span class="eyebrow">Our Work</span>
+          <h2 class="reveal-text">Recently delivered, proudly signed.</h2>
+          <p>Explore a selection of residential and commercial spaces designed, built, and handed over on time and on budget.</p>
+        </div>
+        <div class="filters reveal delay-1" role="tablist" aria-label="Filter Projects">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" data-filter="residential" role="tab" aria-selected="false">Residential</button>
+          <button class="filter-btn" data-filter="commercial" role="tab" aria-selected="false">Commercial</button>
+          <button class="filter-btn" data-filter="kitchen" role="tab" aria-selected="false">Kitchen</button>
+          <button class="filter-btn" data-filter="apartment" role="tab" aria-selected="false">Apartment</button>
+          <button class="filter-btn" data-filter="villa" role="tab" aria-selected="false">Villa</button>
+        </div>
+        <div class="masonry reveal-scale delay-2" id="masonryGrid">
+          {% for p in projects %}
+          <a href="{{ p.url | default('/projects/' + p.slug + '.html') }}" class="p-card m-item {{ p.cat }}" aria-label="View details for {{ p.title }}">
+            {% image p.img, p.title, "(max-width: 768px) 100vw, 33vw", "", "lazy" %}
+            <div class="p-info">
+              <span style="font-size:12px; margin-bottom:6px; opacity:0.9; display:flex; align-items:center; gap:4px; text-transform:uppercase; letter-spacing:1px;">
+                <i data-lucide="map-pin" style="width:12px; height:12px;"></i> {{ p.loc }}
+              </span>
+              <h4>{{ p.title }}</h4>
+              <div class="p-meta">
+                <span><i data-lucide="maximize" style="width:13px; height:13px;"></i> {{ p.area }}</span>
+                <span><i data-lucide="clock" style="width:13px; height:13px;"></i> {{ p.dur }}</span>
+                {% if p.budget %}
+                <span><i data-lucide="banknote" style="width:13px; height:13px;"></i> {{ p.budget }}</span>
+                {% endif %}
+              </div>
+              <div style="margin-top:20px;">
+                 <span style="display:inline-block; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 4px; text-decoration: none; color: var(--white); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.4)'">View Case Study</span>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WHY MITRA SECTION -->
+    <section class="why">
+      <div class="wrap">
+        <div class="sec-head reveal-blur">
+          <span class="eyebrow">Why MITRA</span>
+          <h2 class="reveal-text">Craft, transparency, and a team that shows up.</h2>
+        </div>
+
+        <div class="why-layer reveal-scale">
+          <div class="why-bg">
+            {% image "images/external/ext_0600e772.jpg", "Craftsman finishing bespoke woodwork at a MITRA project site", "100vw", "", "auto" %}
+          </div>
+          <div class="why-layer-content">
+            <p class="top-line">Every space we create is backed by three uncompromising commitments.</p>
+            <div class="why-cards">
+              <div class="why-card">
+                <span class="why-num">Material Quality</span>
+                <h3>Built with materials that outlast trends.</h3>
+                <p>Moisture-resistant, BWP-grade plywood and premium soft-close hardware &mdash; the exact brand and grade named on your quote before we start.</p>
+              </div>
+              <div class="why-card">
+                <span class="why-num">Transparent Pricing</span>
+                <h3>Your quote fits on one page &mdash; and it doesn't change.</h3>
+                <p>No hidden civil fees, no last-minute site condition add-ons. Every detail is approved by you, in writing, first.</p>
+              </div>
+              <div class="why-card">
+                <span class="why-num">On-Time Delivery</span>
+                <h3>Your handover date is a promise, not an estimate.</h3>
+                <p>100% of MITRA projects are delivered on the exact date agreed at booking.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PROCESS SECTION -->
+    <section class="process" id="process">
+      <div class="wrap">
+        <div class="sec-head reveal-blur">
+          <span class="eyebrow no-line">How It Works</span>
+          <h2 class="reveal-text">Five steps from first call to move-in.</h2>
+          <p>Five steps, one point of contact. One MITRA project manager owns your project end to end &mdash; no handoffs, no confusion.</p>
+        </div>
+        <div class="timeline" id="processTimeline">
+          <div class="t-line-container">
+            <div class="t-progress" id="tProgress"></div>
+          </div>
+          <div class="t-step reveal" data-step="1">
+            <div class="t-num">1</div>
+            <h4>Consult</h4>
+            <p>Free site visit and a conversation about your space, style, and budget goals.</p>
+          </div>
+          <div class="t-step reveal delay-1" data-step="2">
+            <div class="t-num">2</div>
+            <h4>Design</h4>
+            <p>3D layouts and material boards custom tailored to your brief and your number.</p>
+          </div>
+          <div class="t-step reveal delay-2" data-step="3">
+            <div class="t-num">3</div>
+            <h4>Fixed Quote</h4>
+            <p>One itemised, all-inclusive quote &mdash; absolutely no hidden charges, ever.</p>
+          </div>
+          <div class="t-step reveal delay-3" data-step="4">
+            <div class="t-num">4</div>
+            <h4>Build</h4>
+            <p>Our in-house team executes on-site with weekly photo and milestone updates.</p>
+          </div>
+          <div class="t-step reveal delay-4" data-step="5">
+            <div class="t-num">5</div>
+            <h4>Handover</h4>
+            <p>Final walkthrough, 100-point quality checklist, and your warranty card handover.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. BEFORE / AFTER SECTION -->
+    <section class="beforeafter">
+      <div class="wrap">
+        <div class="sec-head center reveal">
+          <span class="eyebrow">Transformation</span>
+          <h2>Drag to see the difference.</h2>
+          <p>The same space, before MITRA and after &mdash; same footprint, completely new life.</p>
+        </div>
+        <div class="ba-wrap reveal">
+          <div class="comparison-container" id="comparison">
+            <!-- Before Image (Left side) -->
+            <div class="image-wrapper image-before">
+              {% image "images/comparison/before.jpg", "Living room before renovation, dusty and empty shell", "100vw", "", "auto" %}
+            </div>
+
+            <!-- After Image (Right side) -->
+            <div class="image-wrapper image-after">
+              {% image "images/comparison/after.jpg", "Living room after MITRA renovation, warm modern interior", "100vw", "", "auto" %}
+            </div>
+
+            <!-- Labels -->
+            <span class="label label-before">Before</span>
+            <span class="label label-after">After</span>
+
+            <!-- Slider Line with Gradient Fade -->
+            <div class="slider-line" id="sliderLine"></div>
+
+            <!-- Center Knob -->
+            <div class="slider-knob" id="sliderKnob" role="slider" aria-label="Image comparison slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="800px"
+                height="800px"
+                viewBox="0 0 25 25"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M9.5 8C10.3284 8 11 7.32843 11 6.5C11 5.67157 10.3284 5 9.5 5C8.67157 5 8 5.67157 8 6.5C8 7.32843 8.67157 8 9.5 8ZM9.5 14C10.3284 14 11 13.3284 11 12.5C11 11.6716 10.3284 11 9.5 11C8.67157 11 8 11.6716 8 12.5C8 13.3284 8.67157 14 9.5 14ZM11 18.5C11 19.3284 10.3284 20 9.5 20C8.67157 20 8 19.3284 8 18.5C8 17.6716 8.67157 17 9.5 17C10.3284 17 11 17.6716 11 18.5ZM15.5 8C16.3284 8 17 7.32843 17 6.5C17 5.67157 16.3284 5 15.5 5C14.6716 5 14 5.67157 14 6.5C14 7.32843 14.6716 8 15.5 8ZM17 12.5C17 13.3284 16.3284 14 15.5 14C14.6716 14 14 13.3284 14 12.5C14 11.6716 14.6716 11 15.5 11C16.3284 11 17 11.6716 17 12.5ZM15.5 20C16.3284 20 17 19.3284 17 18.5C17 17.6716 16.3284 17 15.5 17C14.6716 17 14 17.6716 14 18.5C14 19.3284 14.6716 20 15.5 20Z"
+                  fill="#121923"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. TESTIMONIALS SECTION -->
+    <section class="testi" id="testimonials">
+      <div class="testi-bg">
+        {% image "images/comparison/after.jpg", "Elegant finished living room by MITRA, backdrop for customer reviews", "100vw", "", "auto" %}
+      </div>
+      <div class="wrap">
+        <div class="sec-head center reveal-blur">
+          <span class="eyebrow">Client Stories</span>
+          <h2>What it's like to build with MITRA.</h2>
+        </div>
+        <div class="testi-track reveal-scale">
+          <!-- Slide 1 -->
+          <div class="testi-slide active">
+            <span class="quote-mark">&ldquo;</span>
+            <p class="q">They quoted us once, and that's exactly what we paid. No last-minute surprises &mdash; a rare thing in this industry.</p>
+            <div class="testi-person">
+              {% image "images/external/ext_ac7c631b.jpg", "Ravi and Deepa, portrait", "100vw", "", "auto" %}
+              <div>
+                <div class="pname">Ravi &amp; Deepa</div>
+                <div class="ploc">3BHK Apartment, Chennai</div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="testi-slide">
+            <span class="quote-mark">&ldquo;</span>
+            <p class="q">Our modular kitchen was ready in 25 days flat. The finish looks better than the showroom sample they showed us.</p>
+            <div class="testi-person">
+              {% image "images/external/ext_96b735e4.jpg", "Anitha Suresh, portrait", "100vw", "", "auto" %}
+              <div>
+                <div class="pname">Anitha Suresh</div>
+                <div class="ploc">Kitchen Renovation, Coimbatore</div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="testi-slide">
+            <span class="quote-mark">&ldquo;</span>
+            <p class="q">We had a tight budget for our office fit-out. MITRA still delivered a space that feels premium &mdash; nothing felt cut short.</p>
+            <div class="testi-person">
+              {% image "images/external/ext_01b5ebbf.jpg", "Karthik Iyer, portrait", "100vw", "", "auto" %}
+              <div>
+                <div class="pname">Karthik Iyer</div>
+                <div class="ploc">Commercial Office, Madurai</div>
+              </div>
+            </div>
+          </div>
+          <!-- Navigation dots -->
+          <div class="testi-nav" id="testiNav" role="tablist" aria-label="Testimonial slides"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. BUDGET / PRICING SECTION -->
+    <section class="budget" id="budget">
+      <div class="wrap">
+        <div class="sec-head center reveal-blur">
+          <span class="eyebrow">Transparent Pricing</span>
+          <h2 class="reveal-text">Works with every budget &mdash; see it in numbers.</h2>
+          <p>Starting budget ranges for common projects. Your exact quote is confirmed in writing after your free site visit.</p>
+        </div>
+        <div class="budget-grid">
+          <!-- Card 1 -->
+          <div class="b-card reveal">
+            <span class="tier-tag">Essential</span>
+            <h3>Modular Kitchen</h3>
+            <div class="price">₹1.4L <span>onwards</span></div>
+            <ul>
+              <li>BWP plywood cabinet carcasses</li>
+              <li>Laminate finish shutters</li>
+              <li>Premium soft-close hinges &amp; channels</li>
+              <li>3-year warranty on hardware</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="width:100%; justify-content:center;">Get This Quote</a>
+          </div>
+          <!-- Card 2 (Featured) -->
+          <div class="b-card feat reveal delay-1">
+            <span class="tier-tag">Signature</span>
+            <h3>Full Home Interiors</h3>
+            <div class="price">₹5.8L <span>onwards</span></div>
+            <ul>
+              <li>Kitchen modular units, wardrobes &amp; TV unit</li>
+              <li>False ceiling, light fixtures &amp; custom wiring</li>
+              <li>Premium laminate, acrylic &amp; veneer options</li>
+              <li>7-year full warranty + 3D design support</li>
+            </ul>
+            <a href="contact.html" class="btn btn-gold" style="width:100%; justify-content:center;">Get This Quote</a>
+          </div>
+          <!-- Card 3 -->
+          <div class="b-card reveal delay-2">
+            <span class="tier-tag">Luxe</span>
+            <h3>Villa / Custom Build</h3>
+            <div class="price">Custom <span>quote</span></div>
+            <ul>
+              <li>Full civil construction, permits &amp; design work</li>
+              <li>Bespoke custom furniture &amp; structural joinery</li>
+              <li>Dedicated architect &amp; interior designer team</li>
+              <li>10-year structural warranty</li>
+            </ul>
+            <a href="contact.html" class="btn btn-outline" style="width:100%; justify-content:center;">Get This Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CONSULTATION CTA BANNER -->
+    <section class="banner-section">
+      <div class="wrap">
+        <div class="banner reveal-scale">
+          <div class="banner-bg">
+            {% image "images/external/ext_1d0ac632.jpg", "Stunning modular design, call to action backdrop", "100vw", "", "auto" %}
+          </div>
+          <div class="banner-text">
+            <h2>Let's put your budget on paper &mdash; for free.</h2>
+            <p>Book a no-obligation site visit today. You'll receive a detailed, itemised fixed quote &mdash; not a rough guess.</p>
+          </div>
+          <a href="contact.html" class="btn btn-gold">Book Free Site Visit</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. FAQ ACCORDION SECTION -->
+    <section id="faq" class="faq-sec">
+      <div class="wrap">
+        <div class="sec-head center reveal-blur">
+          <span class="eyebrow">Questions</span>
+          <h2>Everything you're wondering before you call.</h2>
+        </div>
+        <div class="faq-wrap reveal delay-1" id="faqList">
+          {% for f in faqs %}
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="faq-a-{{ loop.index0 }}">
+              <h4>{{ f.q }}</h4>
+              <span class="plus" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-a" id="faq-a-{{ loop.index0 }}" role="region" aria-label="{{ f.q }}">
+              <p>{{ f.a }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. CONTACT SECTION -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="sec-head reveal-blur">
+          <span class="eyebrow">Get In Touch</span>
+          <h2 class="reveal-text">Tell us about your space. We'll take it from there.</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="reveal-left">
+            <div class="c-item">
+              <div class="ic"><i data-lucide="phone"></i></div>
+              <div>
+                <h4>Call Us</h4>
+                <p>+91 98765 43210 &middot; Mon&ndash;Sat, 9am&ndash;7pm</p>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="ic"><i data-lucide="mail"></i></div>
+              <div>
+                <h4>Email</h4>
+                <p>hello@mitrainteriors.in</p>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="ic"><i data-lucide="map-pin"></i></div>
+              <div>
+                <h4>Studio Address</h4>
+                <p>MITRA Design Studio, Shaikpet Main Road, Hyderabad, Telangana</p>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="ic"><i data-lucide="clock"></i></div>
+              <div>
+                <h4>Studio Hours</h4>
+                <p>Monday &ndash; Saturday, 9:00 AM &ndash; 7:00 PM</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Contact Form -->
+          <div class="form-box reveal-right delay-2">
+            <form id="contactForm" novalidate aria-label="Contact Form">
+              <!-- Honeypot for spam protection -->
+              <div class="input-wrap visually-hidden" aria-hidden="true" style="display:none;">
+                <input type="text" name="bot_field" id="bot_field" tabindex="-1">
+              </div>
+
+              <!-- Section 1: Project Scope -->
+              <div class="form-section">
+                <h4 class="form-sec-title">1. Project Specifications</h4>
+                <div class="form-row">
+                  <div class="input-wrap">
+                    <label for="formService">Project Type</label>
+                    <select id="formService" name="service" required>
+                      <option value="">Select Project Type</option>
+                      <option value="Modular Kitchen">Modular Kitchen</option>
+                      <option value="Wardrobes">Wardrobes</option>
+                      <option value="Full Home Interiors">Full Home Interiors</option>
+                      <option value="Construction &amp; Renovation">Construction &amp; Renovation</option>
+                      <option value="Commercial Interiors">Commercial Interiors</option>
+                    </select>
+                  </div>
+                  <div class="input-wrap">
+                    <label for="formSize">Property Size</label>
+                    <select id="formSize" name="size" required>
+                      <option value="">Select Property Size</option>
+                      <option value="1 BHK">1 BHK Apartment</option>
+                      <option value="2 BHK">2 BHK Apartment</option>
+                      <option value="3 BHK">3 BHK Apartment</option>
+                      <option value="Villa">Independent Villa</option>
+                      <option value="Commercial">Commercial Space</option>
+                      <option value="Other">Custom Size</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="input-wrap">
+                    <label for="formLocation">Location</label>
+                    <select id="formLocation" name="location" required>
+                      <option value="">Select Location</option>
+                      <option value="Hyderabad">Hyderabad</option>
+                      <option value="Chennai">Chennai</option>
+                      <option value="Madurai">Madurai</option>
+                      <option value="Coimbatore">Coimbatore</option>
+                      <option value="Other">Other City</option>
+                    </select>
+                  </div>
+                  <div class="input-wrap">
+                    <label for="formTimeline">Timeline</label>
+                    <select id="formTimeline" name="timeline" required>
+                      <option value="">Select Timeline</option>
+                      <option value="Immediate">Immediate (Within 1 Month)</option>
+                      <option value="1-3 Months">1 &ndash; 3 Months</option>
+                      <option value="3+ Months">3+ Months / Planning</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 2: Budget & Preferences -->
+              <div class="form-section">
+                <h4 class="form-sec-title">2. Budget &amp; Communication</h4>
+                <div class="form-row">
+                  <div class="input-wrap">
+                    <label for="formBudget">Estimated Budget</label>
+                    <select id="formBudget" name="budget" required>
+                      <option value="">Select Budget Range</option>
+                      <option value="Under ₹2L">Under ₹2L</option>
+                      <option value="₹2L - ₹5L">₹2L &ndash; ₹5L</option>
+                      <option value="₹5L - ₹10L">₹5L &ndash; ₹10L</option>
+                      <option value="₹10L+">₹10L+</option>
+                    </select>
+                  </div>
+                  <div class="input-wrap">
+                    <label for="formContactPref">Preferred Contact</label>
+                    <select id="formContactPref" name="contact_pref" required>
+                      <option value="">Select Preferred Contact</option>
+                      <option value="Phone Call">Phone Call</option>
+                      <option value="WhatsApp">WhatsApp Message</option>
+                      <option value="Email">Email</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 3: Contact Info -->
+              <div class="form-section">
+                <h4 class="form-sec-title">3. Your Information</h4>
+                <div class="form-row">
+                  <div class="input-wrap">
+                    <label for="formName">Full Name</label>
+                    <input type="text" id="formName" name="name" required placeholder="Enter your name" minlength="2">
+                  </div>
+                  <div class="input-wrap">
+                    <label for="formPhone">Phone Number</label>
+                    <input type="tel" id="formPhone" name="phone" required placeholder="10-digit mobile number" pattern="[0-9]{10}">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="input-wrap full">
+                    <label for="formEmail">Email Address</label>
+                    <input type="email" id="formEmail" name="email" required placeholder="Enter your email address">
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="formSubmitBtn" style="width:100%; justify-content:center;">
+                <span class="btn-text">Request Design Consultation</span>
+                <span class="btn-loader" style="display:none;" aria-hidden="true">Loading...</span>
+              </button>
+            </form>
+            <div id="formStatusMsg" class="toast-message" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. VISIT OUR STUDIO SECTION -->
+    <section class="studio-sec" id="studio">
+      <div class="wrap">
+        <div class="sec-head center reveal-blur">
+          <span class="eyebrow">Visit Our Studio</span>
+          <h2>Experience materials, finishes, and personalized design consultations.</h2>
+        </div>
+        
+        <div class="studio-map-container reveal-scale">
+          <iframe 
+            src="https://maps.google.com/maps?q=Shaikpet%20Main%20Road,%20Hyderabad,%20Telangana&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade" 
+            title="MITRA Studio Shaikpet Location Map">
+          </iframe>
+          
+          <div class="studio-card">
+            <h4>MITRA Interior &amp; Constructions</h4>
+            <div class="studio-card-details">
+              <p>📍 &nbsp; <strong>Location:</strong> Shaikpet Main Road, Hyderabad, Telangana</p>
+              <p>📞 &nbsp; <strong>Phone:</strong> +91 98765 43210</p>
+              <p>✉ &nbsp; <strong>Email:</strong> hello@mitrainteriors.in</p>
+              <p>🕘 &nbsp; <strong>Hours:</strong> Mon&ndash;Sat, 9:30 AM &ndash; 7:00 PM</p>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Shaikpet%20Main%20Road,%20Hyderabad,%20Telangana" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-directions">
+              Get Directions &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>

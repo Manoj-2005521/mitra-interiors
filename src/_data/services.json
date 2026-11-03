@@ -1,0 +1,102 @@
+[
+  {
+    "t": "Modular Kitchens",
+    "imgs": [
+      "/images/external/ext_d8e42ed6.jpg",
+      "/images/external/ext_82922eda.jpg",
+      "/images/external/ext_99346ad5.jpg"
+    ],
+    "desc": "L-shape, U-shape, and parallel kitchens engineered with moisture-resistant materials.",
+    "url": "modular-kitchens.html"
+  },
+  {
+    "t": "Wardrobes & Storage",
+    "imgs": [
+      "/images/Wardrobes/img1.jpg",
+      "/images/Wardrobes/img2.jpg",
+      "/images/Wardrobes/img3.jpg"
+    ],
+    "desc": "Sliding and swing wardrobes built with high-pressure laminates and smart organizers.",
+    "url": "wardrobes.html"
+  },
+  {
+    "t": "Living Rooms",
+    "imgs": [
+      "/images/Living Rooms/img1.jpg",
+      "/images/Living Rooms/img2.jpg",
+      "/images/Living Rooms/img3.jpg"
+    ],
+    "desc": "Custom living room interior designs, premium wall paneling, and partition units.",
+    "url": "living-rooms.html"
+  },
+  {
+    "t": "TV Units",
+    "imgs": [
+      "/images/TV Units/img1.jpg",
+      "/images/TV Units/img2.jpg",
+      "/images/TV Units/img3.jpg"
+    ],
+    "desc": "Modern TV wall panels, integrated media consoles, and custom showcase niches.",
+    "url": "tv-units.html"
+  },
+  {
+    "t": "Bedrooms & Beds",
+    "imgs": [
+      "/images/Bedrooms/img1.jpg",
+      "/images/Bedrooms/img2.jpg",
+      "/images/Bedrooms/img3.jpg"
+    ],
+    "desc": "Bespoke bed frames, side tables, integrated dressers, and warm lighting setups.",
+    "url": "bedrooms.html"
+  },
+  {
+    "t": "False Ceilings & Lighting",
+    "imgs": [
+      "/images/False Ceilings/img1.jpg",
+      "/images/False Ceilings/img2.jpg",
+      "/images/False Ceilings/img3.jpg"
+    ],
+    "desc": "Designer gypsum ceilings, ambient profiles, recessed spotlights, and automated controls.",
+    "url": "false-ceilings.html"
+  },
+  {
+    "t": "Custom Furniture",
+    "imgs": [
+      "/images/Custom Furniture/img1.jpg",
+      "/images/Custom Furniture/img2.jpg",
+      "/images/Custom Furniture/img3.jpg"
+    ],
+    "desc": "Bespoke solid wood tables, signature designer consoles, and luxury finishes.",
+    "url": "custom-furniture.html"
+  },
+  {
+    "t": "Home Renovation",
+    "imgs": [
+      "/images/Home Renovation/img1.jpg",
+      "/images/Home Renovation/img2.jpg",
+      "/images/Home Renovation/img3.jpg"
+    ],
+    "desc": "Complete civil rebuilding, flooring swaps, electrical overhaul, and fresh paint coats.",
+    "url": "home-renovation.html"
+  },
+  {
+    "t": "Construction & Civil Work",
+    "imgs": [
+      "/images/Civil Construction/img1.jpg",
+      "/images/Civil Construction/img2.jpg",
+      "/images/Civil Construction/img3.jpg"
+    ],
+    "desc": "Villa build, foundation civil work, brick masonry structure, structural steel, and roofing.",
+    "url": "civil-construction.html"
+  },
+  {
+    "t": "Commercial Interiors",
+    "imgs": [
+      "/images/Commercial Interiors/img1.jpg",
+      "/images/Commercial Interiors/img2.jpg",
+      "/images/Commercial Interiors/img3.jpg"
+    ],
+    "desc": "Corporate office layouts, workstations, director cabins, and premium retail shelves.",
+    "url": "commercial-interiors.html"
+  }
+]

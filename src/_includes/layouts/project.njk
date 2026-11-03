@@ -1,0 +1,120 @@
+---
+layout: layouts/base.njk
+---
+
+{% block extraCss %}
+  <link rel="preload" href="/css/pages/project-detail.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/project-detail.css"></noscript>
+{% endblock %}
+
+<!-- DETAIL HERO -->
+<section class="detail-hero">
+  <div class="detail-hero-bg">
+    {% if coverImage %}
+      {% image coverImage, title, "100vw", "", "high" %}
+    {% endif %}
+  </div>
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--gold);">Case Study</span>
+    <h1><span>{{ title }}</span></h1>
+    <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:20px; color:rgba(255,255,255,0.85); font-size:14px; align-items:center;">
+      {% if location %}
+      <span style="display:inline-flex; align-items:center; gap:6px;"><i data-lucide="map-pin" style="width:15px; height:15px; color:var(--gold);"></i> {{ location }}</span>
+      {% endif %}
+      {% if area %}
+      <span style="display:inline-flex; align-items:center; gap:6px;"><i data-lucide="maximize" style="width:15px; height:15px; color:var(--gold);"></i> {{ area }}</span>
+      {% endif %}
+      {% if duration %}
+      <span style="display:inline-flex; align-items:center; gap:6px;"><i data-lucide="clock" style="width:15px; height:15px; color:var(--gold);"></i> {{ duration }}</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT & SIDEBAR -->
+<section class="wrap detail-container">
+  <!-- Left column: Narrative & Gallery -->
+  <div class="detail-main">
+    <div class="detail-narrative reveal">
+      <h2>Project Overview</h2>
+      {{ content | safe }}
+    </div>
+
+    <!-- Mosaic Gallery -->
+    {% if gallery and gallery.length %}
+    <div class="mosaic-gallery reveal delay-1" style="margin-top: 40px;">
+      {% for img in gallery %}
+      <div style="border-radius: var(--radius-lg); overflow: hidden; height: 320px; box-shadow: var(--shadow-card);">
+        {% image img, title, "(max-width: 768px) 100vw, 50vw", "", "lazy" %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 50px;">
+      <a href="/projects.html" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px;">
+        <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back to All Projects
+      </a>
+    </div>
+  </div>
+
+  <!-- Right column: Spec Sidebar & Client Quote -->
+  <aside class="spec-sidebar reveal delay-1">
+    <h3>Project Details</h3>
+    <div class="spec-list">
+      {% if location %}
+      <div class="spec-row">
+        <span class="label">Location</span>
+        <span class="val">{{ location }}</span>
+      </div>
+      {% endif %}
+      {% if area %}
+      <div class="spec-row">
+        <span class="label">Area</span>
+        <span class="val">{{ area }}</span>
+      </div>
+      {% endif %}
+      {% if duration %}
+      <div class="spec-row">
+        <span class="label">Duration</span>
+        <span class="val">{{ duration }}</span>
+      </div>
+      {% endif %}
+      {% if budget %}
+      <div class="spec-row">
+        <span class="label">Investment</span>
+        <span class="val">{{ budget }}</span>
+      </div>
+      {% endif %}
+      {% if designStyle %}
+      <div class="spec-row">
+        <span class="label">Design Style</span>
+        <span class="val">{{ designStyle }}</span>
+      </div>
+      {% endif %}
+      {% if status %}
+      <div class="spec-row">
+        <span class="label">Status</span>
+        <span class="val">{{ status }}</span>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if clientQuote %}
+    <div class="architect-quote-card" style="margin-top: 32px;">
+      <blockquote>"{{ clientQuote }}"</blockquote>
+      <cite>
+        <span class="name">{{ clientName | default("MITRA Client") }}</span>
+        <span class="role">Verified Homeowner</span>
+      </cite>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 12px;">
+      <a href="/contact.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Book Free Site Visit</a>
+      <a href="https://wa.me/919876543210?text=Hi%20MITRA%20team,%20I%20am%20interested%20in%20a%20project%20similar%20to%20{{ title | urlencode }}." class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="width: 100%; justify-content: center; display: inline-flex; align-items: center; gap: 8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+        Quick Quote on WhatsApp
+      </a>
+    </div>
+  </aside>
+</section>

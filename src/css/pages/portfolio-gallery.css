@@ -1,0 +1,198 @@
+.p-card picture {
+  display: block;
+  width: 100%;
+}
+/* Shared CSS page style sheet for portfolio gallery grids and subcategory project heroes */
+
+.projects-hero {
+  padding: 200px 0 120px;
+  background: linear-gradient(180deg, var(--forest-deep) 0%, #05140f 100%);
+  color: var(--white);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(213, 205, 191, 0.08) 0%, transparent 70%);
+  animation: breatheGlow 10s ease-in-out infinite alternate;
+}
+
+.projects-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.5vw, 64px);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+.projects-hero h1 span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px) rotate(1deg);
+  animation: textSlideUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  color: var(--white);
+}
+
+.projects-hero h1 span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.projects-hero p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInText 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 0.4s;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+
+.portfolio-sec {
+  padding: 100px 0;
+  background-color: var(--beige);
+}
+
+
+
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.filter-btn {
+  padding: 10px 24px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(44, 39, 32, 0.2);
+  background-color: transparent;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--forest-deep);
+  transition: var(--transition);
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background-color: var(--forest);
+  color: var(--white);
+  border-color: var(--forest);
+}
+
+/* Masonry Columns */
+.masonry {
+  -moz-columns: 3 280px;
+       columns: 3 280px;
+  -moz-column-gap: 24px;
+       column-gap: 24px;
+}
+
+.p-card {
+  display: inline-block;
+  width: 100%;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  margin-bottom: 24px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  background-color: var(--white);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s;
+}
+
+.p-card img {
+  width: 100%;
+  display: block;
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.p-card:hover img {
+  transform: scale(1.06);
+}
+
+.p-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+              rgba(54, 48, 40, 0) 30%, 
+              rgba(54, 48, 40, 0.85) 75%,
+              rgba(54, 48, 40, 0.98) 100%);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.p-card:hover .p-info {
+  opacity: 1;
+}
+
+.p-info h4 {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  transform: translateY(15px);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.p-card:hover .p-info h4 {
+  transform: translateY(0);
+}
+
+.p-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 11px;
+  color: var(--gold-light);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transform: translateY(15px);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.05s;
+}
+
+.p-card:hover .p-meta {
+  transform: translateY(0);
+}
+
+.p-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.p-meta span svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .masonry {
+    -moz-columns: 2 220px;
+         columns: 2 220px;
+  }
+}
+@media (max-width: 480px) {
+  .masonry {
+    -moz-columns: 1 100%;
+         columns: 1 100%;
+  }
+}

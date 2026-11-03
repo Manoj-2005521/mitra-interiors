@@ -1,0 +1,82 @@
+[
+  {
+    "img": "images/external/ext_798b2ac2.jpg",
+    "title": "L-Shape Modular Kitchen",
+    "cat": "kitchen residential apartment",
+    "loc": "Chennai",
+    "area": "180 sqft",
+    "dur": "25 days",
+    "budget": "\u20b92.1L",
+    "url": "/projects/l-shape-modular-kitchen.html"
+  },
+  {
+    "img": "images/external/ext_64955d6e.jpg",
+    "title": "3BHK Modern Apartment",
+    "cat": "residential apartment",
+    "loc": "Coimbatore",
+    "area": "1450 sqft",
+    "dur": "75 days",
+    "budget": "\u20b98.4L",
+    "url": "/projects/3bhk-modern-apartment.html"
+  },
+  {
+    "img": "images/external/ext_c806b2e4.jpg",
+    "title": "Corporate Office Fit-Out",
+    "cat": "commercial",
+    "loc": "Madurai",
+    "area": "3200 sqft",
+    "dur": "60 days",
+    "budget": "\u20b914.2L",
+    "url": "/projects/corporate-office-fit-out.html"
+  },
+  {
+    "img": "images/external/ext_4ab311f7.jpg",
+    "title": "Master Bedroom Suite",
+    "cat": "residential apartment",
+    "loc": "Trichy",
+    "area": "220 sqft",
+    "dur": "18 days",
+    "budget": "\u20b91.6L",
+    "url": "/projects/master-bedroom-suite.html"
+  },
+  {
+    "img": "images/external/ext_d472861c.jpg",
+    "title": "Independent Luxury Villa",
+    "cat": "villa residential",
+    "loc": "Salem",
+    "area": "2800 sqft",
+    "dur": "9 months",
+    "budget": "\u20b962L",
+    "url": "/projects/independent-luxury-villa.html"
+  },
+  {
+    "img": "images/external/ext_a535a3b3.jpg",
+    "title": "Boutique Retail Interior",
+    "cat": "commercial",
+    "loc": "Chennai",
+    "area": "900 sqft",
+    "dur": "30 days",
+    "budget": "\u20b95.8L",
+    "url": "/projects/boutique-retail-interior.html"
+  },
+  {
+    "img": "images/external/ext_596e911f.jpg",
+    "title": "2BHK Cozy Family Home",
+    "cat": "residential apartment",
+    "loc": "Chennai",
+    "area": "920 sqft",
+    "dur": "48 days",
+    "budget": "\u20b94.3L",
+    "url": "/projects/2bhk-cozy-family-home.html"
+  },
+  {
+    "img": "images/False Ceilings/img1.jpg",
+    "title": "Premium false ceiling & lighting",
+    "cat": "residential apartment",
+    "loc": "Coimbatore",
+    "area": "1200 sqft",
+    "dur": "8 days",
+    "budget": "\u20b91.1L",
+    "url": "/false-ceilings.html"
+  }
+]

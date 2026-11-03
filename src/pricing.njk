@@ -1,0 +1,169 @@
+---
+layout: layouts/base.njk
+title: "Pricing &amp; Budget Estimator &mdash; MITRA"
+description: "Calculate the estimated cost for your home renovation or modular kitchen in Tamil Nadu using our interactive budget calculator. Get transparent pricing."
+---
+
+{% block extraCss %}
+  <link rel="preload" href="/css/pages/pricing.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/pricing.css"></noscript>
+{% endblock %}
+
+<!-- PRICING HERO -->
+    <section class="pricing-hero">
+      <div class="wrap" style="position:relative; z-index:1;">
+        <span class="eyebrow" style="color:var(--gold);">Transparent Budgets</span>
+        <h1><span>Pricing mapped </span><span>to your needs.</span></h1>
+        <p style="color:rgba(255,255,255,0.8); max-width:600px; margin:0 auto; font-size:17px;">No hidden charges, no middleman markups. Check our standard tiers or calculate your estimate in real time.</p>
+      </div>
+    </section>
+
+    <!-- TIERS & CALCULATOR -->
+    <section class="wrap pricing-sec">
+      <div class="budget-grid">
+        <!-- Tier 1 -->
+        <div class="b-card reveal">
+          <span class="tier-tag">Essential</span>
+          <h3>Modular Kitchen</h3>
+          <div class="price">₹1.4L <span>onwards</span></div>
+          <ul>
+            <li>BWP plywood cabinet carcasses</li>
+            <li>Laminate finish shutters</li>
+            <li>Premium soft-close hinges &amp; channels</li>
+            <li>3-year warranty on hardware</li>
+          </ul>
+          <a href="/contact.html" class="btn btn-outline" style="width:100%; justify-content:center;">Get This Quote</a>
+        </div>
+        <!-- Tier 2 (Featured) -->
+        <div class="b-card feat reveal delay-1">
+          <span class="tier-tag">Signature</span>
+          <h3>Full Home Interiors</h3>
+          <div class="price">₹5.8L <span>onwards</span></div>
+          <ul>
+            <li>Kitchen modular units, wardrobes &amp; TV unit</li>
+            <li>False ceiling, light fixtures &amp; custom wiring</li>
+            <li>Premium laminate, acrylic &amp; veneer options</li>
+            <li>7-year full warranty + 3D design support</li>
+          </ul>
+          <a href="/contact.html" class="btn btn-gold" style="width:100%; justify-content:center;">Get This Quote</a>
+        </div>
+        <!-- Tier 3 -->
+        <div class="b-card reveal delay-2">
+          <span class="tier-tag">Luxe</span>
+          <h3>Villa / Custom Build</h3>
+          <div class="price">Custom <span>quote</span></div>
+          <ul>
+            <li>Full civil construction, permits &amp; design work</li>
+            <li>Bespoke custom furniture &amp; structural joinery</li>
+            <li>Dedicated architect &amp; interior designer team</li>
+            <li>10-year structural warranty</li>
+          </ul>
+          <a href="/contact.html" class="btn btn-outline" style="width:100%; justify-content:center;">Get This Quote</a>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE CALCULATOR BLOCK -->
+      <div class="calculator-block reveal">
+        <div class="sec-head">
+          <span class="eyebrow">Estimator</span>
+          <h2>Calculate Your Home Budget</h2>
+          <p>Get a baseline estimate based on room layout parameters. Select options below to calculate cost.</p>
+        </div>
+        <div class="calc-grid">
+          <!-- Inputs -->
+          <div class="calc-inputs">
+            <!-- Group 1: Configuration -->
+            <div class="calc-group">
+              <label>1. Floor Layout Configuration</label>
+              <div class="calc-options-grid" id="layoutSelect">
+                <button class="calc-opt-btn active" data-val="1bhk">1 BHK</button>
+                <button class="calc-opt-btn" data-val="2bhk">2 BHK</button>
+                <button class="calc-opt-btn" data-val="3bhk">3 BHK</button>
+              </div>
+            </div>
+            <!-- Group 2: Scope -->
+            <div class="calc-group">
+              <label>2. Project Scope</label>
+              <div class="calc-options-grid" id="scopeSelect">
+                <button class="calc-opt-btn active" data-val="kitchen">Kitchen Only</button>
+                <button class="calc-opt-btn" data-val="full">Full Home</button>
+                <button class="calc-opt-btn" data-val="wardrobe">Wardrobes Only</button>
+              </div>
+            </div>
+            <!-- Group 3: Finish Quality -->
+            <div class="calc-group">
+              <label>3. Finish Quality Tier</label>
+              <div class="calc-options-grid" id="tierSelect">
+                <button class="calc-opt-btn active" data-val="essential">Essential</button>
+                <button class="calc-opt-btn" data-val="signature">Signature</button>
+                <button class="calc-opt-btn" data-val="luxe">Luxe</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div class="calc-result-box">
+            <span class="rs-lbl">Estimated Budget Range</span>
+            <div class="est-value" id="calcEstimateDisplay">₹1.4L - ₹1.7L</div>
+            <p>Baseline quote covers in-house manufacturing, plywood structures, finishes, premium soft-close hardware, and full on-site installation.</p>
+            <a href="/contact.html" class="btn btn-primary" style="width:100%;">Book Site visit to lock price</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% block extraJs %}
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const basePricings = {
+      "1bhk": { kitchen: 140000, wardrobe: 85000, full: 380000 },
+      "2bhk": { kitchen: 165000, wardrobe: 140000, full: 520000 },
+      "3bhk": { kitchen: 195000, wardrobe: 210000, full: 720000 }
+    };
+    
+    const multipliers = {
+      essential: 1.0,
+      signature: 1.25,
+      luxe: 1.55
+    };
+
+    let selectedLayout = "1bhk";
+    let selectedScope = "kitchen";
+    let selectedTier = "essential";
+
+    const display = document.getElementById('calcEstimateDisplay');
+
+    function calculateCost() {
+      const base = basePricings[selectedLayout][selectedScope];
+      const mult = multipliers[selectedTier];
+      
+      const estimatedValue = base * mult;
+      const lower = Math.round(estimatedValue / 10000) * 10000;
+      const upper = Math.round((estimatedValue * 1.15) / 10000) * 10000;
+
+      // Formatted output
+      const formatLakh = (val) => (val / 100000).toFixed(2) + "L";
+      if (display) {
+        display.textContent = `₹${formatLakh(lower)} - ₹${formatLakh(upper)}`;
+      }
+    }
+
+    // Set up option listeners
+    function attachGroupListeners(groupId, callback) {
+      const parent = document.getElementById(groupId);
+      if (!parent) return;
+      const btns = parent.querySelectorAll('.calc-opt-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          callback(btn.getAttribute('data-val'));
+        });
+      });
+    }
+
+    attachGroupListeners('layoutSelect', (val) => { selectedLayout = val; calculateCost(); });
+    attachGroupListeners('scopeSelect', (val) => { selectedScope = val; calculateCost(); });
+    attachGroupListeners('tierSelect', (val) => { selectedTier = val; calculateCost(); });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,465 @@
+/* Font Families â€” Cinzel Local Fonts */
+/* ==========================================================================
+   MITRA Interior & Constructions — Premium Design System v2.0
+   ========================================================================== */
+
+:root {
+  /* Color Palette — Refined 60-30-10 Architect's Palette */
+  /* 60% Dominant (Soft Plaster & variants) */
+  --beige: #ECE8E1;       /* Base background */
+  --cream: #F8F6F2;       /* Card background */
+  --champagne: #DFD9CE;   /* Secondary backgrounds / structural borders */
+  --white: #FFFFFF;       /* Clean stark areas */
+
+  /* 30% Secondary (Aged Teatable & variants) */
+  --gold: #BBAE9B;        /* Primary wood accent / borders */
+  --gold-warm: #A39683;   /* Warm mid tone */
+  --gold-light: #D5CDBF;  /* Soft light highlights */
+  --terracotta: #A38374;  /* Earthy highlight matching the wood tones */
+  --sage: #B5B0A5;        /* Desaturated architectural gray-brown */
+
+  /* 10% Accent (Forest Green & Typography) */
+  --forest: #363028;      /* Primary brand green accent */
+  --forest-deep: #2C2720; /* Deep green for headings, titles & dark footers */
+  --forest-mid: #4F463B;  /* Hover transitions for green elements */
+  --dark: #2C2720;        /* Main body text color */
+  --slate: #4F4941; /* Darkened for better contrast */
+  
+  /* Line & Border Colors */
+  --line-gold: rgba(187, 174, 155, 0.3);
+  --line-dark: rgba(44, 39, 32, 0.08);
+  --line-light: rgba(255, 255, 255, 0.15);
+
+  /* Shadows — Color-Matched Ambient Glows */
+  --shadow-soft: 0 20px 60px -20px rgba(44, 39, 32, 0.15),
+                 0 8px 24px -12px rgba(44, 39, 32, 0.08);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+                 0 10px 30px -12px rgba(43, 43, 43, 0.08);
+  --shadow-luxe: 0 32px 64px -20px rgba(54, 48, 40, 0.2),
+                 0 16px 32px -16px rgba(0, 0, 0, 0.08);
+  --shadow-glow-gold: 0 12px 40px -8px rgba(213, 205, 191, 0.25);
+  --shadow-glow-forest: 0 12px 40px -8px rgba(54, 48, 40, 0.15);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
+  --radius-xs: 4px;
+  --radius-pill: 9999px;
+
+  /* Animation Easing â€” Designer-grade curves */
+  --ease-base: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0, 1);
+  
+  /* Transitions */
+  --transition-fast: all 0.2s var(--ease-base);
+  --transition-base: all 0.4s var(--ease-base);
+  --transition: all 0.4s var(--ease-base);
+  --transition-slow: all 0.8s var(--ease-base);
+
+  /* Z-Index Scale */
+  --z-base: 0;
+  --z-elevate: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 1000;
+  --z-toast: 2000;
+  --z-max: 9999;
+
+  /* Typography Scale â€” Fluid Responsive */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-ui: 'Outfit', sans-serif;
+
+  /* Fluid Font Sizes */
+  --fs-display-xl: clamp(3.5rem, 8vw, 6.5rem);
+  --fs-display-lg: clamp(2.5rem, 5vw, 4rem);
+  --fs-h1: clamp(2.25rem, 4vw, 3.5rem);
+  --fs-h2: clamp(1.75rem, 3vw, 2.5rem);
+  --fs-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --fs-body: clamp(1rem, 1.1vw, 1.125rem);
+  --fs-body-sm: clamp(0.875rem, 0.9vw, 1rem);
+
+  /* Spacing Tokens */
+  --space-4xs: 0.25rem;
+  --space-3xs: 0.5rem;
+  --space-2xs: 0.75rem;
+  --space-xs: 1rem;
+  --space-sm: 1.5rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+  --container-max: 1800px;
+}
+
+
+/* Global Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -moz-text-size-adjust: 100%;
+       text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Accessibility: Focus & Motion */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--forest-deep);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+/* Global Polish: Selection & Scrollbars */
+::-moz-selection {
+  background-color: rgba(161, 131, 86, 0.3);
+  color: var(--forest-deep);
+}
+::selection {
+  background-color: rgba(161, 131, 86, 0.3);
+  color: var(--forest-deep);
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--beige);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(44, 39, 32, 0.3);
+  border-radius: 6px;
+  border: 3px solid var(--beige);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(44, 39, 32, 0.6);
+}
+
+@keyframes pageLoadFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+body {
+  font-family: var(--font-body);
+  color: var(--dark);
+  background-color: var(--beige);
+  animation: pageLoadFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Film Grain Texture Overlay —  subtle architectural feel */
+@media (min-width: 769px) {
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+  }
+}
+
+/* Typography Selection —  Editorial hierarchy */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--forest-deep);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--forest-deep);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  color: var(--slate);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.4s var(--ease-base);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, select, input, textarea {
+  font-family: inherit;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Layout Wrapper */
+.wrap {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 0 24px;
+  }
+}
+
+/* Section Vertical Padding Utility */
+section {
+  padding: 120px 0;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 80px 0;
+  }
+}
+
+/* Visually Hidden Screen Reader Labels */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Scroll Progress indicator */
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--terracotta), var(--gold));
+  background-size: 200% 100%;
+  animation: shimmerProgress 3s linear infinite;
+  z-index: 100;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+@keyframes shimmerProgress {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Eyebrows & Section Headers */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  font-family: var(--font-ui);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  animation: pulseWidth 2s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.eyebrow.no-line::before {
+  display: none;
+}
+
+@keyframes pulseWidth {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(1.4); opacity: 0.6; }
+}
+
+.sec-head {
+  max-width: 720px;
+  margin-bottom: 80px;
+}
+
+.sec-head.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.sec-head h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.sec-head p {
+  font-size: 17px;
+  color: var(--slate);
+  opacity: 0.85;
+}
+
+/* Buttons — Premium with micro-animations */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 34px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  font-family: var(--font-ui);
+  transition: all 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Ripple shine on hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s var(--ease), height 0.6s var(--ease);
+  z-index: -1;
+}
+
+.btn:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.btn-primary {
+  background-color: var(--forest);
+  color: var(--white);
+  box-shadow: 0 4px 16px -4px rgba(44, 39, 32, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: var(--forest-deep);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow-forest);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-warm) 100%);
+  color: var(--forest-deep);
+  border: none;
+  box-shadow: var(--shadow-glow-gold);
+}
+.btn-gold:hover {
+  background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -8px rgba(213, 205, 191, 0.4);
+}
+
+.btn-gold:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--forest);
+  color: var(--forest);
+}
+
+.btn-outline:hover {
+  background-color: var(--forest);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-forest);
+}
+
+.btn-outline-light {
+  background-color: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: var(--white);
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* Button Icon Micro-interactions */
+.btn i, .btn svg {
+  transition: transform 0.3s var(--ease);
+}
+.btn:hover i, .btn:hover svg {
+  transform: translateX(4px);
+}

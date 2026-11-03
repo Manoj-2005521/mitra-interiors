@@ -1,0 +1,286 @@
+/* Detail page specific visual treatments */
+    .detail-hero {
+      position: relative;
+      height: 75vh;
+      min-height: 560px;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 60px;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--forest-deep) 0%, #05140f 100%);
+    }
+
+    .detail-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 50% 50%, rgba(213, 205, 191, 0.08) 0%, transparent 70%);
+      animation: breatheGlow 10s ease-in-out infinite alternate;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .detail-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      transform: scale(1.05);
+      animation: slowZoomHero 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes slowZoomHero {
+      to { transform: scale(1); }
+    }
+
+    .detail-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(44, 39, 32, 0.45) 100%);
+    }
+
+    .detail-hero .wrap {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+    }
+
+    .detail-hero h1 {
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5.5vw, 64px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-top: 10px;
+    }
+
+    .detail-hero h1 span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(30px) rotate(1deg);
+      animation: textSlideUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    /* Editorial Layout */
+    .detail-container {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 60px;
+      padding: 100px 0;
+      background-color: var(--beige);
+    }
+
+    .detail-narrative {
+      margin-bottom: 48px;
+    }
+
+    .detail-narrative h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--forest-deep);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .detail-narrative h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background-color: var(--gold);
+      margin-top: 10px;
+    }
+
+    .detail-narrative p {
+      font-size: 16px;
+      color: var(--slate);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* Staggered Mosaic Collage */
+    .mosaic-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .mosaic-gallery picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .mosaic-gallery img {
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s;
+    }
+
+    .mosaic-gallery img:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-luxe);
+    }
+
+    .mosaic-gallery img.large {
+      grid-column: 1 / -1;
+    }
+
+    /* Elegant Spec Sidebar Card */
+    .spec-sidebar {
+      background-color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: var(--shadow-luxe);
+      align-self: start;
+      position: sticky;
+      top: 120px;
+      border: 1px solid rgba(187, 174, 155, 0.03);
+    }
+
+    .spec-sidebar h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--forest-deep);
+      margin-bottom: 30px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(187, 174, 155, 0.08);
+      position: relative;
+    }
+
+    .spec-sidebar h3::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--gold);
+    }
+
+    .spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 40px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px dashed rgba(187, 174, 155, 0.08);
+    }
+
+    .spec-row:last-child {
+      border-bottom: none;
+    }
+
+    .spec-row .label {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .spec-row .val {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--forest-deep);
+    }
+
+    /* Editorial Architect Quote */
+    .architect-quote-card {
+      background: linear-gradient(135deg, var(--forest-deep) 0%, #05140f 100%);
+      padding: 36px;
+      border-radius: var(--radius-lg);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(213, 205, 191, 0.1);
+    }
+
+    .architect-quote-card::before {
+      content: '\\201C';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-family: var(--font-display);
+      font-size: 120px;
+      color: rgba(213, 205, 191, 0.08);
+      line-height: 1;
+    }
+
+    .architect-quote-card blockquote {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .architect-quote-card cite {
+      display: flex;
+      flex-direction: column;
+      font-style: normal;
+      position: relative;
+      z-index: 1;
+    }
+
+    .architect-quote-card cite span.name {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .architect-quote-card cite span.role {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    .similar-projects {
+      background-color: var(--white);
+      padding: 100px 0;
+    }
+
+    .similar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 44px;
+    }
+
+    @media (max-width: 900px) {
+      .detail-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 60px 0;
+      }
+      .similar-grid {
+        grid-template-columns: 1fr;
+      }
+      .detail-hero {
+        height: 50vh;
+        min-height: 380px;
+      }
+    }

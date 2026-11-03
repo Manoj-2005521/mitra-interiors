@@ -1,0 +1,196 @@
+---
+layout: layouts/base.njk
+title: "The MITRA Experience"
+description: "A seamless, transparent journey from your first spark of inspiration to the day you step into your completed dream home."
+---
+
+{% block extraCss %}
+  <link rel="preload" href="/css/pages/process.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/process.css"></noscript>
+{% endblock %}
+
+<section class="process-hero">
+    <div class="wrap" style="position:relative; z-index:1;">
+        <span class="eyebrow" style="color:var(--gold);">Your Journey with MITRA</span>
+        <h1>
+            <span>The MITRA</span><br>
+            <span>Experience.</span>
+        </h1>
+        <p>A seamless, transparent journey from your first spark of inspiration to the day you step into your completed dream home.</p>
+    </div>
+</section>
+
+<section class="experience-sec">
+    <div class="wrap experience-grid">
+        
+        <!-- Left Column: Visuals (Sticky) -->
+        <div class="exp-visuals-col">
+            <div class="exp-visuals">
+                {% image "/images/process/process_scene_1_discovery_1783797094264.png", "Consultation", "100vw", "active", "auto" %}
+                {% image "/images/process/process_scene_2_design_1783797103982.png", "3D Design Presentation", "100vw", "", "auto" %}
+                {% image "/images/process/process_scene_3_craft_1783797113685.png", "Craftsmanship and Materials", "100vw", "", "auto" %}
+                {% image "/images/process/process_scene_4_install_1783797124454.png", "Installation and Styling", "100vw", "", "auto" %}
+                {% image "/images/process/process_scene_5_reveal_1783797134335.png", "Completed Luxury Home", "100vw", "", "auto" %}
+            </div>
+        </div>
+
+        <!-- Right Column: Content & Timeline -->
+        <div class="exp-content-col">
+            
+            <!-- Scrolling Content -->
+            <div class="exp-content">
+                
+                <div class="phase-block" data-phase="1">
+                    {% image "/images/process/process_scene_1_discovery_1783797094264.png", "Consultation", "100vw", "mobile-img", "auto" %}
+                    <div class="phase-body">
+                        <div class="timeline-node active" id="node-1">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-label">Vision</span>
+                        </div>
+                        <div class="phase-quote">"Every remarkable space begins with understanding how you live, work, and dream."</div>
+                        <h3>It Begins With Understanding You</h3>
+                        <div class="phase-divider"></div>
+                        <p>We visit your site to understand the architecture, natural light, and structural nuances. More importantly, we listen to your lifestyle needs, aesthetic preferences, and practical requirements.</p>
+                        <p>We discuss stylistic directions&mdash;whether contemporary, classic, or minimalist&mdash;and align on realistic budgets to ensure our designs perfectly match your expectations.</p>
+                    </div>
+                </div>
+
+                <div class="phase-block" data-phase="2">
+                    {% image "/images/process/process_scene_2_design_1783797103982.png", "3D Design Presentation", "100vw", "mobile-img", "auto" %}
+                    <div class="phase-body">
+                        <div class="timeline-node" id="node-2">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-label">Design</span>
+                        </div>
+                        <div class="phase-quote">"Clarity is the ultimate luxury."</div>
+                        <h3>See Your Home Before It's Built</h3>
+                        <div class="phase-divider"></div>
+                        <p>Our architectural designers translate your vision into precise floor layouts, optimizing flow and function. We then build immersive, photorealistic 3D models of your space ensuring complete confidence before execution begins.</p>
+                        <p>In our studio, you will review curated material combinations&mdash;from rich veneers to sleek acrylics&mdash;allowing you to see and feel the textures before finalizing the design.</p>
+                    </div>
+                </div>
+
+                <div class="phase-block" data-phase="3">
+                    {% image "/images/process/process_scene_3_craft_1783797113685.png", "Craftsmanship and Materials", "100vw", "mobile-img", "auto" %}
+                    <div class="phase-body">
+                        <div class="timeline-node" id="node-3">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-label">Craft</span>
+                        </div>
+                        <div class="phase-quote">"True quality is revealed in the details that you never see."</div>
+                        <h3>Every Detail, Crafted to Last</h3>
+                        <div class="phase-divider"></div>
+                        <p>Your custom elements are precisely fabricated in our state-of-the-art, dust-free manufacturing unit. We use premium materials, skilled craftsmanship, and uncompromising attention to detail.</p>
+                        <p>Once you sign off on the design, the price is locked. No hidden fees, no surprises. Just absolute transparency and precise engineering.</p>
+                    </div>
+                </div>
+
+                <div class="phase-block" data-phase="4">
+                    {% image "/images/process/process_scene_4_install_1783797124454.png", "Installation and Styling", "100vw", "mobile-img", "auto" %}
+                    <div class="phase-body">
+                        <div class="timeline-node" id="node-4">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-label">Install</span>
+                        </div>
+                        <div class="phase-quote">"A beautifully coordinated handover with every detail completed."</div>
+                        <h3>The Moment Your Home Comes to Life</h3>
+                        <div class="phase-divider"></div>
+                        <p>On-site, our expert civil craftsmen prepare the space. From wiring and lighting to installing modular panels, your dedicated project manager oversees every detail to ensure flawless execution.</p>
+                        <p>Before handing over the keys, we conduct a rigorous 100-point inspection covering everything from panel alignment to paint smoothness and perfect styling.</p>
+                    </div>
+                </div>
+
+                <div class="phase-block" data-phase="5">
+                    {% image "/images/process/process_scene_5_reveal_1783797134335.png", "Completed Luxury Home", "100vw", "mobile-img", "auto" %}
+                    <div class="phase-body">
+                        <div class="timeline-node" id="node-5">
+                            <div class="timeline-dot"></div>
+                            <span class="timeline-label">Support</span>
+                        </div>
+                        <div class="phase-quote">"The end of construction is merely the beginning of your living experience."</div>
+                        <h3>Our Relationship Doesn't End Here</h3>
+                        <div class="phase-divider"></div>
+                        <p>After a final walkthrough with you, we present your new home, complete with your structural and hardware warranty certificates.</p>
+                        <p>Our commitment continues long after your home is complete, ensuring your space remains as flawless as the day you moved in. The only thing left to do is enjoy.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partner Block -->
+<section class="partner-block">
+    <div class="partner-block-inner reveal">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-num">500+</span>
+                <span class="stat-label">Homes Delivered</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">12+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">98%</span>
+                <span class="stat-label">Client Satisfaction</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="font-size: 28px; line-height: 40px;">End-to-End</span>
+                <span class="stat-label">Interior Solutions</span>
+            </div>
+        </div>
+        <hr>
+        <h2>One Dedicated Design Partner</h2>
+        <p>From your first consultation to the final handover, one expert guides every decision, ensuring a flawless execution without the stress of managing multiple contractors.</p>
+        <a href="/contact.html" class="btn btn-primary" style="background: var(--gold); border-color: var(--gold); color: var(--forest-deep);">Book Your Consultation</a>
+        <hr>
+    </div>
+</section>
+
+<!-- Cinematic CTA -->
+<section class="cinematic-cta reveal">
+    <h2>Let's Design a Home That Feels Uniquely Yours</h2>
+    <p>Every exceptional interior begins with a conversation. Our designers are ready when you are.</p>
+    <a href="/contact.html" class="btn btn-primary">Book Your Free Design Consultation</a>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const phaseBlocks = document.querySelectorAll('.phase-block');
+    const visualImages = document.querySelectorAll('.exp-visuals img');
+    const timelineNodes = document.querySelectorAll('.timeline-node');
+
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px', // Trigger precisely when center of block crosses center of screen
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const phase = parseInt(entry.target.getAttribute('data-phase'), 10);
+                    
+                    // Update Images
+                    visualImages.forEach(img => img.classList.remove('active'));
+                    const activeImg = visualImages[phase - 1];
+                    if (activeImg) {
+                        activeImg.classList.add('active');
+                    }
+
+                    // Update Timeline
+                    timelineNodes.forEach(node => node.classList.remove('active'));
+                    const activeNode = document.getElementById(`node-${phase}`);
+                    if (activeNode) {
+                        activeNode.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        phaseBlocks.forEach(block => observer.observe(block));
+    }
+});
+</script>

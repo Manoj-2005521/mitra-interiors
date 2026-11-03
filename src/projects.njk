@@ -1,0 +1,104 @@
+---
+layout: layouts/base.njk
+title: "Our Portfolio &mdash; Residential &amp; Commercial Projects"
+description: "Browse our recently completed modular kitchen, luxury apartment, premium villa, and corporate office projects across Chennai, Coimbatore, and Madurai."
+---
+
+{% block extraCss %}
+  <link rel="preload" href="/css/pages/portfolio-gallery.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/portfolio-gallery.css"></noscript>
+{% endblock %}
+
+
+<!-- PROJECTS HERO -->
+    <section class="projects-hero">
+      <div class="wrap">
+        <span class="eyebrow" style="color:var(--gold);">Portfolio Gallery</span>
+        <h1>
+          <span>Delivered with</span><br>
+          <span>signature precision.</span>
+        </h1>
+        <p>A showcase of real spaces built for real budgets. Filter by room type or project scale to explore.</p>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section class="wrap portfolio-sec">
+      <!-- Filter Bar -->
+      <div class="filters reveal" role="tablist" aria-label="Filter Projects">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Work</button>
+        <button class="filter-btn" data-filter="residential" role="tab" aria-selected="false">Residential</button>
+        <button class="filter-btn" data-filter="commercial" role="tab" aria-selected="false">Commercial</button>
+        <button class="filter-btn" data-filter="kitchen" role="tab" aria-selected="false">Kitchens</button>
+        <button class="filter-btn" data-filter="wardrobe" role="tab" aria-selected="false">Wardrobes</button>
+        <button class="filter-btn" data-filter="apartment" role="tab" aria-selected="false">Apartments</button>
+        <button class="filter-btn" data-filter="villa" role="tab" aria-selected="false">Villas</button>
+      </div>
+      
+      <!-- Masonry Grid -->
+      <div class="masonry reveal delay-1" id="portfolioGrid">
+        {% for p in portfolio %}
+        <a href="/projects/{{ p.slug }}.html" class="p-card m-item {{ p.cat }}" aria-label="View details for {{ p.title }}">
+          {% image p.img, p.title, "(max-width: 768px) 100vw, 33vw", "", "lazy" %}
+          <div class="p-info">
+            <span style="font-size:12px; margin-bottom:6px; opacity:0.9; display:flex; align-items:center; gap:4px; text-transform:uppercase; letter-spacing:1px;">
+              <i data-lucide="map-pin" style="width:12px; height:12px;"></i> {{ p.loc }}
+            </span>
+            <h4>{{ p.title }}</h4>
+            <div class="p-meta">
+              <span>{{ p.area }}</span>
+              <span>{{ p.dur }}</span>
+            </div>
+            <div style="margin-top:20px;">
+               <span style="display:inline-block; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 4px; text-decoration: none; color: var(--white); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.4)'">View Case Study</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const pills = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.m-item');
+
+    function applyFilter(filter) {
+      pills.forEach(p => {
+        const isActive = p.getAttribute('data-filter') === filter;
+        p.classList.toggle('active', isActive);
+        p.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      items.forEach(item => {
+        if (filter === 'all' || item.classList.contains(filter)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filter = pill.getAttribute('data-filter');
+        if (filter === 'all') {
+          history.replaceState(null, '', window.location.pathname);
+        } else {
+          history.replaceState(null, '', '#' + filter);
+        }
+        applyFilter(filter);
+      });
+    });
+
+    // Check if URL has a hash on load (e.g., #kitchen, #wardrobe)
+    const currentHash = window.location.hash.replace('#', '').toLowerCase();
+    if (currentHash && document.querySelector(`.filter-btn[data-filter="${currentHash}"]`)) {
+      applyFilter(currentHash);
+    }
+  });
+</script>
+
+
+
+
+
+    
