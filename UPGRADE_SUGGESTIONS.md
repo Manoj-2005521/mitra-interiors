@@ -12,6 +12,7 @@
 |:---|:---|:---|
 | **1.1 Page Transition Animation (View Transitions API + Fallback)** | Motion & Flow | **COMPLETED & DEPLOYED ✅** |
 | **1.4 Scroll-Linked Pinned Progress Timeline** | Motion & Flow | **COMPLETED & DEPLOYED ✅** |
+| **2.3 Frosted Glass Cards (Refined Glassmorphism)** | Visuals & Layout | **COMPLETED & DEPLOYED ✅** |
 | **2.5 Before/After Slider Polish (Spring Physics + Blur Zone + Handle Glow)** | Visuals & Motion | **COMPLETED & DEPLOYED ✅** |
 | **3.4 Project Case Study Pages: Storytelling Layout** | UX & Editorial | **COMPLETED & DEPLOYED ✅** |
 | **Continuous Automated CI/CD Deployment Pipeline** | DevOps | **COMPLETED & DEPLOYED ✅** |
@@ -124,10 +125,14 @@
 ---
 
 ### 2.3 — Frosted Glass Cards (Refined Glassmorphism)
-* **Status:** Planned
+* **Status:** **COMPLETED & DEPLOYED ✅**
 * **Impact:** ⭐⭐⭐ | **Effort:** Low
-* **The Idea:**
-  Extend the header's translucent frosted-glass aesthetic (`backdrop-filter: blur(20px)`) to pricing cards, feature containers, and the FAQ accordion, with ambient golden border shines.
+* **What Was Implemented:**
+  - **Header & Mega Dropdown:** Real-time `backdrop-filter: blur(20px)` and `blur(24px)` with delicate translucent cream tint and top white highlight borders (`inset 0 1px 0 rgba(255,255,255,0.8)`).
+  - **Pricing Cards (`.b-card`):** Translucent frosted background (`backdrop-filter: blur(20px)`), `1px solid rgba(255,255,255,0.65)` subtle border, and warm golden inner glow on hover (`inset 0 0 24px rgba(197, 160, 89, 0.16)`). Featured tier gets deep forest glass (`blur(24px)`) with pulsating aura.
+  - **Feature Tiles (`.why-card`):** Elevated over image layer with `backdrop-filter: blur(20px)`, `1px solid rgba(255,255,255,0.22)` border, and dual white/gold inner glow on hover.
+  - **FAQ Accordion (`.faq-item`):** Restructured into floating, frosted-glass acoustic cards with `backdrop-filter: blur(20px)`, rounded pill-curve geometry, golden hover accents, and expanded active glow.
+  - **Calculator & Service Cards:** Translucent glassmorphic backgrounds for `.calculator-block`, `.calc-result-box`, `.calc-opt-btn`, and `.service-item-card`.
 
 ---
 

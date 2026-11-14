@@ -39,14 +39,18 @@
     .pricing-sec {
       padding: 100px 0;
     }
-    /* Calculator styling */
+    /* Calculator styling — Frosted Glass */
     .calculator-block {
-      background-color: var(--white);
-      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-xl);
       padding: 60px;
-      box-shadow: var(--shadow-luxe);
+      box-shadow: 0 24px 50px -10px rgba(44, 39, 32, 0.08), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.9), 
+                  inset 0 0 20px rgba(255, 255, 255, 0.3);
       margin-top: 80px;
-      border: 1px solid rgba(187, 174, 155,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.75);
     }
     .calc-grid {
       display: grid;
@@ -78,29 +82,40 @@
     .calc-opt-btn {
       padding: 14px;
       border-radius: var(--radius-sm);
-      border: 1.5px solid rgba(187, 174, 155,0.18);
-      background-color: var(--beige);
+      border: 1.5px solid rgba(187, 174, 155, 0.25);
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       font-size: 13.5px;
       font-weight: 500;
       color: var(--dark);
       transition: var(--transition);
       text-align: center;
     }
+    .calc-opt-btn:hover {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 14px rgba(197, 160, 89, 0.15), inset 0 0 12px rgba(197, 160, 89, 0.1);
+    }
     .calc-opt-btn.active {
       background-color: var(--forest);
       color: var(--white);
       border-color: var(--forest);
+      box-shadow: 0 6px 18px rgba(14, 34, 26, 0.25);
     }
     .calc-result-box {
-      background-color: var(--beige);
-      border-radius: var(--radius-md);
+      background: rgba(247, 244, 238, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-lg);
       padding: 44px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      border: 1px solid rgba(213, 205, 191, 0.25);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.6), 0 12px 30px rgba(44, 39, 32, 0.05);
     }
     .calc-result-box span.rs-lbl {
       font-size: 13px;
