@@ -1,63 +1,151 @@
 // --- src/js/process.js ---
 
 export function initProcess() {
-  // INTERACTIVE PROCESS TIMELINE
+  // 1. SCROLL-LINKED PINNED TIMELINE (Homepage)
+  const pinTrack = document.getElementById('processPinTrack');
   const timeline = document.getElementById('processTimeline');
   const tProgress = document.getElementById('tProgress');
   const tSteps = document.querySelectorAll('.t-step');
 
-  if (timeline && tProgress && tSteps.length > 0 && !timeline.dataset.timelineBound) {
-    timeline.dataset.timelineBound = 'true';
-    updateTimeline(1);
+  if (timeline && tProgress && tSteps.length > 0 && !timeline.dataset.scrollTimelineBound) {
+    timeline.dataset.scrollTimelineBound = 'true';
 
+    let isHovering = false;
+    let hoveredStepNum = null;
+    let currentScrollProgress = 0;
+    let lastActiveStepNum = 1;
+
+    // Step Activation Thresholds (0%, 25%, 50%, 75%, 100%)
+    const thresholds = [0, 0.22, 0.47, 0.72, 0.95];
+
+    function applyTimelineState(activeNum, percentage) {
+      const isMobile = window.innerWidth <= 900;
+      const clampedPct = Math.max(0, Math.min(100, percentage));
+
+      // 1. Progress line dimension
+      if (isMobile) {
+        tProgress.style.width = '2px';
+        tProgress.style.height = `${clampedPct}%`;
+      } else {
+        tProgress.style.height = '2px';
+        tProgress.style.width = `${clampedPct}%`;
+      }
+
+      // 2. Step classes
+      tSteps.forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'), 10);
+        const wasActive = step.classList.contains('active');
+        const nowActive = stepNum <= activeNum;
+
+        // Pop animation on newly activated node
+        if (!wasActive && nowActive) {
+          step.classList.add('just-activated');
+          setTimeout(() => step.classList.remove('just-activated'), 550);
+        }
+
+        step.classList.toggle('active', nowActive);
+      });
+
+      lastActiveStepNum = activeNum;
+    }
+
+    function calculateScrollProgress() {
+      if (isHovering) return;
+
+      const isMobile = window.innerWidth <= 900;
+
+      if (!isMobile && pinTrack) {
+        // Desktop: Scroll through the pinned track
+        const rect = pinTrack.getBoundingClientRect();
+        const scrollableDistance = rect.height - window.innerHeight;
+
+        if (scrollableDistance > 0) {
+          const scrolled = -rect.top;
+          const rawRatio = scrolled / scrollableDistance;
+          currentScrollProgress = Math.max(0, Math.min(1, rawRatio));
+        } else {
+          currentScrollProgress = 0;
+        }
+
+        let activeStep = 1;
+        thresholds.forEach((thresh, idx) => {
+          if (currentScrollProgress >= thresh) {
+            activeStep = idx + 1;
+          }
+        });
+
+        applyTimelineState(activeStep, currentScrollProgress * 100);
+
+      } else {
+        // Mobile / Small screens: Vertical scroll position
+        const rect = timeline.getBoundingClientRect();
+        const viewportCenter = window.innerHeight * 0.55;
+
+        let activeIdx = 0;
+        tSteps.forEach((step, idx) => {
+          const sRect = step.getBoundingClientRect();
+          if (sRect.top <= viewportCenter) {
+            activeIdx = idx;
+          }
+        });
+
+        const activeStep = activeIdx + 1;
+        const pct = (activeIdx / (tSteps.length - 1)) * 100;
+        applyTimelineState(activeStep, pct);
+      }
+    }
+
+    // Interactive Hover & Click preview
     tSteps.forEach(step => {
       const stepNum = parseInt(step.getAttribute('data-step'), 10);
-      
+
       step.addEventListener('mouseenter', () => {
-        updateTimeline(stepNum);
+        isHovering = true;
+        hoveredStepNum = stepNum;
+        const previewPct = ((stepNum - 1) / (tSteps.length - 1)) * 100;
+        applyTimelineState(stepNum, previewPct);
       });
-      
+
       step.addEventListener('click', () => {
-        updateTimeline(stepNum);
-        timeline.setAttribute('data-locked-step', stepNum);
+        const previewPct = ((stepNum - 1) / (tSteps.length - 1)) * 100;
+        applyTimelineState(stepNum, previewPct);
       });
     });
 
     timeline.addEventListener('mouseleave', () => {
-      const lockedStep = parseInt(timeline.getAttribute('data-locked-step'), 10) || 1;
-      updateTimeline(lockedStep);
+      isHovering = false;
+      hoveredStepNum = null;
+      calculateScrollProgress();
     });
 
-    function updateTimeline(activeStepNum) {
-      tSteps.forEach(step => {
-        const stepNum = parseInt(step.getAttribute('data-step'), 10);
-        step.classList.toggle('active', stepNum <= activeStepNum);
-      });
-
-      const totalSteps = tSteps.length;
-      const percentage = ((activeStepNum - 1) / (totalSteps - 1)) * 100;
-
-      const isMobile = window.innerWidth <= 900;
-      if (isMobile) {
-        tProgress.style.width = '2px';
-        tProgress.style.height = `${percentage}%`;
-      } else {
-        tProgress.style.height = '2px';
-        tProgress.style.width = `${percentage}%`;
+    // Throttled scroll listener
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          calculateScrollProgress();
+          ticking = false;
+        });
+        ticking = true;
       }
-    }
+    };
 
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Handle viewport resize
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        const activeStepNum = parseInt(timeline.querySelector('.t-step.active:last-of-type')?.getAttribute('data-step'), 10) || 1;
-        updateTimeline(activeStepNum);
+        calculateScrollProgress();
       }, 100);
     }, { passive: true });
+
+    // Initial calculation on render
+    calculateScrollProgress();
   }
 
-  // EDITORIAL SCROLL - IMAGE SWAPPING (The MITRA Experience)
+  // 2. EDITORIAL SCROLL - IMAGE SWAPPING (The MITRA Experience)
   const phaseBlocks = document.querySelectorAll('.phase-block');
   const stickyImages = document.querySelectorAll('.exp-visuals img');
   const timelineNodes = document.querySelectorAll('.timeline-node');

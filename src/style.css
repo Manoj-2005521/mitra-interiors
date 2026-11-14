@@ -1835,14 +1835,56 @@ section {
 }
 
 /* ==========================================================================
-   Process Section (Timeline)
+   Process Section (Scroll-Linked Pinned Timeline)
    ========================================================================== */
 
 .process {
   background-color: var(--forest-deep);
   color: var(--white);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+}
+
+@media (min-width: 901px) {
+  .process {
+    padding: 0;
+  }
+
+  .process-pin-track {
+    position: relative;
+    height: 230vh; /* Smooth scroll track for 5 steps */
+  }
+
+  .process-pin-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .process-pin-sticky .sec-head {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .process {
+    padding: 90px 0;
+  }
+  .process-pin-track {
+    height: auto;
+  }
+  .process-pin-sticky {
+    position: static;
+    height: auto;
+    padding: 0;
+  }
 }
 
 .process .sec-head h2 {
@@ -1867,8 +1909,9 @@ section {
   left: 46px; /* Exactly aligns with center of Step 1 circle */
   right: calc((100% - 96px) / 5 - 46px); /* Exactly aligns with center of Step 5 circle */
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.12);
   z-index: 1;
+  border-radius: 2px;
 }
 
 .t-progress {
@@ -1876,31 +1919,82 @@ section {
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(90deg, var(--gold), var(--gold-warm));
+  background: linear-gradient(90deg, var(--gold-light), var(--gold), #D5CDBF);
   z-index: 1;
   width: 0%;
-  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 0 10px rgba(213, 205, 191, 0.4);
+  transition: width 0.18s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 12px rgba(213, 205, 191, 0.6);
+  border-radius: 2px;
 }
 
+/* Glowing Pulse Bead at Leading Edge of Progress Line */
+.t-progress::after {
+  content: '';
+  position: absolute;
+  right: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #FFF8EB;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 14px 4px rgba(213, 205, 191, 0.9), 0 0 28px 8px rgba(187, 174, 155, 0.4);
+  z-index: 3;
+  pointer-events: none;
+  animation: pulseBeadGlow 1.6s infinite alternate ease-in-out;
+}
+
+@keyframes pulseBeadGlow {
+  0% {
+    transform: translateY(-50%) scale(0.92);
+    box-shadow: 0 0 10px 3px rgba(213, 205, 191, 0.7), 0 0 18px 4px rgba(187, 174, 155, 0.3);
+  }
+  100% {
+    transform: translateY(-50%) scale(1.3);
+    box-shadow: 0 0 18px 5px rgba(255, 248, 235, 1), 0 0 32px 10px rgba(213, 205, 191, 0.7);
+  }
+}
+
+/* Step Card Base (Dimmed when pending, lights up when activated) */
 .t-step {
   position: relative;
   padding: 96px 20px 24px;
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: transform 0.4s var(--ease), background-color 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  opacity: 0.38;
+  filter: grayscale(0.5);
+  transform: translateY(0);
+  transition: opacity 0.5s var(--ease),
+              transform 0.5s var(--ease),
+              background-color 0.5s var(--ease),
+              border-color 0.5s var(--ease),
+              box-shadow 0.5s var(--ease),
+              filter 0.5s var(--ease);
 }
 
-.t-step:hover, .t-step.active {
+.t-step:hover {
+  opacity: 0.85;
+  filter: grayscale(0);
+  transform: translateY(-4px);
   background-color: rgba(255, 255, 255, 0.04);
-  border-color: rgba(213, 205, 191, 0.25);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(213, 205, 191, 0.2);
 }
 
+/* Active Step Card */
+.t-step.active {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: translateY(-6px);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(213, 205, 191, 0.35);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(213, 205, 191, 0.15);
+}
+
+/* Step Number Node */
 .t-step .t-num {
   position: absolute;
   top: 14px;
@@ -1908,8 +2002,8 @@ section {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1917,33 +2011,74 @@ section {
   font-weight: 700;
   font-size: 20px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: transform 0.4s var(--ease-spring), background-color 0.4s, color 0.4s, border-color 0.4s, box-shadow 0.4s;
+  transition: transform 0.4s var(--ease-spring),
+              background 0.4s var(--ease),
+              color 0.4s var(--ease),
+              border-color 0.4s var(--ease),
+              box-shadow 0.4s var(--ease);
 }
 
-.t-step:hover .t-num, .t-step.active .t-num {
-  transform: scale(1.1);
-  background: linear-gradient(135deg, var(--gold), var(--gold-warm));
+.t-step:hover .t-num {
+  border-color: rgba(213, 205, 191, 0.4);
+  color: var(--white);
+}
+
+.t-step.active .t-num {
+  transform: scale(1.12);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-warm));
   color: var(--forest-deep);
-  border-color: var(--gold);
-  box-shadow: var(--shadow-glow-gold);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 25px rgba(213, 205, 191, 0.65), 0 0 0 4px rgba(213, 205, 191, 0.2);
+}
+
+/* Step Activation Elastic Pop */
+.t-step.just-activated .t-num {
+  animation: stepNodePop 0.55s var(--ease-spring);
+}
+
+@keyframes stepNodePop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.3);
+    box-shadow: 0 0 35px rgba(213, 205, 191, 1), 0 0 0 8px rgba(213, 205, 191, 0.35);
+  }
+  100% {
+    transform: scale(1.12);
+  }
 }
 
 .t-step h4 {
-  color: var(--white);
+  color: rgba(255, 255, 255, 0.6);
   font-family: var(--font-display);
   font-size: 20px;
   margin-bottom: 12px;
-  transition: color 0.3s;
+  transition: color 0.4s var(--ease);
 }
 
-.t-step:hover h4, .t-step.active h4 {
-  color: var(--gold-light);
+.t-step:hover h4 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.t-step.active h4 {
+  color: var(--white);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .t-step p {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.45);
   font-size: 14px;
   line-height: 1.6;
+  transition: color 0.4s var(--ease);
+}
+
+.t-step:hover p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.t-step.active p {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 @media (max-width: 900px) {
@@ -1952,9 +2087,6 @@ section {
     gap: 20px;
     padding-left: 40px;
   }
-  .timeline::before {
-    display: none;
-  }
   .t-line-container {
     left: 40px; /* Aligns with center of circles on mobile */
     top: 50px;
@@ -1962,14 +2094,31 @@ section {
     width: 2px;
     height: auto;
     right: auto;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.12);
   }
   .t-progress {
     left: 0;
     top: 0;
     width: 100%;
     height: 0%;
-    transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: height 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .t-progress::after {
+    right: 50%;
+    top: auto;
+    bottom: -7px;
+    transform: translateX(50%);
+    animation: pulseBeadGlowVertical 1.6s infinite alternate ease-in-out;
+  }
+  @keyframes pulseBeadGlowVertical {
+    0% {
+      transform: translateX(50%) scale(0.92);
+      box-shadow: 0 0 10px 3px rgba(213, 205, 191, 0.7);
+    }
+    100% {
+      transform: translateX(50%) scale(1.3);
+      box-shadow: 0 0 20px 6px rgba(255, 248, 235, 1);
+    }
   }
   .t-step {
     padding: 24px 24px 24px 80px;
@@ -1977,6 +2126,32 @@ section {
   .t-step .t-num {
     left: 14px;
     top: 24px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .process-pin-track {
+    height: auto !important;
+  }
+  .process-pin-sticky {
+    position: static !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+  .t-step,
+  .t-step h4,
+  .t-step p,
+  .t-step .t-num,
+  .t-progress {
+    transition: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+  .t-progress::after,
+  .t-step.just-activated .t-num {
+    animation: none !important;
   }
 }
 
