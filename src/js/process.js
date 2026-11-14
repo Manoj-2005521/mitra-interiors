@@ -176,18 +176,54 @@ export function initProcess() {
     phaseBlocks.forEach(block => scrollObserver.observe(block));
   }
 
-  // BEFORE/AFTER COMPARISON SLIDER
+  // BEFORE/AFTER COMPARISON SLIDER WITH SPRING PHYSICS & BLUR ZONE
   const container = document.getElementById("comparison");
   if (container && !container.dataset.comparisonBound) {
     container.dataset.comparisonBound = 'true';
     const beforeImage = container.querySelector(".image-before");
     const sliderLine = document.getElementById("sliderLine");
     const sliderKnob = document.getElementById("sliderKnob");
+    const sliderBlurZone = document.getElementById("sliderBlurZone");
+    const labelBefore = container.querySelector(".label-before");
+    const labelAfter = container.querySelector(".label-after");
 
     let isDragging = false;
     let currentPosition = 50; // Percentage
     let animationFrameId = null;
     let targetPosition = 50;
+    let springAnimId = null;
+    let springVelocity = 0;
+
+    function updateLabels(clamped) {
+      // Dynamic Edge Fading: When dragging near edges, labels smoothly glow and scale
+      if (labelBefore) {
+        if (clamped >= 68) {
+          const factor = (clamped - 68) / 32;
+          labelBefore.style.opacity = (0.7 + 0.3 * factor).toFixed(2);
+          labelBefore.style.transform = `scale(${(1 + 0.06 * factor).toFixed(3)}) translateY(0)`;
+        } else if (clamped <= 25) {
+          labelBefore.style.opacity = Math.max(0.15, (clamped / 25) * 0.45).toFixed(2);
+          labelBefore.style.transform = 'scale(0.96) translateY(0)';
+        } else {
+          labelBefore.style.opacity = '0.65';
+          labelBefore.style.transform = 'scale(1) translateY(0)';
+        }
+      }
+
+      if (labelAfter) {
+        if (clamped <= 32) {
+          const factor = (32 - clamped) / 32;
+          labelAfter.style.opacity = (0.7 + 0.3 * factor).toFixed(2);
+          labelAfter.style.transform = `scale(${(1 + 0.06 * factor).toFixed(3)}) translateY(0)`;
+        } else if (clamped >= 75) {
+          labelAfter.style.opacity = Math.max(0.15, ((100 - clamped) / 25) * 0.45).toFixed(2);
+          labelAfter.style.transform = 'scale(0.96) translateY(0)';
+        } else {
+          labelAfter.style.opacity = '0.65';
+          labelAfter.style.transform = 'scale(1) translateY(0)';
+        }
+      }
+    }
 
     function updateSlider(position) {
       if (typeof position === 'number') {
@@ -197,25 +233,70 @@ export function initProcess() {
       const clamped = Math.max(0, Math.min(100, targetPosition));
       currentPosition = clamped;
 
-      // Update clip-path for before image (clipping from the right side)
+      // 1. Clip path for before image
       if (beforeImage) {
         beforeImage.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
       }
 
-      // Update slider line and knob position
+      // 2. Optical blur transition zone & divider line
+      if (sliderBlurZone) {
+        sliderBlurZone.style.left = `${clamped}%`;
+      }
       if (sliderLine) {
         sliderLine.style.left = `${clamped}%`;
       }
+
+      // 3. Knob position & ARIA
       if (sliderKnob) {
         sliderKnob.style.left = `${clamped}%`;
         sliderKnob.setAttribute("aria-valuenow", Math.round(clamped));
       }
 
+      // 4. Subtle edge label fading
+      updateLabels(clamped);
+
       animationFrameId = null;
+    }
+
+    function runSpringPhysics(snapTarget) {
+      if (springAnimId) cancelAnimationFrame(springAnimId);
+      const stiffness = 0.12; // Spring tension
+      const damping = 0.72;   // Spring resistance
+
+      function springStep() {
+        const force = (snapTarget - currentPosition) * stiffness;
+        springVelocity = (springVelocity + force) * damping;
+        currentPosition += springVelocity;
+        
+        updateSlider(currentPosition);
+
+        if (Math.abs(springVelocity) > 0.04 || Math.abs(snapTarget - currentPosition) > 0.08) {
+          springAnimId = requestAnimationFrame(springStep);
+        } else {
+          currentPosition = snapTarget;
+          updateSlider(currentPosition);
+          springAnimId = null;
+          springVelocity = 0;
+        }
+      }
+
+      springAnimId = requestAnimationFrame(springStep);
+    }
+
+    function handleStart(clientX) {
+      if (springAnimId) {
+        cancelAnimationFrame(springAnimId);
+        springAnimId = null;
+        springVelocity = 0;
+      }
+      isDragging = true;
+      container.classList.add("dragging");
+      handleMove(clientX);
     }
 
     function handleMove(clientX) {
       const rect = container.getBoundingClientRect();
+      if (rect.width === 0) return;
       const x = clientX - rect.left;
       targetPosition = (x / rect.width) * 100;
 
@@ -224,42 +305,55 @@ export function initProcess() {
       }
     }
 
-    // Mouse events
+    function handleRelease() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove("dragging");
+
+      // Snap Physics:
+      // If released in central exploration zone (20% - 80%), snap to 50%
+      // If released near extremes (< 15% or > 85%), snap to 0% or 100%
+      let snapTarget = 50;
+      if (currentPosition < 15) {
+        snapTarget = 0;
+      } else if (currentPosition > 85) {
+        snapTarget = 100;
+      } else {
+        snapTarget = 50;
+      }
+
+      runSpringPhysics(snapTarget);
+    }
+
+    // Mouse Listeners
     if (sliderKnob) {
       sliderKnob.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        container.classList.add("dragging");
         e.preventDefault();
+        handleStart(e.clientX);
       });
     }
 
     container.addEventListener("mousedown", (e) => {
       if (sliderKnob && e.target === sliderKnob) return;
-      isDragging = true;
-      container.classList.add("dragging");
-      handleMove(e.clientX);
+      handleStart(e.clientX);
     });
 
-    document.addEventListener("mousemove", (e) => {
+    window.addEventListener("mousemove", (e) => {
       if (!isDragging) return;
       handleMove(e.clientX);
     });
 
-    document.addEventListener("mouseup", () => {
-      isDragging = false;
-      container.classList.remove("dragging");
-    });
+    window.addEventListener("mouseup", handleRelease);
 
-    // Touch events
+    // Touch Listeners
     if (sliderKnob) {
       sliderKnob.addEventListener(
         "touchstart",
         (e) => {
-          isDragging = true;
-          container.classList.add("dragging");
           e.preventDefault();
+          if (e.touches && e.touches[0]) handleStart(e.touches[0].clientX);
         },
-        { passive: false },
+        { passive: false }
       );
     }
 
@@ -267,26 +361,21 @@ export function initProcess() {
       "touchstart",
       (e) => {
         if (sliderKnob && e.target === sliderKnob) return;
-        isDragging = true;
-        container.classList.add("dragging");
-        handleMove(e.touches[0].clientX);
+        if (e.touches && e.touches[0]) handleStart(e.touches[0].clientX);
       },
-      { passive: false },
+      { passive: true }
     );
 
-    document.addEventListener(
+    window.addEventListener(
       "touchmove",
       (e) => {
         if (!isDragging) return;
-        handleMove(e.touches[0].clientX);
+        if (e.touches && e.touches[0]) handleMove(e.touches[0].clientX);
       },
-      { passive: false },
+      { passive: true }
     );
 
-    document.addEventListener("touchend", () => {
-      isDragging = false;
-      container.classList.remove("dragging");
-    });
+    window.addEventListener("touchend", handleRelease);
 
     // Keyboard accessibility
     if (sliderKnob) {
@@ -298,8 +387,12 @@ export function initProcess() {
       sliderKnob.setAttribute("aria-valuenow", "50");
 
       sliderKnob.addEventListener("keydown", (e) => {
-        let newPosition = currentPosition;
+        if (springAnimId) {
+          cancelAnimationFrame(springAnimId);
+          springAnimId = null;
+        }
 
+        let newPosition = currentPosition;
         switch (e.key) {
           case "ArrowLeft":
           case "ArrowDown":

@@ -7,7 +7,8 @@
    ========================================================================== */
 
 /**
- * Initializes all Before/After comparison sliders on the page
+ * Initializes all Before/After comparison sliders on the page with spring physics,
+ * 3-5px optical blur transition stripe, and dynamic edge-aware label fading
  */
 export function initComparisonSliders() {
   const containers = document.querySelectorAll('.comparison-container');
@@ -20,11 +21,46 @@ export function initComparisonSliders() {
     const beforeImage = container.querySelector('.image-before');
     const sliderLine = container.querySelector('.slider-line');
     const sliderKnob = container.querySelector('.slider-knob');
+    const sliderBlurZone = container.querySelector('.slider-blur-zone');
+    const labelBefore = container.querySelector('.case-badge-before, .label-before');
+    const labelAfter = container.querySelector('.case-badge-after, .label-after');
 
     let isDragging = false;
     let currentPosition = 50; // Percentage
     let animationFrameId = null;
     let targetPosition = 50;
+    let springAnimId = null;
+    let springVelocity = 0;
+
+    function updateLabels(clamped) {
+      if (labelBefore) {
+        if (clamped >= 68) {
+          const factor = (clamped - 68) / 32;
+          labelBefore.style.opacity = (0.7 + 0.3 * factor).toFixed(2);
+          labelBefore.style.transform = `scale(${(1 + 0.06 * factor).toFixed(3)}) translateY(0)`;
+        } else if (clamped <= 25) {
+          labelBefore.style.opacity = Math.max(0.15, (clamped / 25) * 0.45).toFixed(2);
+          labelBefore.style.transform = 'scale(0.96) translateY(0)';
+        } else {
+          labelBefore.style.opacity = '0.65';
+          labelBefore.style.transform = 'scale(1) translateY(0)';
+        }
+      }
+
+      if (labelAfter) {
+        if (clamped <= 32) {
+          const factor = (32 - clamped) / 32;
+          labelAfter.style.opacity = (0.7 + 0.3 * factor).toFixed(2);
+          labelAfter.style.transform = `scale(${(1 + 0.06 * factor).toFixed(3)}) translateY(0)`;
+        } else if (clamped >= 75) {
+          labelAfter.style.opacity = Math.max(0.15, ((100 - clamped) / 25) * 0.45).toFixed(2);
+          labelAfter.style.transform = 'scale(0.96) translateY(0)';
+        } else {
+          labelAfter.style.opacity = '0.65';
+          labelAfter.style.transform = 'scale(1) translateY(0)';
+        }
+      }
+    }
 
     function updateSlider(position) {
       if (typeof position === 'number') {
@@ -37,6 +73,9 @@ export function initComparisonSliders() {
         beforeImage.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
       }
 
+      if (sliderBlurZone) {
+        sliderBlurZone.style.left = `${clamped}%`;
+      }
       if (sliderLine) {
         sliderLine.style.left = `${clamped}%`;
       }
@@ -45,7 +84,45 @@ export function initComparisonSliders() {
         sliderKnob.setAttribute('aria-valuenow', Math.round(clamped));
       }
 
+      updateLabels(clamped);
+
       animationFrameId = null;
+    }
+
+    function runSpringPhysics(snapTarget) {
+      if (springAnimId) cancelAnimationFrame(springAnimId);
+      const stiffness = 0.12;
+      const damping = 0.72;
+
+      function springStep() {
+        const force = (snapTarget - currentPosition) * stiffness;
+        springVelocity = (springVelocity + force) * damping;
+        currentPosition += springVelocity;
+        
+        updateSlider(currentPosition);
+
+        if (Math.abs(springVelocity) > 0.04 || Math.abs(snapTarget - currentPosition) > 0.08) {
+          springAnimId = requestAnimationFrame(springStep);
+        } else {
+          currentPosition = snapTarget;
+          updateSlider(currentPosition);
+          springAnimId = null;
+          springVelocity = 0;
+        }
+      }
+
+      springAnimId = requestAnimationFrame(springStep);
+    }
+
+    function handleStart(clientX) {
+      if (springAnimId) {
+        cancelAnimationFrame(springAnimId);
+        springAnimId = null;
+        springVelocity = 0;
+      }
+      isDragging = true;
+      container.classList.add('dragging');
+      handleMove(clientX);
     }
 
     function handleMove(clientX) {
@@ -59,37 +136,58 @@ export function initComparisonSliders() {
       }
     }
 
+    function handleRelease() {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('dragging');
+
+      let snapTarget = 50;
+      if (currentPosition < 15) {
+        snapTarget = 0;
+      } else if (currentPosition > 85) {
+        snapTarget = 100;
+      } else {
+        snapTarget = 50;
+      }
+
+      runSpringPhysics(snapTarget);
+    }
+
     // Mouse Listeners
     if (sliderKnob) {
       sliderKnob.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        container.classList.add('dragging');
         e.preventDefault();
+        handleStart(e.clientX);
       });
 
       // Keyboard accessibility
       sliderKnob.addEventListener('keydown', (e) => {
+        if (springAnimId) {
+          cancelAnimationFrame(springAnimId);
+          springAnimId = null;
+        }
+
+        let newPosition = currentPosition;
         if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
           e.preventDefault();
-          updateSlider(currentPosition - 5);
+          newPosition -= 5;
         } else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
           e.preventDefault();
-          updateSlider(currentPosition + 5);
+          newPosition += 5;
         } else if (e.key === 'Home') {
           e.preventDefault();
-          updateSlider(0);
+          newPosition = 0;
         } else if (e.key === 'End') {
           e.preventDefault();
-          updateSlider(100);
+          newPosition = 100;
         }
+        updateSlider(newPosition);
       });
     }
 
     container.addEventListener('mousedown', (e) => {
       if (sliderKnob && e.target === sliderKnob) return;
-      isDragging = true;
-      container.classList.add('dragging');
-      handleMove(e.clientX);
+      handleStart(e.clientX);
     });
 
     window.addEventListener('mousemove', (e) => {
@@ -97,35 +195,27 @@ export function initComparisonSliders() {
       handleMove(e.clientX);
     });
 
-    window.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        container.classList.remove('dragging');
-      }
-    });
+    window.addEventListener('mouseup', handleRelease);
 
     // Touch Support
+    if (sliderKnob) {
+      sliderKnob.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (e.touches && e.touches[0]) handleStart(e.touches[0].clientX);
+      }, { passive: false });
+    }
+
     container.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      container.classList.add('dragging');
-      if (e.touches && e.touches[0]) {
-        handleMove(e.touches[0].clientX);
-      }
+      if (sliderKnob && e.target === sliderKnob) return;
+      if (e.touches && e.touches[0]) handleStart(e.touches[0].clientX);
     }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
-      if (e.touches && e.touches[0]) {
-        handleMove(e.touches[0].clientX);
-      }
+      if (e.touches && e.touches[0]) handleMove(e.touches[0].clientX);
     }, { passive: true });
 
-    window.addEventListener('touchend', () => {
-      if (isDragging) {
-        isDragging = false;
-        container.classList.remove('dragging');
-      }
-    });
+    window.addEventListener('touchend', handleRelease);
 
     // Initial position
     updateSlider(50);

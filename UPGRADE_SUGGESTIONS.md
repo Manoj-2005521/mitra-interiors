@@ -12,8 +12,9 @@
 |:---|:---|:---|
 | **1.1 Page Transition Animation (View Transitions API + Fallback)** | Motion & Flow | **COMPLETED & DEPLOYED ✅** |
 | **1.4 Scroll-Linked Pinned Progress Timeline** | Motion & Flow | **COMPLETED & DEPLOYED ✅** |
-| **Continuous Automated CI/CD Deployment Pipeline** | DevOps | **COMPLETED & DEPLOYED ✅** |
+| **2.5 Before/After Slider Polish (Spring Physics + Blur Zone + Handle Glow)** | Visuals & Motion | **COMPLETED & DEPLOYED ✅** |
 | **3.4 Project Case Study Pages: Storytelling Layout** | UX & Editorial | **COMPLETED & DEPLOYED ✅** |
+| **Continuous Automated CI/CD Deployment Pipeline** | DevOps | **COMPLETED & DEPLOYED ✅** |
 | **1.2 Horizontal Scroll Showcase Section** | Motion & Flow | *Ready for Next Step* |
 | **1.3 Staggered Grid Cascade Reveal (Portfolio)** | Motion & Flow | *Ready for Next Step* |
 | **1.6 Image Clip-Path Wipe Reveal** | Motion & Flow | *Ready for Next Step* |
@@ -139,10 +140,13 @@
 ---
 
 ### 2.5 — Before/After Slider Polish
-* **Status:** Planned
+* **Status:** **COMPLETED & DEPLOYED ✅**
 * **Impact:** ⭐⭐⭐ | **Effort:** Low
-* **The Idea:**
-  Add a subtle gaussian blur zone along the dividing line, a glowing glass knob handle, and smooth spring snap physics when releasing the slider.
+* **What Was Implemented:**
+  - **Optical Blur Transition Zone:** Added a 14px centered stripe (`.slider-blur-zone`) with `backdrop-filter: blur(4px)` and horizontal alpha gradient masking, creating a seamless 3-5px gaussian blur transition right at the slice boundary.
+  - **Ambient Gold Glow Handle:** The handle knob features a rhythmic pulsating architect-gold aura (`@keyframes knobAuraPulse`), scaling up on hover and drag with intense gold luminance.
+  - **Edge-Aware Dynamic Labels:** Fades and scales "Before MITRA" and "After MITRA" labels proportionally as the slider approaches either boundary.
+  - **Damped Spring-Physics Snap:** Releasing the slider triggers an organic harmonic oscillator simulation (`stiffness = 0.12`, `damping = 0.72`) that smoothly bounces back to the balanced 50% split or extreme edges without harsh stops.
 
 ---
 
