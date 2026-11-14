@@ -101,8 +101,16 @@ header.scrolled .logo picture img {
   border-radius: 2px;
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after,
+.nav-links a[aria-current="page"]::after {
   width: 100%;
+}
+
+.nav-links a.active,
+.nav-links a[aria-current="page"] {
+  color: var(--forest-deep);
+  font-weight: 600;
 }
 
 .caret {
@@ -173,13 +181,17 @@ header.scrolled .logo picture img {
   transition: width 0.3s var(--ease), left 0.3s var(--ease);
 }
 
-.mega a:hover {
-  background-color: rgba(44, 39, 32, 0.04);
+.mega a:hover,
+.mega a.active,
+.mega a[aria-current="page"] {
+  background-color: rgba(44, 39, 32, 0.05);
   color: var(--forest) !important;
   padding-left: 20px;
 }
 
-.mega a:hover::before {
+.mega a:hover::before,
+.mega a.active::before,
+.mega a[aria-current="page"]::before {
   width: 20px;
   left: 20px;
 }
@@ -291,7 +303,9 @@ header.scrolled .logo picture img {
 .mobile-menu.open a:nth-child(7) { transition-delay: 0.35s; }
 .mobile-menu.open a:nth-child(8) { transition-delay: 0.4s; }
 
-.mobile-menu a:hover {
+.mobile-menu a:hover,
+.mobile-menu a.active,
+.mobile-menu a[aria-current="page"] {
   color: var(--gold);
 }
 

@@ -1,11 +1,72 @@
 // --- src/js/navigation.js ---
 
+export function updateHeaderState() {
+  const headerEl = document.getElementById('siteHeader');
+  const hasHero = document.querySelector('.hero-slider, [class*="-hero"], .hero') !== null;
+  if (headerEl) {
+    if (!hasHero) {
+      headerEl.classList.add('scrolled');
+    } else if (window.scrollY > 80) {
+      headerEl.classList.add('scrolled');
+    } else {
+      headerEl.classList.remove('scrolled');
+    }
+  }
+}
+
+export function updateActiveNav(pathname = window.location.pathname) {
+  const normalizedPath = pathname === '' || pathname === '/' ? '/' : pathname;
+  
+  const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a, .mega a');
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    
+    // Match root/home
+    const isHome = (href === '/' || href === '/index.html' || href === 'index.html') && 
+                   (normalizedPath === '/' || normalizedPath.endsWith('/index.html') || normalizedPath.endsWith('/'));
+    
+    // Match exact path
+    const isExact = href === normalizedPath || 
+                    href === normalizedPath.replace(/^\//, '') ||
+                    ('/' + href.replace(/^\//, '')) === normalizedPath;
+
+    // Check if sub-service page belongs to Services category
+    const isServiceSubpage = normalizedPath.includes('kitchen') || 
+                             normalizedPath.includes('wardrobe') || 
+                             normalizedPath.includes('living') || 
+                             normalizedPath.includes('tv-units') || 
+                             normalizedPath.includes('bedroom') || 
+                             normalizedPath.includes('ceiling') || 
+                             normalizedPath.includes('furniture') || 
+                             normalizedPath.includes('renovation') || 
+                             normalizedPath.includes('construction') || 
+                             normalizedPath.includes('commercial');
+    const isParentServices = isServiceSubpage && href === '/services.html';
+
+    const isMatch = isHome || isExact || isParentServices;
+
+    if (isMatch) {
+      link.setAttribute('aria-current', 'page');
+      link.classList.add('active');
+    } else {
+      link.removeAttribute('aria-current');
+      link.classList.remove('active');
+    }
+  });
+}
+
 export function initNavigation() {
+  updateHeaderState();
+  updateActiveNav();
+
+  if (window._navInitialized) return;
+  window._navInitialized = true;
+
   // HEADER NAV SCROLL EFFECTS
   let lastScrollY = window.scrollY;
   const headerEl = document.getElementById('siteHeader');
   const progressEl = document.getElementById('progress');
-  const hasHero = document.querySelector('.hero-slider, [class*="-hero"], .hero') !== null;
   let ticking = false;
 
   window.addEventListener('scroll', () => {
@@ -28,8 +89,9 @@ export function initNavigation() {
             headerEl.classList.remove('hide');
           }
           
-          // Keep solid/scrolled state on subpages, toggle only on homepage
-          if (!hasHero) {
+          // Keep solid/scrolled state on subpages, toggle only on pages with a hero
+          const currentHasHero = document.querySelector('.hero-slider, [class*="-hero"], .hero') !== null;
+          if (!currentHasHero) {
             headerEl.classList.add('scrolled');
           } else {
             headerEl.classList.toggle('scrolled', currentScrollY > 80);
@@ -42,17 +104,6 @@ export function initNavigation() {
       ticking = true;
     }
   }, { passive: true });
-
-  // Initialize header state on page load
-  if (headerEl) {
-    if (!hasHero) {
-      headerEl.classList.add('scrolled');
-    } else if (window.scrollY > 80) {
-      headerEl.classList.add('scrolled');
-    } else {
-      headerEl.classList.remove('scrolled');
-    }
-  }
 
   // HELPER FOR ACCESSIBLE FOCUS TRAPPING
   function trapFocus(e, container) {

@@ -5,7 +5,8 @@ export function initPortfolio() {
   const svcListContainer = document.getElementById('svcList');
   const svcVisualContainer = document.getElementById('svcVisual');
 
-  if (svcListContainer && svcVisualContainer) {
+  if (svcListContainer && svcVisualContainer && !svcListContainer.dataset.portfolioBound) {
+    svcListContainer.dataset.portfolioBound = 'true';
     const rows = svcListContainer.querySelectorAll('.svc-row');
     const groups = svcVisualContainer.querySelectorAll('.svc-gallery-group');
     const captionEl = document.getElementById('svcCaption');
@@ -47,7 +48,8 @@ export function initPortfolio() {
 
   // PROJECTS PORTFOLIO MASONRY
   const masonryGrid = document.getElementById('masonryGrid');
-  if (masonryGrid) {
+  if (masonryGrid && !masonryGrid.dataset.masonryBound) {
+    masonryGrid.dataset.masonryBound = 'true';
     const items = masonryGrid.querySelectorAll('.m-item');
     const filterButtons = document.querySelectorAll('.filter-btn');
 

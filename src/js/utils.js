@@ -5,19 +5,25 @@ export function initSmoothScroll() {
   if (typeof Lenis !== 'undefined') {
     // Retain native momentum scrolling on mobile touch screens
     if (window.matchMedia && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      return;
+      return null;
+    }
+    if (window.lenis) {
+      return window.lenis;
     }
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
     });
+    window.lenis = lenis;
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+    return lenis;
   }
+  return null;
 }
 
 // Scroll Reveal Observer
@@ -60,7 +66,7 @@ export function showToast(toastEl, message, type = "success") {
 
 // Number Counters (Trust Strip)
 export function initNumberCounters() {
-  const counters = document.querySelectorAll('[data-count]');
+  const counters = document.querySelectorAll('[data-count]:not([data-counter-bound])');
   if (counters.length === 0) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -91,7 +97,10 @@ export function initNumberCounters() {
     });
   }, { threshold: 0.3 });
 
-  counters.forEach(c => observer.observe(c));
+  counters.forEach(c => {
+    c.setAttribute('data-counter-bound', 'true');
+    observer.observe(c);
+  });
 }
 
 // Magnetic Button Effect
@@ -100,6 +109,8 @@ export function initMagneticButtons() {
 
   const magnets = document.querySelectorAll('.btn, .hero-cta, .hero-dot, .burger, .close');
   magnets.forEach(magnet => {
+    if (magnet.dataset.magnetBound) return;
+    magnet.dataset.magnetBound = 'true';
     let ticking = false;
     magnet.addEventListener('mousemove', (e) => {
       if (!ticking) {
@@ -128,6 +139,8 @@ export function initHoverTilt() {
 
   const targets = document.querySelectorAll('.p-card, .strip-item');
   targets.forEach(card => {
+    if (card.dataset.tiltBound) return;
+    card.dataset.tiltBound = 'true';
     card.style.transformStyle = 'preserve-3d';
     let ticking = false;
     
@@ -165,6 +178,7 @@ export function initTextReveals() {
   if (texts.length === 0) return;
 
   texts.forEach(text => {
+    if (text.querySelector('.reveal-word')) return;
     const content = text.textContent.trim();
     const words = content.split(/\s+/);
     text.innerHTML = words.map(word => `<span class="reveal-word-wrapper"><span class="reveal-word">${word}</span></span>`).join(' ');

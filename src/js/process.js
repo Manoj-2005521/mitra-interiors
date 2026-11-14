@@ -6,7 +6,8 @@ export function initProcess() {
   const tProgress = document.getElementById('tProgress');
   const tSteps = document.querySelectorAll('.t-step');
 
-  if (timeline && tProgress && tSteps.length > 0) {
+  if (timeline && tProgress && tSteps.length > 0 && !timeline.dataset.timelineBound) {
+    timeline.dataset.timelineBound = 'true';
     updateTimeline(1);
 
     tSteps.forEach(step => {
@@ -89,7 +90,8 @@ export function initProcess() {
 
   // BEFORE/AFTER COMPARISON SLIDER
   const container = document.getElementById("comparison");
-  if (container) {
+  if (container && !container.dataset.comparisonBound) {
+    container.dataset.comparisonBound = 'true';
     const beforeImage = container.querySelector(".image-before");
     const sliderLine = document.getElementById("sliderLine");
     const sliderKnob = document.getElementById("sliderKnob");

@@ -224,3 +224,158 @@ footer {
     transform: translateY(0);
   }
 }
+
+/* ==========================================================================
+   Page Transition Animations (SaaS Native App Feel — Linear / Vercel style)
+   ========================================================================== */
+
+/* Enable Cross-Document View Transitions in supporting modern browsers */
+@view-transition {
+  navigation: auto;
+}
+
+/* Isolate persistent chrome elements so they don't crossfade */
+#siteHeader {
+  view-transition-name: site-header;
+}
+
+#progress {
+  view-transition-name: site-progress;
+}
+
+#fabWrapper {
+  view-transition-name: site-fab;
+}
+
+main {
+  view-transition-name: site-main;
+}
+
+/* View Transition Root & Main Animations */
+::view-transition-old(site-main) {
+  animation: 260ms cubic-bezier(0.25, 1, 0.5, 1) both pageTransitionOut;
+}
+
+::view-transition-new(site-main) {
+  animation: 280ms cubic-bezier(0.25, 1, 0.5, 1) both pageTransitionIn;
+}
+
+::view-transition-old(root) {
+  animation: 260ms cubic-bezier(0.25, 1, 0.5, 1) both pageTransitionOut;
+}
+
+::view-transition-new(root) {
+  animation: 280ms cubic-bezier(0.25, 1, 0.5, 1) both pageTransitionIn;
+}
+
+@keyframes pageTransitionOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+    filter: blur(1.5px);
+  }
+}
+
+@keyframes pageTransitionIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(1.5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Fallback CSS for browsers without View Transitions API */
+main.page-is-leaving {
+  opacity: 0 !important;
+  transform: translateY(-8px) !important;
+  filter: blur(1.5px) !important;
+  transition: opacity 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  pointer-events: none;
+}
+
+main.page-is-entering {
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  filter: blur(1.5px) !important;
+}
+
+main.page-is-entered {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: blur(0px) !important;
+  transition: opacity 0.28s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.28s cubic-bezier(0.25, 1, 0.5, 1),
+              filter 0.28s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Top Loading Progress Bar (SaaS feedback during page fetch) */
+.page-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--terracotta));
+  z-index: 10000;
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 0 10px rgba(187, 174, 155, 0.5);
+}
+
+.page-loading-bar.is-loading {
+  opacity: 1;
+  animation: pageLoadingBarPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pageLoadingBarPulse {
+  0% {
+    transform: scaleX(0.08);
+  }
+  50% {
+    transform: scaleX(0.68);
+  }
+  100% {
+    transform: scaleX(0.92);
+  }
+}
+
+.page-loading-bar.is-done {
+  transform: scaleX(1);
+  opacity: 0;
+  transition: transform 0.15s ease-out, opacity 0.3s ease-out 0.1s;
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  main.page-is-leaving,
+  main.page-is-entering,
+  main.page-is-entered {
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+  .page-loading-bar {
+    display: none !important;
+  }
+}

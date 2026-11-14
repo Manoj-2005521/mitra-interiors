@@ -8,7 +8,8 @@ export function initForms() {
     contactForms.forEach(form => {
       // For newsletter forms that might have inline onsubmit, we can leave them or attach here.
       // Let's attach our robust handler if they aren't marked as simple.
-      if (form.classList.contains('nl-form')) return;
+      if (form.classList.contains('nl-form') || form.dataset.formBound) return;
+      form.dataset.formBound = 'true';
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();

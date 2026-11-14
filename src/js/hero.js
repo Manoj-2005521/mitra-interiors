@@ -1,6 +1,20 @@
 // --- src/js/hero.js ---
 
+let globalHeroCleanup = null;
+
+export function cleanupHeroSlider() {
+  if (typeof globalHeroCleanup === 'function') {
+    try {
+      globalHeroCleanup();
+    } catch (e) {
+      console.warn('Error during hero cleanup:', e);
+    }
+    globalHeroCleanup = null;
+  }
+}
+
 export function initHeroSlider() {
+  cleanupHeroSlider();
   const slider = document.querySelector('.hero-slider');
   if (!slider) return;
 
@@ -112,6 +126,10 @@ export function initHeroSlider() {
       progressFrameId = null;
     }
   }
+
+  globalHeroCleanup = () => {
+    stopAutoplay();
+  };
 
   function resetAutoplay() {
     autoplayElapsedTime = 0;
