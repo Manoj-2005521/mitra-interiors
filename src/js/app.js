@@ -17,6 +17,7 @@ import { initPortfolio } from './portfolio.js';
 import { initProcess } from './process.js';
 import { initForms } from './forms.js';
 import { initPageTransitions } from './transitions.js';
+import { initProjectDetail } from './project-detail.js';
 
 // --- Accordion FAQ Component ---
 export function initFaqAccordion() {
@@ -153,6 +154,7 @@ export function reinitPage(url = null) {
   initForms();
   initFaqAccordion();
   initTestimonials();
+  initProjectDetail();
 
   // 4. Lucide Vector Icons
   if (typeof lucide !== 'undefined') {

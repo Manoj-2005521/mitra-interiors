@@ -1,286 +1,1078 @@
-/* Detail page specific visual treatments */
-    .detail-hero {
-      position: relative;
-      height: 75vh;
-      min-height: 560px;
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 60px;
-      overflow: hidden;
-      background: linear-gradient(180deg, var(--forest-deep) 0%, #05140f 100%);
-    }
+/* ==========================================================================
+   MITRA Interior & Constructions — Magazine-Grade Case Study Page Styles
+   Architectural Digest / HGTV Editorial Storytelling Layout
+   ========================================================================== */
 
-    .detail-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 50% 50%, rgba(213, 205, 191, 0.08) 0%, transparent 70%);
-      animation: breatheGlow 10s ease-in-out infinite alternate;
-      z-index: 1;
-      pointer-events: none;
-    }
+/* --------------------------------------------------------------------------
+   1. Full-Bleed Cinematic Hero
+   -------------------------------------------------------------------------- */
+.detail-hero.case-hero {
+  position: relative;
+  height: clamp(540px, 82vh, 780px);
+  min-height: 520px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 50px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--forest-deep) 0%, #05140f 100%);
+}
 
-    .detail-hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      transform: scale(1.05);
-      animation: slowZoomHero 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
+.case-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(213, 205, 191, 0.08) 0%, transparent 75%);
+  animation: breatheGlow 10s ease-in-out infinite alternate;
+  z-index: 1;
+  pointer-events: none;
+}
 
-    @keyframes slowZoomHero {
-      to { transform: scale(1); }
-    }
+.case-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform: scale(1.05);
+  animation: slowZoomHero 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
 
-    .detail-hero-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+@keyframes slowZoomHero {
+  to { transform: scale(1); }
+}
 
-    .detail-hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(44, 39, 32, 0.45) 100%);
-    }
+.case-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
-    .detail-hero .wrap {
-      position: relative;
-      z-index: 2;
-      color: var(--white);
-    }
+/* Multi-layer gradient scrim for crystal clear readability */
+.case-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(5, 20, 15, 0.45) 0%, 
+    rgba(5, 20, 15, 0.25) 40%, 
+    rgba(5, 20, 15, 0.88) 85%, 
+    rgba(5, 20, 15, 0.98) 100%
+  );
+}
 
-    .detail-hero h1 {
-      color: var(--white);
-      font-family: var(--font-display);
-      font-size: clamp(38px, 5.5vw, 64px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-top: 10px;
-    }
+.case-hero .wrap {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+  width: 100%;
+}
 
-    .detail-hero h1 span {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(30px) rotate(1deg);
-      animation: textSlideUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
+/* Breadcrumbs */
+.case-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 18px;
+}
 
-    /* Editorial Layout */
-    .detail-container {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 60px;
-      padding: 100px 0;
-      background-color: var(--beige);
-    }
+.case-breadcrumb a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
 
-    .detail-narrative {
-      margin-bottom: 48px;
-    }
+.case-breadcrumb a:hover {
+  color: var(--gold);
+}
 
-    .detail-narrative h2 {
-      font-family: var(--font-display);
-      font-size: 32px;
-      color: var(--forest-deep);
-      margin-bottom: 20px;
-      position: relative;
-    }
+.case-breadcrumb-sep {
+  opacity: 0.4;
+  font-size: 11px;
+}
 
-    .detail-narrative h2::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background-color: var(--gold);
-      margin-top: 10px;
-    }
+.case-eyebrow-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
 
-    .detail-narrative p {
-      font-size: 16px;
-      color: var(--slate);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
+.case-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(197, 160, 89, 0.18);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: var(--gold-light);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
-    /* Staggered Mosaic Collage */
-    .mosaic-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
+.case-hero-title {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.2vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin: 0 0 24px 0;
+  max-width: 980px;
+}
 
-    .mosaic-gallery picture {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    .mosaic-gallery img {
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s;
-    }
+.case-hero-title span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: textSlideUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards;
+}
 
-    .mosaic-gallery img:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-luxe);
-    }
+/* Quick Spec Ribbon at base of Hero */
+.case-hero-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
 
-    .mosaic-gallery img.large {
-      grid-column: 1 / -1;
-    }
+.case-ribbon-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.92);
+}
 
-    /* Elegant Spec Sidebar Card */
-    .spec-sidebar {
-      background-color: var(--white);
-      border-radius: var(--radius-xl);
-      padding: 48px;
-      box-shadow: var(--shadow-luxe);
-      align-self: start;
-      position: sticky;
-      top: 120px;
-      border: 1px solid rgba(187, 174, 155, 0.03);
-    }
+.case-ribbon-item i,
+.case-ribbon-item svg {
+  color: var(--gold);
+  width: 15px;
+  height: 15px;
+}
 
-    .spec-sidebar h3 {
-      font-family: var(--font-display);
-      font-size: 24px;
-      color: var(--forest-deep);
-      margin-bottom: 30px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(187, 174, 155, 0.08);
-      position: relative;
-    }
+/* Scroll Cue Button */
+.case-scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  color: var(--gold-light);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  animation: floatBounce 2.4s ease-in-out infinite;
+}
 
-    .spec-sidebar h3::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 50px;
-      height: 2px;
-      background-color: var(--gold);
-    }
+.case-scroll-cue:hover {
+  opacity: 0.85;
+  transform: translateY(2px);
+}
 
-    .spec-list {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-bottom: 40px;
-    }
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
 
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-      border-bottom: 1px dashed rgba(187, 174, 155, 0.08);
-    }
+/* --------------------------------------------------------------------------
+   2. Main Editorial Layout & Container
+   -------------------------------------------------------------------------- */
+.detail-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.85fr);
+  gap: 64px;
+  padding: 80px 0 100px 0;
+  background-color: var(--beige);
+  position: relative;
+}
 
-    .spec-row:last-child {
-      border-bottom: none;
-    }
+.detail-main {
+  min-width: 0;
+}
 
-    .spec-row .label {
-      font-family: var(--font-ui);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--slate);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+/* Section Headings inside Editorial Main */
+.case-section-header {
+  margin-bottom: 28px;
+}
 
-    .spec-row .val {
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--forest-deep);
-    }
+.case-section-header .eyebrow {
+  margin-bottom: 6px;
+}
 
-    /* Editorial Architect Quote */
-    .architect-quote-card {
-      background: linear-gradient(135deg, var(--forest-deep) 0%, #05140f 100%);
-      padding: 36px;
-      border-radius: var(--radius-lg);
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(213, 205, 191, 0.1);
-    }
+.case-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.2vw, 36px);
+  color: var(--forest-deep);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0 0 10px 0;
+}
 
-    .architect-quote-card::before {
-      content: '\\201C';
-      position: absolute;
-      top: -20px;
-      left: 20px;
-      font-family: var(--font-display);
-      font-size: 120px;
-      color: rgba(213, 205, 191, 0.08);
-      line-height: 1;
-    }
+.case-section-desc {
+  font-size: 15px;
+  color: var(--slate);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 720px;
+}
 
-    .architect-quote-card blockquote {
-      font-family: var(--font-display);
-      font-size: 17px;
-      font-style: italic;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
-    }
+/* --------------------------------------------------------------------------
+   3. Architectural Overview & Editorial Body
+   -------------------------------------------------------------------------- */
+.detail-narrative {
+  background: var(--white);
+  padding: 40px 44px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(187, 174, 155, 0.12);
+  margin-bottom: 56px;
+}
 
-    .architect-quote-card cite {
-      display: flex;
-      flex-direction: column;
-      font-style: normal;
-      position: relative;
-      z-index: 1;
-    }
+.detail-narrative p {
+  font-size: 16px;
+  color: var(--slate);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
 
-    .architect-quote-card cite span.name {
-      font-family: var(--font-ui);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.detail-narrative p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1;
+  float: left;
+  margin-right: 12px;
+  margin-top: 4px;
+  color: var(--gold);
+  font-weight: 700;
+}
 
-    .architect-quote-card cite span.role {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.5);
-      margin-top: 2px;
-    }
+/* --------------------------------------------------------------------------
+   4. The 4-Part Storytelling Narrative Flow (Brief → Challenge → Solution → Result)
+   -------------------------------------------------------------------------- */
+.case-narrative-flow {
+  margin-bottom: 64px;
+}
 
-    .similar-projects {
-      background-color: var(--white);
-      padding: 100px 0;
-    }
+.case-story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
 
-    .similar-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 44px;
-    }
+.case-story-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  border: 1px solid rgba(187, 174, 155, 0.15);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
 
-    @media (max-width: 900px) {
-      .detail-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 60px 0;
-      }
-      .similar-grid {
-        grid-template-columns: 1fr;
-      }
-      .detail-hero {
-        height: 50vh;
-        min-height: 380px;
-      }
-    }
+.case-story-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+  opacity: 0.35;
+  transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.case-story-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-luxe);
+  border-color: rgba(197, 160, 89, 0.35);
+}
+
+.case-story-card:hover::before {
+  opacity: 1;
+}
+
+.case-story-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.case-story-step {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.case-story-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(197, 160, 89, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--forest-deep);
+}
+
+.case-story-icon svg,
+.case-story-icon i {
+  width: 18px;
+  height: 18px;
+  stroke: var(--forest-deep);
+}
+
+.case-story-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--forest-deep);
+  margin: 0 0 6px 0;
+}
+
+.case-story-subtitle {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slate);
+  margin-bottom: 14px;
+}
+
+.case-story-body {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--slate);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Interactive Before / After Slider Per Room
+   -------------------------------------------------------------------------- */
+.case-transformation-section {
+  margin-bottom: 64px;
+}
+
+.case-comparison-card {
+  background: var(--white);
+  padding: 24px;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(187, 174, 155, 0.14);
+  box-shadow: var(--shadow-card);
+}
+
+.case-comparison {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  user-select: none;
+  cursor: ew-resize;
+  background: #000;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.case-comparison .image-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.case-comparison .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.case-comparison .image-before {
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+  will-change: clip-path;
+}
+
+.case-comparison .image-after {
+  z-index: 1;
+}
+
+/* Floating Badges */
+.case-badge {
+  position: absolute;
+  top: 18px;
+  z-index: 5;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.case-badge-before {
+  left: 18px;
+  background: rgba(20, 20, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.case-badge-after {
+  right: 18px;
+  background: rgba(197, 160, 89, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--forest-deep);
+}
+
+/* Center Dividing Line & Knob */
+.case-comparison .slider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  z-index: 4;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.case-comparison .slider-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--white);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 20px rgba(197, 160, 89, 0.5);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--forest-deep);
+  cursor: ew-resize;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.case-comparison:hover .slider-knob,
+.case-comparison.dragging .slider-knob {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 24px rgba(197, 160, 89, 0.7);
+}
+
+.case-comparison-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--slate);
+  margin-top: 14px;
+}
+
+.case-comparison-hint svg {
+  color: var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   6. Tactile Material & Hardware Palette Strip
+   -------------------------------------------------------------------------- */
+.case-palette-section {
+  margin-bottom: 64px;
+}
+
+.case-palette-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.case-palette-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  border: 1px solid rgba(187, 174, 155, 0.15);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-palette-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: rgba(197, 160, 89, 0.4);
+}
+
+.case-swatch-thumb {
+  width: 100%;
+  height: 90px;
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* Realistic tactile texture gradients */
+.case-swatch--wood {
+  background: linear-gradient(135deg, #a3704c 0%, #6e462d 40%, #875736 70%, #4a2e1d 100%);
+}
+.case-swatch--marble {
+  background: radial-gradient(circle at 30% 30%, #fcfbf9 0%, #edeae3 50%, #d8d3c5 100%),
+              linear-gradient(45deg, transparent 45%, rgba(197, 160, 89, 0.15) 50%, transparent 55%);
+}
+.case-swatch--acrylic {
+  background: linear-gradient(145deg, #2b3035 0%, #171a1d 100%);
+}
+.case-swatch--brass {
+  background: linear-gradient(135deg, #f2dc9b 0%, #c5a059 40%, #997839 80%, #d8b874 100%);
+}
+.case-swatch--lighting {
+  background: radial-gradient(circle at 50% 50%, #fff6dd 0%, #ffdf94 40%, #d59a2f 100%);
+}
+
+.case-swatch-cat {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.case-swatch-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--forest-deep);
+  margin: 0 0 4px 0;
+  line-height: 1.25;
+}
+
+.case-swatch-spec {
+  font-size: 12px;
+  color: var(--slate);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Editorial Photo Gallery with Lightbox Triggers
+   -------------------------------------------------------------------------- */
+.case-gallery-section {
+  margin-bottom: 60px;
+}
+
+.case-mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.case-mosaic-item {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 320px;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  background: #111;
+}
+
+.case-mosaic-item:nth-child(3n + 1) {
+  grid-column: span 2;
+  height: 440px;
+}
+
+.case-mosaic-item picture,
+.case-mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.case-mosaic-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(5, 20, 15, 0.85) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 24px;
+  color: #fff;
+  z-index: 2;
+}
+
+.case-mosaic-item:hover picture img,
+.case-mosaic-item:hover img {
+  transform: scale(1.04);
+}
+
+.case-mosaic-item:hover .case-mosaic-overlay {
+  opacity: 1;
+}
+
+.case-mosaic-caption {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: #fff;
+  margin: 0;
+}
+
+.case-mosaic-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(197, 160, 89, 0.9);
+  color: var(--forest-deep);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   8. Pinned Spec Sidebar (Sticky Right Column)
+   -------------------------------------------------------------------------- */
+.spec-sidebar.sticky-sidebar {
+  background-color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-luxe);
+  align-self: start;
+  position: sticky;
+  top: 100px;
+  border: 1px solid rgba(187, 174, 155, 0.15);
+}
+
+.spec-sidebar h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--forest-deep);
+  margin: 0 0 20px 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(187, 174, 155, 0.12);
+  position: relative;
+}
+
+.spec-sidebar h3::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 44px;
+  height: 2px;
+  background-color: var(--gold);
+}
+
+.spec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(187, 174, 155, 0.14);
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-row .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spec-row .label svg,
+.spec-row .label i {
+  color: var(--gold);
+  width: 14px;
+  height: 14px;
+}
+
+.spec-row .val {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--forest-deep);
+  text-align: right;
+}
+
+/* Verified Client Quote */
+.architect-quote-card {
+  background: linear-gradient(135deg, var(--forest-deep) 0%, #05140f 100%);
+  padding: 24px 26px;
+  border-radius: var(--radius-lg);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(213, 205, 191, 0.12);
+  margin-bottom: 24px;
+}
+
+.architect-quote-stars {
+  display: flex;
+  gap: 4px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.architect-quote-card blockquote {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 14px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.architect-quote-card cite {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  position: relative;
+  z-index: 1;
+}
+
+.architect-quote-card cite span.name {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.architect-quote-card cite span.role {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
+}
+
+/* Actions in Sidebar */
+.spec-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.spec-actions .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 18px;
+  font-size: 13.5px;
+}
+
+.btn-share {
+  background: transparent;
+  border: 1px solid rgba(187, 174, 155, 0.3);
+  color: var(--forest-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.btn-share:hover {
+  border-color: var(--gold);
+  background: rgba(197, 160, 89, 0.08);
+}
+
+.btn-share.copied {
+  background: var(--forest-deep);
+  color: var(--gold-light);
+  border-color: var(--forest-deep);
+}
+
+/* --------------------------------------------------------------------------
+   9. Full-Screen Interactive Lightbox Modal
+   -------------------------------------------------------------------------- */
+.case-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.case-lightbox-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+body.lightbox-locked {
+  overflow: hidden !important;
+}
+
+.case-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 14, 10, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.case-lightbox-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px;
+}
+
+.case-lightbox-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  height: 50px;
+}
+
+.case-lightbox-counter {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--gold-light);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.case-lightbox-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.case-lightbox-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.case-lightbox-btn:hover {
+  background: var(--gold);
+  color: var(--forest-deep);
+  border-color: var(--gold);
+}
+
+.case-lightbox-close {
+  padding: 8px 10px;
+}
+
+/* Lightbox Viewport & Image */
+.case-lightbox-viewport {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.case-lightbox-image-wrap {
+  max-width: 90vw;
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, opacity 0.25s ease;
+  user-select: none;
+}
+
+.case-lightbox-img.is-zoomed {
+  transform: scale(1.75);
+  cursor: grab;
+}
+
+.case-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.case-lightbox-nav:hover {
+  background: var(--gold);
+  color: var(--forest-deep);
+  border-color: var(--gold);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.case-lightbox-nav.prev {
+  left: 20px;
+}
+
+.case-lightbox-nav.next {
+  right: 20px;
+}
+
+.case-lightbox-caption-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.case-lightbox-caption {
+  margin: 0;
+  color: #fff;
+  font-weight: 500;
+}
+
+.case-lightbox-hint {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   10. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .detail-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 60px 0;
+  }
+  .spec-sidebar.sticky-sidebar {
+    position: static;
+    top: auto;
+  }
+  .case-comparison {
+    height: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-hero.case-hero {
+    height: auto;
+    min-height: 480px;
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+  .case-story-grid {
+    grid-template-columns: 1fr;
+  }
+  .case-palette-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .case-mosaic-grid {
+    grid-template-columns: 1fr;
+  }
+  .case-mosaic-item:nth-child(3n + 1) {
+    grid-column: span 1;
+    height: 280px;
+  }
+  .case-comparison {
+    height: 300px;
+  }
+  .case-lightbox-nav {
+    width: 42px;
+    height: 42px;
+  }
+  .case-lightbox-nav.prev { left: 8px; }
+  .case-lightbox-nav.next { right: 8px; }
+  .case-lightbox-content { padding: 16px; }
+  .case-lightbox-hint { display: none; }
+}

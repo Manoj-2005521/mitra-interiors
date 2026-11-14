@@ -6,115 +6,388 @@ layout: layouts/base.njk
   <link rel="preload" href="/css/pages/project-detail.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/pages/project-detail.css"></noscript>
 {% endblock %}
 
-<!-- DETAIL HERO -->
-<section class="detail-hero">
-  <div class="detail-hero-bg">
+<!-- 1. FULL-BLEED CINEMATIC HERO -->
+<section class="detail-hero case-hero">
+  <div class="case-hero-bg">
     {% if coverImage %}
       {% image coverImage, title, "100vw", "", "high" %}
     {% endif %}
   </div>
+  
   <div class="wrap">
-    <span class="eyebrow" style="color:var(--gold);">Case Study</span>
-    <h1><span>{{ title }}</span></h1>
-    <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:20px; color:rgba(255,255,255,0.85); font-size:14px; align-items:center;">
+    <!-- Breadcrumbs -->
+    <nav class="case-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="case-breadcrumb-sep">/</span>
+      <a href="/projects.html">Portfolio</a>
+      <span class="case-breadcrumb-sep">/</span>
+      <span style="color: var(--white); font-weight: 500;">{{ title }}</span>
+    </nav>
+
+    <!-- Eyebrow Tag -->
+    <div class="case-eyebrow-row">
+      <span class="case-tag-pill">Case Study</span>
+      {% if designStyle %}
+      <span class="case-tag-pill" style="border-color: rgba(255,255,255,0.25); color: #fff; background: rgba(255,255,255,0.08);">{{ designStyle }}</span>
+      {% endif %}
+      {% if status %}
+      <span class="case-tag-pill" style="border-color: rgba(72, 187, 120, 0.4); color: #68d391; background: rgba(72, 187, 120, 0.1);">{{ status }}</span>
+      {% endif %}
+    </div>
+
+    <!-- Project Title -->
+    <h1 class="case-hero-title"><span>{{ title }}</span></h1>
+
+    <!-- Quick Spec Ribbon -->
+    <div class="case-hero-ribbon">
       {% if location %}
-      <span style="display:inline-flex; align-items:center; gap:6px;"><i data-lucide="map-pin" style="width:15px; height:15px; color:var(--gold);"></i> {{ location }}</span>
+      <div class="case-ribbon-item">
+        <i data-lucide="map-pin"></i>
+        <span>{{ location }}</span>
+      </div>
       {% endif %}
       {% if area %}
-      <span style="display:inline-flex; align-items:center; gap:6px;"><i data-lucide="maximize" style="width:15px; height:15px; color:var(--gold);"></i> {{ area }}</span>
+      <div class="case-ribbon-item">
+        <i data-lucide="maximize"></i>
+        <span>{{ area }}</span>
+      </div>
       {% endif %}
       {% if duration %}
-      <span style="display:inline-flex; align-items:center; gap:6px;"><i data-lucide="clock" style="width:15px; height:15px; color:var(--gold);"></i> {{ duration }}</span>
+      <div class="case-ribbon-item">
+        <i data-lucide="clock"></i>
+        <span>{{ duration }}</span>
+      </div>
       {% endif %}
+      {% if budget %}
+      <div class="case-ribbon-item">
+        <i data-lucide="wallet"></i>
+        <span>{{ budget }}</span>
+      </div>
+      {% endif %}
+
+      <!-- Smooth Scroll Cue -->
+      <a href="#story" id="caseHeroScrollCue" class="case-scroll-cue" aria-label="Scroll to case study narrative">
+        <span>Explore Case Study</span>
+        <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- MAIN CONTENT & SIDEBAR -->
-<section class="wrap detail-container">
-  <!-- Left column: Narrative & Gallery -->
+<!-- 2. EDITORIAL CASE STUDY & PINNED SIDEBAR -->
+<section class="wrap detail-container" id="story">
+  
+  <!-- LEFT COLUMN: The Storytelling Experience -->
   <div class="detail-main">
+    
+    <!-- Architectural Narrative Overview -->
+    <div class="case-section-header reveal">
+      <span class="eyebrow">Design Philosophy</span>
+      <h2 class="case-section-title">Architectural Vision & Scope</h2>
+    </div>
+
     <div class="detail-narrative reveal">
-      <h2>Project Overview</h2>
       {{ content | safe }}
     </div>
 
-    <!-- Mosaic Gallery -->
-    {% if gallery and gallery.length %}
-    <div class="mosaic-gallery reveal delay-1" style="margin-top: 40px;">
-      {% for img in gallery %}
-      <div style="border-radius: var(--radius-lg); overflow: hidden; height: 320px; box-shadow: var(--shadow-card);">
-        {% image img, title, "(max-width: 768px) 100vw, 50vw", "", "lazy" %}
+    <!-- 4-Part Storytelling Framework: Brief → Challenge → Solution → Result -->
+    <div class="case-narrative-flow reveal delay-1">
+      <div class="case-section-header">
+        <span class="eyebrow">The Story</span>
+        <h2 class="case-section-title">From Concept to Living Space</h2>
+        <p class="case-section-desc">Every bespoke residence undergoes MITRA's rigorous 4-stage architectural translation, aligning lifestyle ergonomics with enduring joinery.</p>
       </div>
-      {% endfor %}
+
+      <div class="case-story-grid">
+        <!-- 01 / The Brief -->
+        <article class="case-story-card">
+          <div class="case-story-header">
+            <span class="case-story-step">Phase 01</span>
+            <div class="case-story-icon">
+              <i data-lucide="compass"></i>
+            </div>
+          </div>
+          <h3 class="case-story-title">The Brief</h3>
+          <div class="case-story-subtitle">Client Vision & Functional Goals</div>
+          <p class="case-story-body">
+            {{ brief | default("The homeowner envisioned a calm, uncluttered sanctuary balancing contemporary warmth with maximum utilitarian storage. Key requirements included dedicated social entertaining zones, seamless concealments for utilities, and durable, low-maintenance surfaces for daily family living.") }}
+          </p>
+        </article>
+
+        <!-- 02 / The Challenge -->
+        <article class="case-story-card">
+          <div class="case-story-header">
+            <span class="case-story-step">Phase 02</span>
+            <div class="case-story-icon">
+              <i data-lucide="shield-alert"></i>
+            </div>
+          </div>
+          <h3 class="case-story-title">The Challenge</h3>
+          <div class="case-story-subtitle">Spatial Constraints & Structural Hurdles</div>
+          <p class="case-story-body">
+            {{ challenge | default("Addressing awkward structural columns, maximizing natural daylight penetration across deep floor plates, and integrating concealed electrical conduit runs without lowering false ceiling clearance or compromising clean architectural reveals.") }}
+          </p>
+        </article>
+
+        <!-- 03 / The Architectural Solution -->
+        <article class="case-story-card">
+          <div class="case-story-header">
+            <span class="case-story-step">Phase 03</span>
+            <div class="case-story-icon">
+              <i data-lucide="layers"></i>
+            </div>
+          </div>
+          <h3 class="case-story-title">The Solution</h3>
+          <div class="case-story-subtitle">Engineered Joinery & Lighting Dialogue</div>
+          <p class="case-story-body">
+            {{ solution | default("MITRA engineered custom floor-to-ceiling modular joinery utilizing IS:710 Marine-Grade plywood with soft-close German hardware. Ambient 3000K indirect cove lighting was integrated to elongate room heights, paired with acoustic fluted paneling and anti-fingerprint surfaces.") }}
+          </p>
+        </article>
+
+        <!-- 04 / The Result & Handover -->
+        <article class="case-story-card">
+          <div class="case-story-header">
+            <span class="case-story-step">Phase 04</span>
+            <div class="case-story-icon">
+              <i data-lucide="award"></i>
+            </div>
+          </div>
+          <h3 class="case-story-title">The Result</h3>
+          <div class="case-story-subtitle">Turnkey Handover & Fixed-Price Guarantee</div>
+          <p class="case-story-body">
+            {{ result | default("Completed and handed over within " + (duration or "75 Days") + " with 100% fixed-cost adherence — zero budget overruns. Certified with MITRA's 100-point quality audit and backed by a comprehensive 10-year structural warranty.") }}
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <!-- Before / After Comparison Slider -->
+    <div class="case-transformation-section reveal delay-1">
+      <div class="case-section-header">
+        <span class="eyebrow">Transformation</span>
+        <h2 class="case-section-title">Before & After Renovation</h2>
+        <p class="case-section-desc">Drag the interactive slider horizontally to witness the transformation from the raw site shell to MITRA's finished architectural execution.</p>
+      </div>
+
+      <div class="case-comparison-card">
+        <div class="comparison-container case-comparison" id="caseComparisonSlider" tabindex="0" role="region" aria-label="Before and after transformation slider">
+          
+          <!-- Before Image (Left / Top Layer with clip-path) -->
+          <div class="image-wrapper image-before">
+            {% image beforeImage | default("images/comparison/before.jpg"), "Raw site before renovation", "100vw", "", "lazy" %}
+          </div>
+          
+          <!-- After Image (Right / Bottom Layer) -->
+          <div class="image-wrapper image-after">
+            {% image coverImage, title + " completed handover", "100vw", "", "lazy" %}
+          </div>
+
+          <!-- Floating Badges -->
+          <span class="case-badge case-badge-before">Before • Raw Shell</span>
+          <span class="case-badge case-badge-after">After • Handover</span>
+
+          <!-- Divider Line & Drag Handle Knob -->
+          <div class="slider-line" aria-hidden="true"></div>
+          <div class="slider-knob" role="slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-label="Drag to compare before and after photos" tabindex="0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+              <polyline points="9 18 15 12 9 6" transform="translate(24, 24) rotate(180)"></polyline>
+            </svg>
+          </div>
+        </div>
+
+        <div class="case-comparison-hint">
+          <i data-lucide="move-horizontal"></i>
+          <span>Drag slider or use left/right arrow keys to compare</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Curated Tactile Material Palette Strip -->
+    <div class="case-palette-section reveal delay-1">
+      <div class="case-section-header">
+        <span class="eyebrow">Materiality & Craft</span>
+        <h2 class="case-section-title">Curated Material & Hardware Palette</h2>
+        <p class="case-section-desc">Every element specified in this project was selected for architectural longevity, certified durability, and tactile refinement.</p>
+      </div>
+
+      <div class="case-palette-strip">
+        <!-- Swatch 1: Wood & Joinery -->
+        <div class="case-palette-card">
+          <div class="case-swatch-thumb case-swatch--wood"></div>
+          <span class="case-swatch-cat">Joinery Substrate</span>
+          <h4 class="case-swatch-name">Smoked Natural Oak</h4>
+          <p class="case-swatch-spec">IS:710 Boiling Water Proof (BWP) Marine Plywood with natural grain veneer.</p>
+        </div>
+
+        <!-- Swatch 2: Surfaces & Stone -->
+        <div class="case-palette-card">
+          <div class="case-swatch-thumb case-swatch--marble"></div>
+          <span class="case-swatch-cat">Worktop & Counter</span>
+          <h4 class="case-swatch-name">Calacatta Gold Quartz</h4>
+          <p class="case-swatch-spec">Non-porous, stain-resistant, and heat-resistant quartz with warm golden veining.</p>
+        </div>
+
+        <!-- Swatch 3: Fronts & Shutter Finish -->
+        <div class="case-palette-card">
+          <div class="case-swatch-thumb case-swatch--acrylic"></div>
+          <span class="case-swatch-cat">Shutter Fronts</span>
+          <h4 class="case-swatch-name">Ultra-Matte PU Lacquer</h4>
+          <p class="case-swatch-spec">Anti-fingerprint, velvety smooth polyurethane lacquer finish with zero glare.</p>
+        </div>
+
+        <!-- Swatch 4: Architectural Hardware -->
+        <div class="case-palette-card">
+          <div class="case-swatch-thumb case-swatch--brass"></div>
+          <span class="case-swatch-cat">Precision Hardware</span>
+          <h4 class="case-swatch-name">Brushed Champagne Brass</h4>
+          <p class="case-swatch-spec">German engineered soft-close tandem runners & hinges rated for 200,000 cycles.</p>
+        </div>
+
+        <!-- Swatch 5: Architectural Illumination -->
+        <div class="case-palette-card">
+          <div class="case-swatch-thumb case-swatch--lighting"></div>
+          <span class="case-swatch-cat">Illumination</span>
+          <h4 class="case-swatch-name">3000K Ambient Cove</h4>
+          <p class="case-swatch-spec">High CRI (>92) indirect LED architectural lighting creating glare-free evening warmth.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Mosaic Gallery with Lightbox Triggers -->
+    {% if gallery and gallery.length %}
+    <div class="case-gallery-section reveal delay-1">
+      <div class="case-section-header">
+        <span class="eyebrow">Visual Documentation</span>
+        <h2 class="case-section-title">Editorial Photography Gallery</h2>
+        <p class="case-section-desc">Click or tap any image to enter the high-resolution lightbox with touch swipe navigation and detail zoom.</p>
+      </div>
+
+      <div class="case-mosaic-grid">
+        {% for img in gallery %}
+        <div class="case-mosaic-item" data-lightbox-trigger data-caption="{{ title }} — Perspective {{ loop.index }}" tabindex="0" role="button" aria-label="Open image {{ loop.index }} in lightbox">
+          {% image img, title + " perspective " + loop.index, "(max-width: 768px) 100vw, 50vw", "", "lazy" %}
+          <div class="case-mosaic-overlay">
+            <span class="case-mosaic-caption">{{ title }} &bull; Angle {{ loop.index }}</span>
+            <span class="case-mosaic-action">
+              <i data-lucide="maximize-2" style="width: 14px; height: 14px;"></i> Inspect
+            </span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
     {% endif %}
 
-    <div style="margin-top: 50px;">
+    <!-- Back to Projects & Navigation Bar -->
+    <div style="margin-top: 48px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid rgba(187, 174, 155, 0.2);">
       <a href="/projects.html" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px;">
         <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Back to All Projects
       </a>
+      <a href="/contact.html" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+        Start a Similar Project <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+      </a>
     </div>
+
   </div>
 
-  <!-- Right column: Spec Sidebar & Client Quote -->
-  <aside class="spec-sidebar reveal delay-1">
+  <!-- RIGHT COLUMN: Pinned Spec Sidebar -->
+  <aside class="spec-sidebar sticky-sidebar reveal delay-1">
     <h3>Project Details</h3>
+    
     <div class="spec-list">
       {% if location %}
       <div class="spec-row">
-        <span class="label">Location</span>
+        <span class="label"><i data-lucide="map-pin"></i> Location</span>
         <span class="val">{{ location }}</span>
       </div>
       {% endif %}
+
       {% if area %}
       <div class="spec-row">
-        <span class="label">Area</span>
+        <span class="label"><i data-lucide="maximize"></i> Carpet Area</span>
         <span class="val">{{ area }}</span>
       </div>
       {% endif %}
+
       {% if duration %}
       <div class="spec-row">
-        <span class="label">Duration</span>
+        <span class="label"><i data-lucide="clock"></i> Handover</span>
         <span class="val">{{ duration }}</span>
       </div>
       {% endif %}
+
       {% if budget %}
       <div class="spec-row">
-        <span class="label">Investment</span>
+        <span class="label"><i data-lucide="wallet"></i> Investment</span>
         <span class="val">{{ budget }}</span>
       </div>
       {% endif %}
+
       {% if designStyle %}
       <div class="spec-row">
-        <span class="label">Design Style</span>
+        <span class="label"><i data-lucide="palette"></i> Design Style</span>
         <span class="val">{{ designStyle }}</span>
       </div>
       {% endif %}
+
+      <div class="spec-row">
+        <span class="label"><i data-lucide="layers"></i> Core Ply</span>
+        <span class="val">IS:710 Marine BWP</span>
+      </div>
+
+      <div class="spec-row">
+        <span class="label"><i data-lucide="shield-check"></i> Warranty</span>
+        <span class="val">10 Years Certified</span>
+      </div>
+
       {% if status %}
       <div class="spec-row">
-        <span class="label">Status</span>
-        <span class="val">{{ status }}</span>
+        <span class="label"><i data-lucide="check-circle-2"></i> Status</span>
+        <span class="val" style="color: #2f855a;">{{ status }}</span>
       </div>
       {% endif %}
     </div>
 
+    <!-- Verified Client Quote -->
     {% if clientQuote %}
-    <div class="architect-quote-card" style="margin-top: 32px;">
+    <div class="architect-quote-card">
+      <div class="architect-quote-stars" aria-label="5 star verified review">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
       <blockquote>"{{ clientQuote }}"</blockquote>
       <cite>
-        <span class="name">{{ clientName | default("MITRA Client") }}</span>
-        <span class="role">Verified Homeowner</span>
+        <span class="name">{{ clientName | default("MITRA Verified Client") }}</span>
+        <span class="role">Verified Homeowner &bull; On-Time Delivery</span>
       </cite>
     </div>
     {% endif %}
 
-    <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 12px;">
-      <a href="/contact.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Book Free Site Visit</a>
-      <a href="https://wa.me/919876543210?text=Hi%20MITRA%20team,%20I%20am%20interested%20in%20a%20project%20similar%20to%20{{ title | urlencode }}." class="btn btn-gold" target="_blank" rel="noopener noreferrer" style="width: 100%; justify-content: center; display: inline-flex; align-items: center; gap: 8px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-        Quick Quote on WhatsApp
+    <!-- Conversion & Action CTAs -->
+    <div class="spec-actions">
+      <a href="/contact.html" class="btn btn-primary">
+        Book Free Site Visit
       </a>
+      
+      <a href="https://wa.me/919876543210?text=Hi%20MITRA%20team,%20I%20am%20interested%20in%20a%20project%20similar%20to%20{{ title | urlencode }}%20(https://mitrainteriors.onrender.com{{ page.url }})." 
+         class="btn btn-gold" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+        WhatsApp Project Inquiry
+      </a>
+
+      <button id="shareProjectBtn" class="btn btn-share" type="button" aria-label="Share this project case study">
+        <i data-lucide="share-2" style="width: 15px; height: 15px;"></i>
+        <span>Share Case Study</span>
+      </button>
     </div>
+
   </aside>
+
 </section>
