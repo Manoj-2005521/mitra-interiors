@@ -102,16 +102,16 @@
 ## 🎨 Section 2: Visual Design & Layout Upgrades
 
 ### 2.1 — Bento Grid Feature Section (Apple / Linear Layout)
-* **Status:** Planned
+* **Status:** **COMPLETED & DEPLOYED ✅**
 * **Impact:** ⭐⭐⭐⭐⭐ | **Effort:** Medium
-* **The Idea:**
-  Replace standard 3-column cards with an asymmetric **Bento Grid** (popularized by Apple and Linear). Tiles of varying dimensions highlight key differentiators:
-  - Tile 1 (Large): "On-Time Handover Guarantee" with animated live counter
-  - Tile 2 (Tall): "BWP Marine-Grade Plywood" with layered material badge
-  - Tile 3 (Square): "10-Year Warranty"
-  - Tile 4 (Wide): "100% In-House Craftsmanship & Joinery Unit"
-  - Tile 5 (Square): "Itemized Fixed Quote (Zero Hidden Fees)"
-* **Micro-interactions:** Interactive cursor-tracking glare and subtle hover tilt on each tile.
+* **What Was Implemented:**
+  - **Asymmetric Apple / Linear Bento Architecture:** Replaced legacy 3-column cards with a 5-tile hierarchical grid (`.bento-grid`) featuring glassmorphic frosted cards (`backdrop-filter: blur(24px)`).
+  - **Tile 1 (Large - 2 cols):** *"On-Time Handover Guarantee"* featuring viewport-triggered animated live counter (`100%`) and milestone timeline tracking strip (3D Sign-off &rarr; Factory CNC &rarr; Site Assembly &rarr; Day 45 Handover).
+  - **Tile 2 (Tall - 1 col, 2 rows):** *"BWP Marine-Grade Plywood"* featuring a tactile 5-layer cross-section architectural visual (Face Veneer, Hardwood Core, Phenol Resin, Anti-Termite, Balancing Layer) and 72-Hr Boil Proof badge.
+  - **Tile 3 (Square):** *"10-Year Warranty"* with rotating dashed gold seal ring (`10Y`) and hardware certification tags.
+  - **Tile 5 (Square):** *"Itemized Fixed Quote"* with 100% Fixed lock box and zero middleman markups assurance.
+  - **Tile 4 (Wide - 3 cols span):** *"100% In-House Craftsmanship & Joinery Unit"* with factory floor live status, 0.5mm precision tolerance meter, and automated CNC/PUR edge-banding badges.
+  - **Interactive Cursor-Tracking Glare & 3D Tilt:** Mousemove listener dynamically updates `--mouse-x` and `--mouse-y` for a radial specular highlight following the cursor, paired with realistic 3D perspective tilt (`perspective(1000px)`).
 
 ---
 
