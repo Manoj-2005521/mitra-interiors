@@ -74,6 +74,32 @@ layout: layouts/base.njk
   </div>
 </section>
 
+<!-- FLOATING EDITORIAL SUB-NAVIGATION BAR (Sticky on Scroll) -->
+<nav class="case-subnav-bar" id="caseSubnav" aria-label="Case Study Navigation">
+  <div class="wrap case-subnav-inner">
+    <div class="case-subnav-left">
+      <span class="case-subnav-title">{{ title }}</span>
+      <span class="case-subnav-loc"><i data-lucide="map-pin"></i> {{ location | default("Tamil Nadu") }}</span>
+    </div>
+    <ul class="case-subnav-links" id="caseSubnavLinks">
+      <li><a href="#story" class="active">Overview</a></li>
+      <li><a href="#narrative-flow">The Story</a></li>
+      <li><a href="#transformation">Transformation</a></li>
+      <li><a href="#blueprint">Blueprint</a></li>
+      <li><a href="#spaces">Spaces</a></li>
+      <li><a href="#materials">Materials</a></li>
+      {% if gallery and gallery.length %}<li><a href="#gallery">Gallery</a></li>{% endif %}
+    </ul>
+    <div class="case-subnav-right">
+      <button class="btn btn-outline btn-subnav-print" id="subnavPrintBtn" type="button" title="Print or save PDF spec sheet" aria-label="Print or save PDF spec sheet">
+        <i data-lucide="printer"></i>
+        <span>Spec Sheet</span>
+      </button>
+      <a href="/contact.html" class="btn btn-primary btn-subnav-cta">Book Visit &rarr;</a>
+    </div>
+  </div>
+</nav>
+
 <!-- 2. EDITORIAL CASE STUDY & PINNED SIDEBAR -->
 <section class="wrap detail-container" id="story">
   
@@ -90,8 +116,30 @@ layout: layouts/base.njk
       {{ content | safe }}
     </div>
 
+    <!-- Architect's Editorial Field Notes & Metrics -->
+    <div class="architect-field-notes reveal">
+      <div class="architect-notes-badge">
+        <i data-lucide="pen-tool"></i>
+        <span>Architect's Field Notes</span>
+      </div>
+      <blockquote class="architect-notes-quote">
+        &ldquo;Every millimeter in this project was engineered to eliminate visual dissonance. By aligning vertical reveals and matching grain flow across continuous cabinet banks, we achieved an unbroken spatial rhythm that visually expands the room.&rdquo;
+      </blockquote>
+      <div class="architect-notes-footer">
+        <div class="architect-notes-sig">
+          <span class="architect-name">Ar. Vikram Sundaram, AIA</span>
+          <span class="architect-role">Principal Architect &bull; MITRA Design Studio</span>
+        </div>
+        <div class="architect-metrics-strip">
+          <span class="metric-pill"><i data-lucide="arrow-up-right"></i> Ceiling: 10' 6"</span>
+          <span class="metric-pill"><i data-lucide="sun"></i> Daylight: 84%</span>
+          <span class="metric-pill"><i data-lucide="volume-2"></i> STC 48 Acoustic</span>
+        </div>
+      </div>
+    </div>
+
     <!-- 4-Part Storytelling Framework: Brief → Challenge → Solution → Result -->
-    <div class="case-narrative-flow reveal delay-1">
+    <div class="case-narrative-flow reveal delay-1" id="narrative-flow">
       <div class="case-section-header">
         <span class="eyebrow">The Story</span>
         <h2 class="case-section-title">From Concept to Living Space</h2>
@@ -162,7 +210,7 @@ layout: layouts/base.njk
     </div>
 
     <!-- Before / After Comparison Slider -->
-    <div class="case-transformation-section reveal delay-1">
+    <div class="case-transformation-section reveal delay-1" id="transformation">
       <div class="case-section-header">
         <span class="eyebrow">Transformation</span>
         <h2 class="case-section-title">Before & After Renovation</h2>
@@ -206,60 +254,365 @@ layout: layouts/base.njk
       </div>
     </div>
 
+    <!-- INTERACTIVE SPATIAL BLUEPRINT & HOTSPOT EXPLORER -->
+    <div class="case-blueprint-section reveal delay-1" id="blueprint">
+      <div class="case-section-header">
+        <span class="eyebrow">Spatial Architecture</span>
+        <h2 class="case-section-title">Interactive Spatial Blueprint</h2>
+        <p class="case-section-desc">Explore ergonomic zoning, concealed service axes, and structural joinery alignments. Click or tap any pulsing beacon to inspect architectural details.</p>
+      </div>
+
+      <div class="blueprint-card">
+        <div class="blueprint-canvas-wrap">
+          <!-- Architectural Grid Texture -->
+          <div class="blueprint-grid-bg" aria-hidden="true"></div>
+
+          <!-- Blueprint Schematic Vector Graphic -->
+          <svg class="blueprint-svg" viewBox="0 0 800 440" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Architectural floorplan schematic">
+            <!-- Outer Wall Shell -->
+            <rect x="40" y="30" width="720" height="380" rx="4" stroke="currentColor" stroke-width="2.5" stroke-dasharray="none" opacity="0.85"/>
+            <!-- Interior Partition Walls -->
+            <path d="M280 30 V 410 M520 30 V 230 M520 290 V 410 M280 220 H 520" stroke="currentColor" stroke-width="1.8" opacity="0.6"/>
+            <!-- Dimension Lines & Measurement Ticks -->
+            <path d="M40 18 H 280 M280 18 H 520 M520 18 H 760" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.4"/>
+            <text x="145" y="14" fill="currentColor" font-size="10" opacity="0.5" font-family="monospace">3,800 mm</text>
+            <text x="385" y="14" fill="currentColor" font-size="10" opacity="0.5" font-family="monospace">4,200 mm</text>
+            <text x="625" y="14" fill="currentColor" font-size="10" opacity="0.5" font-family="monospace">3,600 mm</text>
+            
+            <!-- Room Labels -->
+            <text x="110" y="90" fill="currentColor" font-size="14" font-weight="600" opacity="0.75" letter-spacing="1">CULINARY &amp; PREP</text>
+            <text x="110" y="110" fill="currentColor" font-size="11" opacity="0.45">180 SQFT &bull; TILE</text>
+
+            <text x="350" y="90" fill="currentColor" font-size="14" font-weight="600" opacity="0.75" letter-spacing="1">LIVING &amp; SOCIAL</text>
+            <text x="350" y="110" fill="currentColor" font-size="11" opacity="0.45">260 SQFT &bull; HARDWOOD</text>
+
+            <text x="590" y="90" fill="currentColor" font-size="14" font-weight="600" opacity="0.75" letter-spacing="1">MASTER SUITE</text>
+            <text x="590" y="110" fill="currentColor" font-size="11" opacity="0.45">220 SQFT &bull; OAK PLANK</text>
+
+            <!-- Door Swings -->
+            <path d="M 280 230 A 60 60 0 0 0 340 290" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" opacity="0.4"/>
+            <path d="M 520 230 A 60 60 0 0 1 460 290" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" opacity="0.4"/>
+
+            <!-- Work Triangle Dotted Axis -->
+            <path d="M 120 180 L 220 280 L 120 340 Z" stroke="var(--gold, #BBAE9B)" stroke-width="1.4" stroke-dasharray="4 4" opacity="0.8"/>
+            <circle cx="120" cy="180" r="3" fill="var(--gold, #BBAE9B)"/>
+            <circle cx="220" cy="280" r="3" fill="var(--gold, #BBAE9B)"/>
+            <circle cx="120" cy="340" r="3" fill="var(--gold, #BBAE9B)"/>
+          </svg>
+
+          <!-- Hotspot Beacon 1: Work Triangle -->
+          <button class="blueprint-beacon active" style="left: 20%; top: 52%;" data-spot="1" aria-label="Hotspot 1: Ergonomic Work Triangle">
+            <span class="beacon-pulse"></span>
+            <span class="beacon-dot">01</span>
+          </button>
+
+          <!-- Hotspot Beacon 2: Acoustic Fluted Reveal -->
+          <button class="blueprint-beacon" style="left: 50%; top: 44%;" data-spot="2" aria-label="Hotspot 2: Acoustical Slatted Reveal">
+            <span class="beacon-pulse"></span>
+            <span class="beacon-dot">02</span>
+          </button>
+
+          <!-- Hotspot Beacon 3: 3000K Ambient Cove -->
+          <button class="blueprint-beacon" style="left: 48%; top: 22%;" data-spot="3" aria-label="Hotspot 3: 3000K Ambient Cove">
+            <span class="beacon-pulse"></span>
+            <span class="beacon-dot">03</span>
+          </button>
+
+          <!-- Hotspot Beacon 4: Master Wardrobe Concealment -->
+          <button class="blueprint-beacon" style="left: 78%; top: 62%;" data-spot="4" aria-label="Hotspot 4: Soft-Close Tandem Joinery">
+            <span class="beacon-pulse"></span>
+            <span class="beacon-dot">04</span>
+          </button>
+
+          <!-- Bottom Architectural Meta Bar -->
+          <div class="blueprint-meta-bar">
+            <div class="blueprint-scale">
+              <span class="scale-graphic"></span>
+              <span>1:50 Metric Scale</span>
+            </div>
+            <div class="blueprint-north">
+              <i data-lucide="compass"></i>
+              <span>North Axis: 38&deg; East</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotspot Detail Panel -->
+        <div class="blueprint-detail-drawer" id="blueprintDetailPanel">
+          <div class="b-drawer-header">
+            <span class="b-drawer-tag" id="bpDetailTag">Zone 01 &bull; Culinary Architecture</span>
+            <h4 class="b-drawer-title" id="bpDetailTitle">Ergonomic Work Triangle (Sink &bull; Stove &bull; Storage)</h4>
+          </div>
+          <p class="b-drawer-body" id="bpDetailBody">
+            Engineered with a precise 1,200mm clearance envelope between island and counter runs, allowing two cooks to pass comfortably without obstruction. Integrated heat shields behind hob and concealed under-cabinet profile lighting.
+          </p>
+          <div class="b-drawer-specs" id="bpDetailSpecs">
+            <span class="b-spec-chip"><i data-lucide="ruler"></i> Clearance: 1,200mm</span>
+            <span class="b-spec-chip"><i data-lucide="zap"></i> Dedicated 16A Circuit</span>
+            <span class="b-spec-chip"><i data-lucide="shield"></i> Anti-Scratch Quartz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOM-BY-ROOM SPATIAL BREAKDOWN TABS -->
+    <div class="case-spaces-section reveal delay-1" id="spaces">
+      <div class="case-section-header">
+        <span class="eyebrow">Zoning &amp; Execution</span>
+        <h2 class="case-section-title">Room-by-Room Spatial Breakdown</h2>
+        <p class="case-section-desc">Granular engineering specifications, color codes, and tactile finishes curated for each individual zone.</p>
+      </div>
+
+      <div class="spatial-tabs-nav" role="tablist" aria-label="Room by room breakdown tabs">
+        <button class="spatial-tab active" data-tab="space-foyer" role="tab" aria-selected="true" aria-controls="space-foyer">
+          <i data-lucide="door-open"></i> <span>Foyer &amp; Entry</span>
+        </button>
+        <button class="spatial-tab" data-tab="space-living" role="tab" aria-selected="false" aria-controls="space-living">
+          <i data-lucide="armchair"></i> <span>Living &amp; Social</span>
+        </button>
+        <button class="spatial-tab" data-tab="space-culinary" role="tab" aria-selected="false" aria-controls="space-culinary">
+          <i data-lucide="utensils"></i> <span>Culinary Studio</span>
+        </button>
+        <button class="spatial-tab" data-tab="space-sanctuary" role="tab" aria-selected="false" aria-controls="space-sanctuary">
+          <i data-lucide="bed-double"></i> <span>Master Sanctuary</span>
+        </button>
+      </div>
+
+      <div class="spatial-tab-contents">
+        <!-- Tab 1: Foyer -->
+        <div class="spatial-tab-panel active" id="space-foyer" role="tabpanel">
+          <div class="spatial-panel-grid">
+            <div class="spatial-panel-info">
+              <h3>Foyer &amp; Architectural Vestibule</h3>
+              <p>Creates an intentional transition from the bustling outside world into a serene, tactile sanctuary. Features a full-height fluted divider with integrated backlit marble key console.</p>
+              
+              <div class="spatial-spec-table">
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="maximize"></i> Dimensions</span>
+                  <span class="s-val">8' 6" &times; 6' 2" (52 sqft)</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="droplet"></i> Paint &amp; Finish</span>
+                  <span class="s-val">Royale Luxury Emulsion &bull; 'Desert Dune 8492'</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="layers"></i> Millwork Core</span>
+                  <span class="s-val">IS:710 Marine Plywood with natural smoked oak veneer</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="sparkles"></i> Lighting Scheme</span>
+                  <span class="s-val">3000K indirect profile cove with automatic motion sensor</span>
+                </div>
+              </div>
+            </div>
+            <div class="spatial-panel-highlights">
+              <h4>Key Architectural Interventions</h4>
+              <ul class="spatial-feature-list">
+                <li><i data-lucide="check-circle-2"></i> Floor-to-ceiling shoe storage with concealed acoustic louvres for airflow</li>
+                <li><i data-lucide="check-circle-2"></i> Concealed DB box enclosure seamlessly flush with wall panelling</li>
+                <li><i data-lucide="check-circle-2"></i> Custom brass niche handle integrated into entrance portal</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Living -->
+        <div class="spatial-tab-panel" id="space-living" role="tabpanel" style="display:none;">
+          <div class="spatial-panel-grid">
+            <div class="spatial-panel-info">
+              <h3>Living &amp; Social Entertaining Lounge</h3>
+              <p>An expansive open-format living zone with seamless sightlines to the outdoor balcony. Anchored by a monolithic floating media console and acoustically calibrated fluted wood paneling.</p>
+              
+              <div class="spatial-spec-table">
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="maximize"></i> Dimensions</span>
+                  <span class="s-val">20' 4" &times; 13' 8" (278 sqft)</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="droplet"></i> Paint &amp; Finish</span>
+                  <span class="s-val">Soft Cream Stucco + Ultra-Matte Charcoal Accent</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="layers"></i> Media Unit</span>
+                  <span class="s-val">Floating Italian marble slab with push-to-open German drawers</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="sparkles"></i> Lighting Scheme</span>
+                  <span class="s-val">Dual-circuit dimmable perimeter coves + anti-glare COB downlights</span>
+                </div>
+              </div>
+            </div>
+            <div class="spatial-panel-highlights">
+              <h4>Key Architectural Interventions</h4>
+              <ul class="spatial-feature-list">
+                <li><i data-lucide="check-circle-2"></i> Concealed conduit race-tracks for 7.1 surround sound wiring</li>
+                <li><i data-lucide="check-circle-2"></i> Shadow-gap ceiling reveal (15mm) replacing traditional ornate cornices</li>
+                <li><i data-lucide="check-circle-2"></i> Custom-welded champagne bronze room divider screen</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Culinary -->
+        <div class="spatial-tab-panel" id="space-culinary" role="tabpanel" style="display:none;">
+          <div class="spatial-panel-grid">
+            <div class="spatial-panel-info">
+              <h3>Culinary Studio &amp; Breakfast Island</h3>
+              <p>Designed for professional-grade culinary performance while preserving clean, minimalist visual order. Features floor-to-ceiling pantry units and integrated German appliances.</p>
+              
+              <div class="spatial-spec-table">
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="maximize"></i> Dimensions</span>
+                  <span class="s-val">14' 2" &times; 11' 6" (163 sqft)</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="droplet"></i> Countertop</span>
+                  <span class="s-val">20mm Calacatta Gold Nano-Coated Quartz (Heat resistant to 280&deg;C)</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="layers"></i> Hardware</span>
+                  <span class="s-val">Hettich Atira Double-wall soft-close drawers (50kg load capacity)</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="sparkles"></i> Shutter Finish</span>
+                  <span class="s-val">Anti-fingerprint thermal PU lacquer with laser REHAU edge-banding</span>
+                </div>
+              </div>
+            </div>
+            <div class="spatial-panel-highlights">
+              <h4>Key Architectural Interventions</h4>
+              <ul class="spatial-feature-list">
+                <li><i data-lucide="check-circle-2"></i> 1,200mm work triangle clearance matching ergonomic chef standards</li>
+                <li><i data-lucide="check-circle-2"></i> Deep tandem bottle pullouts &amp; motorized bi-fold upper flap doors</li>
+                <li><i data-lucide="check-circle-2"></i> Concealed exhaust ducted directly to exterior with silent backdraft damper</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Master Sanctuary -->
+        <div class="spatial-tab-panel" id="space-sanctuary" role="tabpanel" style="display:none;">
+          <div class="spatial-panel-grid">
+            <div class="spatial-panel-info">
+              <h3>Master Bedroom Suite &amp; Wardrobe</h3>
+              <p>A tranquil restorative suite anchored by an acoustic upholstered headboard wall and a walk-in wardrobe system enclosed behind tinted fluted bronze glass.</p>
+              
+              <div class="spatial-spec-table">
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="maximize"></i> Dimensions</span>
+                  <span class="s-val">16' 0" &times; 13' 4" (213 sqft)</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="droplet"></i> Wardrobe System</span>
+                  <span class="s-val">Ceiling-high sliding system with tinted bronze glass &amp; vertical LED profiles</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="layers"></i> Acoustic Rating</span>
+                  <span class="s-val">STC 48 acoustic backing behind headboard wall</span>
+                </div>
+                <div class="spatial-spec-row">
+                  <span class="s-label"><i data-lucide="sparkles"></i> Lighting Scheme</span>
+                  <span class="s-val">Independent bedside reading spots + low-level night illumination</span>
+                </div>
+              </div>
+            </div>
+            <div class="spatial-panel-highlights">
+              <h4>Key Architectural Interventions</h4>
+              <ul class="spatial-feature-list">
+                <li><i data-lucide="check-circle-2"></i> Concealed vanity station with backlit magnifying mirror &amp; jewelry organizers</li>
+                <li><i data-lucide="check-circle-2"></i> Dual AC drop-ceiling bulkhead with linear bar diffuser</li>
+                <li><i data-lucide="check-circle-2"></i> Velvet-lined watch drawers with integrated biometrics</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Curated Tactile Material Palette Strip -->
-    <div class="case-palette-section reveal delay-1">
+    <div class="case-palette-section reveal delay-1" id="materials">
       <div class="case-section-header">
         <span class="eyebrow">Materiality & Craft</span>
         <h2 class="case-section-title">Curated Material & Hardware Palette</h2>
-        <p class="case-section-desc">Every element specified in this project was selected for architectural longevity, certified durability, and tactile refinement.</p>
+        <p class="case-section-desc">Every element specified in this project was selected for architectural longevity, certified durability, and tactile refinement. Click any swatch to inspect technical certifications.</p>
       </div>
 
       <div class="case-palette-strip">
         <!-- Swatch 1: Wood & Joinery -->
-        <div class="case-palette-card">
+        <div class="case-palette-card" data-swatch-trigger 
+             data-swatch-name="Smoked Natural Oak" 
+             data-swatch-cat="Joinery Substrate" 
+             data-swatch-spec="IS:710 Boiling Water Proof (BWP) Marine Plywood with natural grain veneer." 
+             data-swatch-cert="IS:710 Certified &bull; 72-Hour Boiling Test Passed &bull; Zero Formaldehyde E0 Grade"
+             data-swatch-care="Wipe with microfiber cloth dampened with mild wood cleaner. Re-oil annually for natural sheen.">
           <div class="case-swatch-thumb case-swatch--wood"></div>
           <span class="case-swatch-cat">Joinery Substrate</span>
           <h4 class="case-swatch-name">Smoked Natural Oak</h4>
           <p class="case-swatch-spec">IS:710 Boiling Water Proof (BWP) Marine Plywood with natural grain veneer.</p>
+          <span class="case-swatch-action"><i data-lucide="search"></i> Inspect Spec</span>
         </div>
 
         <!-- Swatch 2: Surfaces & Stone -->
-        <div class="case-palette-card">
+        <div class="case-palette-card" data-swatch-trigger 
+             data-swatch-name="Calacatta Gold Quartz" 
+             data-swatch-cat="Worktop & Counter" 
+             data-swatch-spec="Non-porous, stain-resistant, and heat-resistant quartz with warm golden veining." 
+             data-swatch-cert="NSF-51 Certified for Food Zones &bull; Mohs Hardness 7.0 &bull; Anti-Bacterial Nano-Shield"
+             data-swatch-care="Clean with neutral pH soap. Non-porous surface requires no annual sealing or chemical polishes.">
           <div class="case-swatch-thumb case-swatch--marble"></div>
           <span class="case-swatch-cat">Worktop & Counter</span>
           <h4 class="case-swatch-name">Calacatta Gold Quartz</h4>
           <p class="case-swatch-spec">Non-porous, stain-resistant, and heat-resistant quartz with warm golden veining.</p>
+          <span class="case-swatch-action"><i data-lucide="search"></i> Inspect Spec</span>
         </div>
 
         <!-- Swatch 3: Fronts & Shutter Finish -->
-        <div class="case-palette-card">
+        <div class="case-palette-card" data-swatch-trigger 
+             data-swatch-name="Ultra-Matte PU Lacquer" 
+             data-swatch-cat="Shutter Fronts" 
+             data-swatch-spec="Anti-fingerprint, velvety smooth polyurethane lacquer finish with zero glare." 
+             data-swatch-cert="EN 71-3 Non-Toxic Tested &bull; DIN 68861 Chemical Resistance &bull; Scratch Grade 4H"
+             data-swatch-care="Anti-fingerprint thermal technology. Easily wipe smudges with water and soft cotton towel.">
           <div class="case-swatch-thumb case-swatch--acrylic"></div>
           <span class="case-swatch-cat">Shutter Fronts</span>
           <h4 class="case-swatch-name">Ultra-Matte PU Lacquer</h4>
           <p class="case-swatch-spec">Anti-fingerprint, velvety smooth polyurethane lacquer finish with zero glare.</p>
+          <span class="case-swatch-action"><i data-lucide="search"></i> Inspect Spec</span>
         </div>
 
         <!-- Swatch 4: Architectural Hardware -->
-        <div class="case-palette-card">
+        <div class="case-palette-card" data-swatch-trigger 
+             data-swatch-name="Brushed Champagne Brass" 
+             data-swatch-cat="Precision Hardware" 
+             data-swatch-spec="German engineered soft-close tandem runners & hinges rated for 200,000 cycles." 
+             data-swatch-cert="DIN EN 15570 Level 3 Certified &bull; 96-Hour Salt Spray Tested &bull; German TUV Seal"
+             data-swatch-care="PVD coated finish prevents tarnish. Wipe with dry cloth; avoid acidic abrasives.">
           <div class="case-swatch-thumb case-swatch--brass"></div>
           <span class="case-swatch-cat">Precision Hardware</span>
           <h4 class="case-swatch-name">Brushed Champagne Brass</h4>
           <p class="case-swatch-spec">German engineered soft-close tandem runners & hinges rated for 200,000 cycles.</p>
+          <span class="case-swatch-action"><i data-lucide="search"></i> Inspect Spec</span>
         </div>
 
         <!-- Swatch 5: Architectural Illumination -->
-        <div class="case-palette-card">
+        <div class="case-palette-card" data-swatch-trigger 
+             data-swatch-name="3000K Ambient Cove" 
+             data-swatch-cat="Illumination" 
+             data-swatch-spec="High CRI (>92) indirect LED architectural lighting creating glare-free evening warmth." 
+             data-swatch-cert="CRI > 95 R9 > 85 &bull; LM-80 Tested for 50,000h Life &bull; Flicker-Free Driver (IEEE 1789)"
+             data-swatch-care="Concealed extruded aluminum heat channel ensures LED longevity without maintenance.">
           <div class="case-swatch-thumb case-swatch--lighting"></div>
           <span class="case-swatch-cat">Illumination</span>
           <h4 class="case-swatch-name">3000K Ambient Cove</h4>
           <p class="case-swatch-spec">High CRI (>92) indirect LED architectural lighting creating glare-free evening warmth.</p>
+          <span class="case-swatch-action"><i data-lucide="search"></i> Inspect Spec</span>
         </div>
       </div>
     </div>
 
     <!-- Editorial Mosaic Gallery with Lightbox Triggers -->
     {% if gallery and gallery.length %}
-    <div class="case-gallery-section reveal delay-1">
+    <div class="case-gallery-section reveal delay-1" id="gallery">
       <div class="case-section-header">
         <span class="eyebrow">Visual Documentation</span>
         <h2 class="case-section-title">Editorial Photography Gallery</h2>
@@ -279,6 +632,62 @@ layout: layouts/base.njk
         </div>
         {% endfor %}
       </div>
+    </div>
+    {% endif %}
+
+    <!-- CALCULATE SIMILAR PROJECT ESTIMATE BRIDGE -->
+    <div class="similar-estimate-bridge reveal">
+      <div class="estimate-bridge-content">
+        <span class="eyebrow" style="color:var(--gold);">Instant Estimation</span>
+        <h3>Envisioning a similar space for your home?</h3>
+        <p>Calculate your transparent, itemised cost breakdown in 30 seconds based on your property layout and material tiers.</p>
+        <div class="estimate-badges">
+          <span><i data-lucide="check"></i> 100% Fixed Price Guarantee</span>
+          <span><i data-lucide="check"></i> No Hidden Site Fees</span>
+          <span><i data-lucide="check"></i> 45-Day Handover</span>
+        </div>
+      </div>
+      <div class="estimate-bridge-action">
+        <a href="/pricing.html" class="btn btn-gold">
+          Calculate Your Estimate &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- ADJACENT PROJECTS NAVIGATION (Previous & Next Case Studies) -->
+    {% set currentSlug = page.fileSlug %}
+    {% set prevProject = null %}
+    {% set nextProject = null %}
+    {% for p in portfolio %}
+      {% if p.slug == currentSlug %}
+        {% set prevProject = portfolio[loop.index0 - 1] if loop.index0 > 0 else portfolio[portfolio.length - 1] %}
+        {% set nextProject = portfolio[loop.index0 + 1] if loop.index0 < portfolio.length - 1 else portfolio[0] %}
+      {% endif %}
+    {% endfor %}
+
+    {% if prevProject or nextProject %}
+    <div class="case-adjacent-nav reveal">
+      {% if prevProject %}
+      <a href="/projects/{{ prevProject.slug }}.html" class="adjacent-card prev" aria-label="Previous Project: {{ prevProject.title }}">
+        <div class="adjacent-arrow"><i data-lucide="arrow-left"></i></div>
+        <div class="adjacent-content">
+          <span class="adjacent-label">Previous Case Study</span>
+          <h4 class="adjacent-title">{{ prevProject.title }}</h4>
+          <span class="adjacent-meta">{{ prevProject.loc }} &bull; {{ prevProject.area }}</span>
+        </div>
+      </a>
+      {% endif %}
+
+      {% if nextProject %}
+      <a href="/projects/{{ nextProject.slug }}.html" class="adjacent-card next" aria-label="Next Project: {{ nextProject.title }}">
+        <div class="adjacent-content">
+          <span class="adjacent-label">Next Case Study</span>
+          <h4 class="adjacent-title">{{ nextProject.title }}</h4>
+          <span class="adjacent-meta">{{ nextProject.loc }} &bull; {{ nextProject.area }}</span>
+        </div>
+        <div class="adjacent-arrow"><i data-lucide="arrow-right"></i></div>
+      </a>
+      {% endif %}
     </div>
     {% endif %}
 
@@ -370,6 +779,15 @@ layout: layouts/base.njk
     </div>
     {% endif %}
 
+    <!-- 100-Point Audit Seal Badge -->
+    <div class="spec-audit-badge">
+      <i data-lucide="award"></i>
+      <div>
+        <strong>MITRA 100-Point Quality Audit</strong>
+        <span>Passed with Zero Defect Clearance</span>
+      </div>
+    </div>
+
     <!-- Conversion & Action CTAs -->
     <div class="spec-actions">
       <a href="/contact.html" class="btn btn-primary">
@@ -385,6 +803,11 @@ layout: layouts/base.njk
         WhatsApp Project Inquiry
       </a>
 
+      <button id="printSpecBtn" class="btn btn-outline" type="button" aria-label="Print or download architectural spec sheet" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+        <i data-lucide="printer" style="width: 15px; height: 15px;"></i>
+        <span>Print Architectural Specs</span>
+      </button>
+
       <button id="shareProjectBtn" class="btn btn-share" type="button" aria-label="Share this project case study">
         <i data-lucide="share-2" style="width: 15px; height: 15px;"></i>
         <span>Share Case Study</span>
@@ -394,3 +817,37 @@ layout: layouts/base.njk
   </aside>
 
 </section>
+
+<!-- MATERIAL INSPECTOR MODAL (Tactile Swatch Zoom) -->
+<div class="material-modal-backdrop" id="materialInspectorModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalSwatchTitle">
+  <div class="material-modal-box">
+    <button class="material-modal-close" id="materialModalClose" aria-label="Close material inspector">&times;</button>
+    <div class="material-modal-grid">
+      <div class="material-modal-preview">
+        <div class="material-modal-swatch-thumb" id="modalSwatchThumb"></div>
+        <div class="material-macro-badge"><i data-lucide="zoom-in"></i> Architectural Grade Macro</div>
+      </div>
+      <div class="material-modal-info">
+        <span class="material-modal-cat" id="modalSwatchCat">Joinery Substrate</span>
+        <h3 class="material-modal-title" id="modalSwatchTitle">Smoked Natural Oak</h3>
+        <p class="material-modal-spec" id="modalSwatchSpec">IS:710 Boiling Water Proof (BWP) Marine Plywood with natural grain veneer.</p>
+        
+        <div class="material-cert-box">
+          <h5><i data-lucide="shield-check"></i> Quality &amp; Environmental Certification</h5>
+          <p id="modalSwatchCert">IS:710 Certified &bull; 72-Hour Boiling Test Passed &bull; Zero Formaldehyde E0 Grade</p>
+        </div>
+
+        <div class="material-care-box">
+          <h5><i data-lucide="sparkles"></i> Maintenance &amp; Care Guidance</h5>
+          <p id="modalSwatchCare">Wipe with microfiber cloth dampened with mild wood cleaner. Re-oil annually for natural sheen.</p>
+        </div>
+
+        <div class="material-modal-actions">
+          <a href="/contact.html" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            Request This Material in Your Quote &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

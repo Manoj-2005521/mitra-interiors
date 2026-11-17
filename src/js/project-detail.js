@@ -527,6 +527,295 @@ export function initHeroScrollCue() {
 }
 
 /**
+ * Floating Sticky Editorial Sub-Navigation with ScrollSpy & Smooth Scrolling
+ */
+export function initCaseSubnav() {
+  const subnav = document.getElementById('caseSubnav');
+  if (!subnav || subnav.dataset.subnavBound) return;
+  subnav.dataset.subnavBound = 'true';
+
+  const links = subnav.querySelectorAll('.case-subnav-links a');
+  const targetIds = Array.from(links).map(a => a.getAttribute('href').replace('#', ''));
+  const targets = targetIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  let ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        if (scrollY > 520) {
+          subnav.classList.add('is-visible');
+        } else {
+          subnav.classList.remove('is-visible');
+        }
+
+        // Active link tracking
+        const navHeight = subnav.offsetHeight + 80;
+        let currentActive = null;
+        for (let i = targets.length - 1; i >= 0; i--) {
+          const el = targets[i];
+          if (el.offsetTop - navHeight <= scrollY) {
+            currentActive = el.id;
+            break;
+          }
+        }
+
+        links.forEach(a => {
+          const hrefId = a.getAttribute('href').replace('#', '');
+          if (hrefId === currentActive) {
+            a.classList.add('active');
+          } else {
+            a.classList.remove('active');
+          }
+        });
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Smooth scroll click handler
+  links.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = a.getAttribute('href').replace('#', '');
+      const target = document.getElementById(targetId);
+      if (target) {
+        const offset = subnav.offsetHeight + 24;
+        if (window.lenis) {
+          window.lenis.scrollTo(target, { offset: -offset, duration: 1 });
+        } else {
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+}
+
+/**
+ * Interactive Spatial Blueprint Hotspots & Detail Drawer
+ */
+export function initBlueprintHotspots() {
+  const beacons = document.querySelectorAll('.blueprint-beacon');
+  const panel = document.getElementById('blueprintDetailPanel');
+  if (!beacons.length || !panel || panel.dataset.hotspotBound) return;
+  panel.dataset.hotspotBound = 'true';
+
+  const tagEl = document.getElementById('bpDetailTag');
+  const titleEl = document.getElementById('bpDetailTitle');
+  const bodyEl = document.getElementById('bpDetailBody');
+  const specsEl = document.getElementById('bpDetailSpecs');
+
+  const spotData = {
+    '1': {
+      tag: 'Zone 01 • Culinary Architecture',
+      title: 'Ergonomic Work Triangle (Sink • Stove • Storage)',
+      body: 'Engineered with a precise 1,200mm clearance envelope between island and counter runs, allowing two cooks to pass comfortably without obstruction. Integrated heat shields behind hob and concealed under-cabinet profile lighting.',
+      specs: [
+        { icon: 'ruler', label: 'Clearance: 1,200mm' },
+        { icon: 'zap', label: 'Dedicated 16A Circuit' },
+        { icon: 'shield', label: 'Anti-Scratch Quartz' }
+      ]
+    },
+    '2': {
+      tag: 'Zone 02 • Acoustic Transition',
+      title: 'Fluted Acoustic Concealment Paneling',
+      body: 'Full-height vertical fluted timber slats concealing structural building columns and concealed conduits. Engineered with STC 48 acoustic felt backing to eliminate room reverberation and echo.',
+      specs: [
+        { icon: 'volume-2', label: 'Acoustic Rating: STC 48' },
+        { icon: 'layers', label: 'Concealed Column Reveal' },
+        { icon: 'shield-check', label: 'Smoked Oak Veneer' }
+      ]
+    },
+    '3': {
+      tag: 'Zone 03 • Illumination Dialogue',
+      title: '3000K Indirect Cove & Glare-Free Ambient Lighting',
+      body: 'Recessed architectural cove light profiles producing seamless indirect perimeter glow without exposed LED diodes. Calibrated to CRI > 95 for authentic color representation of natural textures.',
+      specs: [
+        { icon: 'sparkles', label: 'CRI > 95 Warm White' },
+        { icon: 'sun', label: 'Dimmable Dual Driver' },
+        { icon: 'eye', label: 'Zero Direct Glare' }
+      ]
+    },
+    '4': {
+      tag: 'Zone 04 • Precision Joinery',
+      title: 'Heavy-Duty Tandembox & Soft-Close Joinery',
+      body: 'German engineered full-extension under-mount drawer slides with integrated fluid dampers. Tested for 200,000 opening cycles under 50kg dynamic loads with whisper-quiet soft close.',
+      specs: [
+        { icon: 'check-circle-2', label: '200,000 Cycle Tested' },
+        { icon: 'weight', label: '50kg Dynamic Load' },
+        { icon: 'award', label: 'Hettich German Core' }
+      ]
+    }
+  };
+
+  beacons.forEach(beacon => {
+    beacon.addEventListener('click', () => {
+      const spotId = beacon.dataset.spot;
+      const data = spotData[spotId];
+      if (!data) return;
+
+      beacons.forEach(b => b.classList.remove('active'));
+      beacon.classList.add('active');
+
+      // Animate update
+      panel.style.opacity = '0.3';
+      panel.style.transform = 'translateY(6px)';
+
+      setTimeout(() => {
+        if (tagEl) tagEl.textContent = data.tag;
+        if (titleEl) titleEl.textContent = data.title;
+        if (bodyEl) bodyEl.textContent = data.body;
+        if (specsEl) {
+          specsEl.innerHTML = data.specs.map(s => `
+            <span class="b-spec-chip"><i data-lucide="${s.icon}"></i> ${s.label}</span>
+          `).join('');
+          if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons({ root: specsEl });
+          }
+        }
+        panel.style.opacity = '1';
+        panel.style.transform = 'translateY(0)';
+      }, 150);
+    });
+  });
+}
+
+/**
+ * Room-by-Room Spatial Breakdown Tabs
+ */
+export function initSpatialTabs() {
+  const tabs = document.querySelectorAll('.spatial-tab');
+  const panels = document.querySelectorAll('.spatial-tab-panel');
+  if (!tabs.length || !panels.length) return;
+
+  tabs.forEach(tab => {
+    if (tab.dataset.tabBound) return;
+    tab.dataset.tabBound = 'true';
+
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.tab;
+      
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      panels.forEach(p => {
+        if (p.id === targetId) {
+          p.style.display = 'block';
+          p.classList.add('active');
+          p.style.animation = 'fadeInUpTab 0.4s var(--ease) forwards';
+        } else {
+          p.style.display = 'none';
+          p.classList.remove('active');
+        }
+      });
+    });
+  });
+}
+
+/**
+ * Tactile Material Swatch Zoom Inspector Modal
+ */
+export function initMaterialInspector() {
+  const modal = document.getElementById('materialInspectorModal');
+  const closeBtn = document.getElementById('materialModalClose');
+  const swatchTriggers = document.querySelectorAll('[data-swatch-trigger]');
+  if (!modal || !swatchTriggers.length || modal.dataset.inspectorBound) return;
+  modal.dataset.inspectorBound = 'true';
+
+  const modalTitle = document.getElementById('modalSwatchTitle');
+  const modalCat = document.getElementById('modalSwatchCat');
+  const modalSpec = document.getElementById('modalSwatchSpec');
+  const modalCert = document.getElementById('modalSwatchCert');
+  const modalCare = document.getElementById('modalSwatchCare');
+  const modalThumb = document.getElementById('modalSwatchThumb');
+
+  function openModal(card) {
+    const name = card.dataset.swatchName || 'Material Spec';
+    const cat = card.dataset.swatchCat || 'Architectural Component';
+    const spec = card.dataset.swatchSpec || '';
+    const cert = card.dataset.swatchCert || '';
+    const care = card.dataset.swatchCare || '';
+    const thumbClass = card.querySelector('.case-swatch-thumb')?.className || '';
+
+    if (modalTitle) modalTitle.textContent = name;
+    if (modalCat) modalCat.textContent = cat;
+    if (modalSpec) modalSpec.textContent = spec;
+    if (modalCert) modalCert.innerHTML = cert;
+    if (modalCare) modalCare.textContent = care;
+    if (modalThumb) {
+      modalThumb.className = 'material-modal-swatch-thumb ' + thumbClass.replace('case-swatch-thumb', '');
+    }
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  swatchTriggers.forEach(card => {
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card);
+      }
+    });
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+}
+
+/**
+ * 1-Click Architectural Spec Sheet Print / Save PDF
+ */
+export function initPrintSpecSheet() {
+  const printBtns = [
+    document.getElementById('printSpecBtn'),
+    document.getElementById('subnavPrintBtn')
+  ].filter(Boolean);
+
+  printBtns.forEach(btn => {
+    if (btn.dataset.printBound) return;
+    btn.dataset.printBound = 'true';
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.print();
+    });
+  });
+}
+
+/**
  * Master initializer for all Case Study page features
  */
 export function initProjectDetail() {
@@ -534,4 +823,9 @@ export function initProjectDetail() {
   initGalleryLightbox();
   initProjectShare();
   initHeroScrollCue();
+  initCaseSubnav();
+  initBlueprintHotspots();
+  initSpatialTabs();
+  initMaterialInspector();
+  initPrintSpecSheet();
 }

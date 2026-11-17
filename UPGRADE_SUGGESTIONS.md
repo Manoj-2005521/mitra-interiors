@@ -186,16 +186,22 @@
 
 ---
 
-### 3.4 — Editorial Case Study Layouts
+### 3.4 — Editorial Case Study Layouts (Architecture Digest / High-End Studio)
 * **Status:** **COMPLETED & DEPLOYED ✅**
-* **Impact:** ⭐⭐⭐⭐⭐ | **Effort:** Medium
+* **Impact:** ⭐⭐⭐⭐⭐ | **Effort:** Medium-High
 * **What Was Implemented:**
-  - Full-bleed cinematic hero image with breadcrumbs, eyebrow pill badges, display typography, and quick spec ribbon
-  - Architectural Digest 4-stage narrative flow: "The Brief" → "The Challenge" → "The Architectural Solution" → "The Result"
-  - Interactive Before & After renovation slider per room with mouse/touch drag and keyboard navigation
-  - Tactile Material & Hardware Palette strip featuring certified swatches (Smoked Oak, Calacatta Quartz, Ultra-Matte PU, Champagne Brass, 3000K Lighting)
-  - Pinned sticky spec sidebar with full details, verified homeowner review card, 5-star shimmer, WhatsApp pre-filled inquiry, and Copy/Share project button
-  - Mosaic photography gallery with interactive fullscreen Lightbox featuring touch swipe gestures, 1.75x detail zoom toggle, keyboard arrows/Esc, and image counter/caption bar
+  - **Full-Bleed Cinematic Hero:** Breadcrumbs, eyebrow badges, fluid Cormorant Garamond display title, and quick-spec ribbon (Location, Area, Timeline, Investment, Style) with smooth scroll anchor.
+  - **Floating Sticky Sub-Navigation Bar:** Pinned glassmorphic header appearing after scroll with live ScrollSpy indicator across sections: Overview, The Story, Transformation, Blueprint, Spaces, Materials, Gallery. Includes quick 1-click Print Spec Sheet and Consultation CTA.
+  - **Architect's Editorial Field Notes:** Lead Architect quote card featuring official credentials (`Ar. Vikram Sundaram, AIA`), architectural stamp, and key metrics pill badges (Ceiling clearance `10' 6"`, Daylight index `84%`, Acoustic STC `48`).
+  - **4-Part Storytelling Framework:** "The Brief" → "The Challenge" → "The Architectural Solution" → "The Result" with luxury icons and gold phase badges.
+  - **Interactive Before & After Renovation Slider:** Spring-physics damped slider with 3-5px gaussian blur transition zone, edge-aware dynamic badges, and knob aura pulse.
+  - **Interactive Spatial Blueprint & Hotspot Explorer:** Architectural CAD schematic layout with grid background, compass orientation, metric scale bar, and pulsing hotspot beacons. Clicking beacons switches active zone details (Ergonomic Work Triangle, Fluted Acoustic Reveal, 3000K Cove Lighting, Heavy-Duty Tandembox).
+  - **Room-by-Room Spatial Breakdown Tabs:** Interactive tabbed explorer for Foyer & Entry, Living & Social, Culinary Studio, and Master Sanctuary with granular dimensions, paint codes, millwork core specs, and architectural interventions.
+  - **Tactile Material Palette Strip with Zoom Inspector Modal:** Clickable material swatches triggering high-res texture macro views, IS:710 Marine Grade BWP and German DIN certifications, and care guidance.
+  - **Fullscreen Mosaic Lightbox Gallery:** Swipe gestures, 1.75x detail zoom toggle, keyboard arrows/Esc, and image caption bar.
+  - **Instant Estimation Cost Bridge:** Direct link to budget calculator pre-framed for this project scale with 100% fixed-price assurance.
+  - **Circular Adjacent Project Navigation:** Seamless Previous & Next Case Study cards with live project titles, locations, and hover arrow glide.
+  - **1-Click Printable Architectural Spec Sheet:** Clean `@media print` layout formatting project metadata, narrative, materials, warranty, and 100-point audit checklist for PDF export or homeowner printout.
 
 ---
 
