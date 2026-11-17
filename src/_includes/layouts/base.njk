@@ -34,6 +34,22 @@
   </noscript>
   {% block preload %}{% endblock %}
   
+  <!-- Anti-Flash Luxury Theme Bootstrapper -->
+  <script>
+    (function() {
+      try {
+        var stored = localStorage.getItem('mitra-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- PWA & Assets -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2C2720">
@@ -152,6 +168,15 @@
   </main>
 
   {% include "components/footer.njk" %}
+
+  <!-- 4.2 Scroll-To-Top Circular Progress Ring -->
+  <button id="scrollToTopBtn" class="scroll-top-btn" type="button" aria-label="Scroll back to top of page" title="Scroll to top">
+    <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+      <circle class="progress-ring-bg" cx="23" cy="23" r="20" fill="none" stroke-width="2.5" />
+      <circle class="progress-ring-circle" id="scrollProgressCircle" cx="23" cy="23" r="20" fill="none" stroke-width="2.5" stroke-dasharray="125.66" stroke-dashoffset="125.66" />
+    </svg>
+    <i data-lucide="arrow-up" class="scroll-top-icon"></i>
+  </button>
 
   <!-- JavaScript -->
   <script src="/js/vendor/lucide.min.js" defer></script>

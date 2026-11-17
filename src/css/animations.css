@@ -379,3 +379,62 @@ main.page-is-entered {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   4.1 Shimmer Skeleton Screens & Blur-Up Images
+   ========================================================================== */
+@keyframes shimmerSkeleton {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.img-skeleton-wrap {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, 
+    rgba(223, 217, 206, 0.45) 0%, 
+    rgba(248, 246, 242, 0.85) 50%, 
+    rgba(223, 217, 206, 0.45) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerSkeleton 1.8s infinite linear;
+}
+
+.img-skeleton-wrap.skeleton-done {
+  animation: none;
+  background: transparent;
+}
+
+[data-theme="dark"] .img-skeleton-wrap {
+  background: linear-gradient(90deg, 
+    rgba(24, 32, 28, 0.6) 0%, 
+    rgba(40, 52, 46, 0.9) 50%, 
+    rgba(24, 32, 28, 0.6) 100%
+  );
+  background-size: 200% 100%;
+}
+
+[data-theme="dark"] .img-skeleton-wrap.skeleton-done {
+  background: transparent;
+}
+
+/* Progressive Blur-Up */
+img.blur-up {
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(1.02);
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+              filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, filter, transform;
+}
+
+img.blur-up.loaded,
+img[loading="eager"],
+.logo-img img,
+img.logo-img {
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  transform: scale(1) !important;
+}
+

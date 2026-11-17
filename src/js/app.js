@@ -19,6 +19,7 @@ import { initForms } from './forms.js';
 import { initPageTransitions } from './transitions.js';
 import { initProjectDetail } from './project-detail.js';
 import { initBentoGrid } from './bento.js';
+import { initTechPolish } from './tech-polish.js';
 
 // --- Accordion FAQ Component ---
 export function initFaqAccordion() {
@@ -157,6 +158,7 @@ export function reinitPage(url = null) {
   initTestimonials();
   initProjectDetail();
   initBentoGrid();
+  initTechPolish();
 
   // 4. Lucide Vector Icons
   if (typeof lucide !== 'undefined') {

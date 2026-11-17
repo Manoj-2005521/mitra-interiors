@@ -220,26 +220,35 @@
 ## ⚡ Section 4: Performance & Technical Polish
 
 ### 4.1 — Shimmer Skeleton Screens & Blur-Up Images
-* **Status:** Planned
+* **Status:** **COMPLETED & DEPLOYED ✅**
 * **Impact:** ⭐⭐⭐⭐ | **Effort:** Low-Medium
-* **The Idea:**
-  Before high-resolution project images load, display warm architectural shimmer skeletons that smoothly morph into the sharp photography.
+* **What Was Implemented:**
+  - **Warm Architectural Shimmer:** Created `@keyframes shimmerSkeleton` using warm plaster and muted gold shimmer waves (`rgba(236, 232, 225, 0.6)` to `rgba(248, 246, 242, 0.95)` in light mode, and obsidian/charcoal in dark mode).
+  - **Progressive Blur-Up Transition:** Applied `.img-skeleton-wrap` and progressive `blur(12px)` filter to lazy-loading imagery that gracefully de-blurs (`filter: blur(0)`) and transitions to full opacity as soon as native image `load` events fire.
+  - **Instant Cache Handling:** Image loader inspects `img.complete` on bootstrap to avoid flickering on pre-cached or instant images.
 
 ---
 
 ### 4.2 — Scroll-To-Top Circular Progress Ring
-* **Status:** Planned
+* **Status:** **COMPLETED & DEPLOYED ✅**
 * **Impact:** ⭐⭐ | **Effort:** Low
-* **The Idea:**
-  A minimal circular button in the bottom-right corner featuring an SVG progress ring showing overall page scroll progress.
+* **What Was Implemented:**
+  - **Dynamic SVG Circular Progress Ring:** Fixed 48px floating button (`#scrollToTopBtn`) with SVG circumference (`2 * π * 20 = 125.66`) dynamically animated via `stroke-dashoffset` as the user navigates down the page.
+  - **Smooth Viewport Trigger:** Automatically slides and scales into view with spring bezier timing once scroll depth exceeds 280px.
+  - **Architectural Integration:** Deep integration with Lenis smooth-scroll engine for seamless gliding back to `#top`, falling back gracefully to `window.scrollTo({ top: 0, behavior: 'smooth' })`.
+  - **Tactile Hover & Dark Mode Support:** Frosted glass backing (`backdrop-filter: blur(16px)`), gold stroke indicator, upward directional hover shift, and custom dark mode styling.
 
 ---
 
 ### 4.3 — Luxury Dark / Light Architectural Mode
-* **Status:** Planned
+* **Status:** **COMPLETED & DEPLOYED ✅**
 * **Impact:** ⭐⭐⭐ | **Effort:** Medium
-* **The Idea:**
-  Seamless theme switcher transitioning between the warm plaster beige daytime aesthetic and a deep charcoal/brass evening studio atmosphere.
+* **What Was Implemented:**
+  - **Day Plaster vs. Evening Studio Palette:** Day mode showcases warm architectural plaster beige (`#ECE8E1`) and soft cream (`#F8F6F2`). Evening Studio switches to an intimate obsidian charcoal aesthetic (`#121614` / `#18201C`) with aged brass and muted gold highlights (`#D5CDBF`, `#A39683`).
+  - **Zero-Flicker Head Bootstrapper:** Inline `<script>` executed synchronously in `<head>` before DOM render, reading `localStorage('mitra-theme')` or system `prefers-color-scheme: dark` to prevent flash of unstyled content (FOUC).
+  - **Dual Synchronized Toggle Buttons:** Accessible, glassmorphic circular buttons with animated Lucide `sun` / `moon` transitions embedded in both the desktop sticky header (`#themeToggleBtn`) and full-screen mobile drawer (`#mobileThemeToggleBtn`).
+  - **Full Component Re-skinning:** Complete dark mode token mapping across forms, inputs, trust strips, bento cards, pricing tables, hero sections, and navigation chrome.
+
 
 ---
 
