@@ -47,11 +47,12 @@
   --radius-xs: 4px;
   --radius-pill: 9999px;
 
-  /* Animation Easing â€” Designer-grade curves */
+  /* Animation Easing — Designer-grade curves */
   --ease-base: cubic-bezier(0.25, 1, 0.5, 1);
   --ease: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0, 1);
   
   /* Transitions */
@@ -224,7 +225,19 @@ body::after {
   }
 }
 
-/* Typography Selection —  Editorial hierarchy */
+/* Trending CSS #8 — Native CSS linear() Damped Spring Easing */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --ease-bounce: linear(
+      0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%,
+      1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%,
+      1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%,
+      0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1
+    );
+  }
+}
+
+/* Typography Selection — Editorial hierarchy */
 h1, h2, h3 {
   font-family: var(--font-display);
   color: var(--forest-deep);
@@ -238,6 +251,25 @@ h4, h5, h6 {
   color: var(--forest-deep);
   font-weight: 600;
   line-height: 1.2;
+}
+
+/* Trending CSS #1 — Balanced Editorial Typography (Zero Orphan Words) */
+h1, h2, h3, h4, h5, h6,
+.sec-head h2,
+.reveal-text,
+.hero-heading,
+.case-hero-title,
+.bento-title {
+  text-wrap: balance;
+}
+
+p,
+.sec-head p,
+.hero-desc,
+.bento-desc,
+.b-card p,
+.foot-desc {
+  text-wrap: pretty;
 }
 
 p {
@@ -1015,7 +1047,7 @@ body {
   border-radius: 50px;
   z-index: -1;
   transform: scale(1);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease; /* spring expand */
+  transition: transform 0.55s var(--ease-bounce), background 0.3s ease; /* native linear() spring expand */
 }
 
 .hero-slide.active .hero-cta {
@@ -4747,6 +4779,68 @@ html[data-theme="dark"] .scroll-top-btn .scroll-top-icon {
 
   html[data-theme="dark"] .scroll-top-btn:hover {
     background: color-mix(in oklch, var(--cream) 82%, var(--gold) 14%);
+  }
+}
+
+/* ==========================================================================
+   Trending CSS #8 — Native CSS linear() Damped Spring / Bounce Interactions
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .p-card {
+    transition: transform 0.65s var(--ease-bounce), box-shadow 0.5s var(--ease);
+  }
+
+  .p-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .b-card {
+    transition: transform 0.62s var(--ease-bounce),
+                box-shadow 0.4s var(--ease),
+                border-color 0.4s var(--ease),
+                background 0.4s var(--ease);
+  }
+
+  .bento-tile {
+    transition: transform 0.55s var(--ease-bounce),
+                background-color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+
+  .strip-item {
+    transition: transform 0.6s var(--ease-bounce),
+                border-color 0.45s var(--ease),
+                background 0.45s var(--ease);
+  }
+
+  .svc-row .arrow {
+    transition: transform 0.52s var(--ease-bounce), color 0.3s ease;
+  }
+
+  .filter-btn {
+    transition: transform 0.45s var(--ease-bounce),
+                background-color 0.3s var(--ease),
+                border-color 0.3s var(--ease),
+                color 0.3s var(--ease);
+  }
+
+  .filter-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .theme-toggle {
+    transition: transform 0.48s var(--ease-bounce),
+                background 0.3s var(--ease),
+                border-color 0.3s var(--ease),
+                box-shadow 0.3s var(--ease);
+  }
+
+  .scroll-top-btn {
+    transition: opacity 0.35s var(--ease),
+                transform 0.55s var(--ease-bounce),
+                box-shadow 0.3s var(--ease),
+                background 0.3s ease;
   }
 }
 
