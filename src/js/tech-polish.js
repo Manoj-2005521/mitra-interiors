@@ -1,7 +1,6 @@
 /* ==========================================================================
    MITRA Interior & Constructions — Performance & Technical Polish Modules
    - 4.1 Shimmer Skeleton Screens & Progressive Blur-Up Images
-   - 4.2 Scroll-To-Top Circular Progress Ring (SVG Stroke Animation)
    - 4.3 Luxury Dark / Light Architectural Mode (Evening Studio)
    ========================================================================== */
 
@@ -61,58 +60,6 @@ export function initThemeSwitcher() {
 }
 
 /**
- * Initializes Scroll-To-Top Circular Progress Ring
- */
-export function initScrollProgressRing() {
-  const btn = document.getElementById('scrollToTopBtn');
-  const circle = document.getElementById('scrollProgressCircle');
-  if (!btn || !circle || btn.dataset.scrollBound) return;
-  btn.dataset.scrollBound = 'true';
-
-  const circumference = 2 * Math.PI * 20; // r = 20 -> ~125.66
-  circle.style.strokeDasharray = `${circumference}`;
-  circle.style.strokeDashoffset = `${circumference}`;
-
-  let ticking = false;
-
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-        if (scrollTop > 280) {
-          btn.classList.add('is-active');
-        } else {
-          btn.classList.remove('is-active');
-        }
-
-        if (docHeight > 0) {
-          const progress = Math.min(Math.max(scrollTop / docHeight, 0), 1);
-          const offset = circumference - (progress * circumference);
-          circle.style.strokeDashoffset = `${offset.toFixed(2)}`;
-        }
-
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (window.lenis) {
-      window.lenis.scrollTo(0, { duration: 1.2 });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-}
-
-/**
  * Progressive Blur-Up Image Loading with Shimmer Skeletons
  */
 export function initImageShimmerAndBlurUp() {
@@ -152,6 +99,5 @@ export function initImageShimmerAndBlurUp() {
  */
 export function initTechPolish() {
   initThemeSwitcher();
-  initScrollProgressRing();
   initImageShimmerAndBlurUp();
 }
