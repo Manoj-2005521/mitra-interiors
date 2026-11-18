@@ -3064,7 +3064,8 @@ html[data-theme="dark"] .theme-toggle .theme-icon-moon {
   padding: 0;
 }
 
-.scroll-top-btn.is-visible {
+.scroll-top-btn.is-visible,
+.scroll-top-btn.is-active {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
@@ -3142,6 +3143,87 @@ html[data-theme="dark"] .scroll-top-btn .scroll-top-icon {
   .scroll-top-btn .progress-ring {
     width: 42px;
     height: 42px;
+  }
+}
+
+/* ==========================================================================
+   Trending CSS #5 — Dynamic OKLCH color-mix() Interactive Hover States
+   ========================================================================== */
+@supports (background: color-mix(in oklch, red, blue)) {
+  /* Portfolio & Case Study Filter Chips */
+  .filter-btn:hover {
+    background-color: color-mix(in oklch, var(--forest) 86%, var(--gold-warm));
+    border-color: color-mix(in oklch, var(--forest) 80%, var(--gold));
+  }
+
+  .filter-btn.active {
+    background-color: color-mix(in oklch, var(--forest-deep) 90%, var(--gold-warm));
+    border-color: color-mix(in oklch, var(--forest-deep) 85%, var(--gold));
+  }
+
+  /* Services List Rows */
+  .svc-row:hover,
+  .svc-row.active {
+    background-color: color-mix(in oklch, var(--beige) 68%, var(--gold-light));
+  }
+
+  /* Trust Strip Stat Cards */
+  .strip-item:hover {
+    border-color: color-mix(in oklch, var(--gold-light) 48%, transparent);
+    background: color-mix(in oklch, var(--white) 9%, var(--gold-light) 4%);
+  }
+
+  /* Pricing Cards */
+  .b-card:hover {
+    background: color-mix(in oklch, var(--cream) 88%, var(--gold-light));
+    border-color: color-mix(in oklch, var(--gold-warm) 58%, transparent);
+  }
+
+  /* FAQ Accordion Cards */
+  .faq-item:hover {
+    background: color-mix(in oklch, var(--cream) 86%, var(--white));
+    border-color: color-mix(in oklch, var(--gold-warm) 52%, transparent);
+  }
+
+  /* Theme Toggle & Scroll-To-Top Glass Controls */
+  .theme-toggle:hover {
+    background: color-mix(in oklch, var(--cream) 76%, var(--gold-light));
+    border-color: color-mix(in oklch, var(--gold-warm) 65%, transparent);
+  }
+
+  .scroll-top-btn:hover {
+    background: color-mix(in oklch, var(--cream) 88%, var(--gold-light));
+  }
+
+  /* Evening Studio (Dark Mode) OKLCH Hovers */
+  [data-theme="dark"] .filter-btn:hover {
+    background-color: color-mix(in oklch, var(--champagne) 78%, var(--gold));
+    border-color: color-mix(in oklch, var(--gold) 55%, transparent);
+    color: #FFF8EB;
+  }
+
+  [data-theme="dark"] .svc-row:hover,
+  [data-theme="dark"] .svc-row.active {
+    background-color: color-mix(in oklch, var(--cream) 85%, var(--gold) 15%);
+  }
+
+  [data-theme="dark"] .b-card:hover {
+    background: color-mix(in oklch, var(--cream) 84%, var(--gold) 12%);
+    border-color: color-mix(in oklch, var(--gold-light) 50%, transparent);
+  }
+
+  [data-theme="dark"] .faq-item:hover {
+    background: color-mix(in oklch, var(--cream) 82%, var(--gold) 10%);
+    border-color: color-mix(in oklch, var(--gold-light) 45%, transparent);
+  }
+
+  html[data-theme="dark"] .theme-toggle:hover {
+    background: color-mix(in oklch, var(--cream) 78%, var(--gold) 18%);
+    border-color: color-mix(in oklch, var(--gold-light) 70%, transparent);
+  }
+
+  html[data-theme="dark"] .scroll-top-btn:hover {
+    background: color-mix(in oklch, var(--cream) 82%, var(--gold) 14%);
   }
 }
 

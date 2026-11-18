@@ -355,6 +355,21 @@
   box-shadow: 0 15px 35px rgba(255, 255, 255, 0.06);
 }
 
+/* Trending CSS #5 — Dynamic OKLCH color-mix() Hero CTA Hovers */
+@supports (background: color-mix(in oklch, red, blue)) {
+  .hero-cta:hover::before {
+    background: color-mix(in oklch, var(--gold) 80%, var(--gold-light));
+  }
+
+  .hero-cta--secondary:hover::before {
+    background: color-mix(in oklch, var(--white) 16%, var(--gold-light)) !important;
+  }
+
+  .hero-cta--secondary:hover {
+    border-color: color-mix(in oklch, var(--white) 85%, var(--gold-light)) !important;
+  }
+}
+
 @media (max-width: 640px) {
   .hero-cta-group {
     flex-direction: column;

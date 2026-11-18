@@ -438,3 +438,142 @@ img.logo-img {
   transform: scale(1) !important;
 }
 
+/* ==========================================================================
+   Trending CSS #4 — Scroll-Driven Animations (Native CSS animation-timeline)
+   Zero-JS compositor-thread scroll choreography with automatic progressive fallback
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* 1. Reusable Pure-CSS Scroll Reveal Utilities */
+    @keyframes scrollRevealUp {
+      from {
+        opacity: 0;
+        translate: 0 32px;
+      }
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+
+    @keyframes scrollRevealScale {
+      from {
+        opacity: 0;
+        scale: 0.94;
+      }
+      to {
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    @keyframes scrollRevealClip {
+      from {
+        opacity: 0.4;
+        clip-path: inset(10% 0 0 0 round 16px);
+      }
+      to {
+        opacity: 1;
+        clip-path: inset(0% 0 0 0 round 16px);
+      }
+    }
+
+    .reveal-css {
+      animation: scrollRevealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+    }
+
+    .reveal-css-scale {
+      animation: scrollRevealScale linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+    }
+
+    .reveal-css-clip {
+      animation: scrollRevealClip linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+
+    /* 2. Scroll-Scrubbed Architectural Joinery Line Draw */
+    @keyframes joineryScrollDraw {
+      from {
+        stroke-dashoffset: 1300;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .joinery path {
+      transition: none;
+      animation: joineryScrollDraw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+
+    /* 3. Pure-CSS Multi-Layer Parallax Depth on Section Backdrops */
+    @keyframes backdropScrollParallax {
+      from {
+        translate: 0 -7%;
+      }
+      to {
+        translate: 0 7%;
+      }
+    }
+
+    .strip-bg,
+    .why-layer .why-bg {
+      inset: -10% 0;
+      animation: backdropScrollParallax linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      will-change: translate;
+    }
+
+    /* 4. Portfolio Masonry Cards — Scroll-Linked Rise (Uses individual translate so hover transform is untouched) */
+    @keyframes cardScrollLift {
+      from {
+        opacity: 0.55;
+        translate: 0 28px;
+      }
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+
+    .p-card {
+      animation: cardScrollLift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+
+    /* 5. Eyebrow Architectural Hairline Scrub & Trust Seal Strip Entrance */
+    @keyframes eyebrowLineGrow {
+      from {
+        transform: scaleX(0.2);
+        opacity: 0.35;
+      }
+      to {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    }
+
+    .eyebrow::before {
+      animation: eyebrowLineGrow linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+
+    .trust-seal-strip,
+    .foot-grid {
+      animation: scrollRevealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 32%;
+    }
+  }
+}
+

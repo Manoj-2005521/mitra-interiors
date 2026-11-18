@@ -188,18 +188,39 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Film Grain Texture Overlay —  subtle architectural feel */
-@media (min-width: 769px) {
+/* ==========================================================================
+   Trending CSS #3 — Film Grain / Noise Texture Overlay (Architectural Paper Feel)
+   ========================================================================== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+  transition: opacity 0.4s var(--ease);
+}
+
+[data-theme="dark"] body::after {
+  opacity: 0.042;
+  mix-blend-mode: soft-light;
+}
+
+@media (max-width: 768px) {
   body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    mix-blend-mode: overlay;
+    opacity: 0.02;
+  }
+  [data-theme="dark"] body::after {
+    opacity: 0.032;
+  }
+}
+
+@media print {
+  body::after {
+    display: none !important;
   }
 }
 
@@ -658,6 +679,35 @@ body {
   color: var(--gold);
 }
 
+/* ==========================================================================
+   Trending CSS #5 — Dynamic OKLCH color-mix() Button Hover States
+   ========================================================================== */
+@supports (background-color: color-mix(in oklch, red, blue)) {
+  .btn-primary:hover {
+    background-color: color-mix(in oklch, var(--forest-deep) 84%, var(--gold-warm));
+  }
+
+  .btn-outline:hover {
+    background-color: color-mix(in oklch, var(--forest) 88%, var(--gold-warm));
+    border-color: color-mix(in oklch, var(--forest) 82%, var(--gold));
+  }
+
+  .btn-outline-light:hover {
+    background-color: color-mix(in oklch, var(--white) 16%, transparent);
+    border-color: color-mix(in oklch, var(--white) 85%, var(--gold-light));
+  }
+
+  [data-theme="dark"] .btn-primary:hover {
+    background-color: color-mix(in oklch, var(--forest-mid) 78%, var(--gold-warm));
+  }
+
+  [data-theme="dark"] .btn-outline:hover {
+    background-color: color-mix(in oklch, var(--gold) 88%, var(--white));
+    border-color: color-mix(in oklch, var(--gold) 88%, var(--white));
+    color: #121614;
+  }
+}
+
 
 
 /* --- Bundled: hero.css --- */
@@ -1016,6 +1066,21 @@ body {
 .hero-cta--secondary:hover {
   border-color: #ffffff !important;
   box-shadow: 0 15px 35px rgba(255, 255, 255, 0.06);
+}
+
+/* Trending CSS #5 — Dynamic OKLCH color-mix() Hero CTA Hovers */
+@supports (background: color-mix(in oklch, red, blue)) {
+  .hero-cta:hover::before {
+    background: color-mix(in oklch, var(--gold) 80%, var(--gold-light));
+  }
+
+  .hero-cta--secondary:hover::before {
+    background: color-mix(in oklch, var(--white) 16%, var(--gold-light)) !important;
+  }
+
+  .hero-cta--secondary:hover {
+    border-color: color-mix(in oklch, var(--white) 85%, var(--gold-light)) !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -4496,7 +4561,8 @@ html[data-theme="dark"] .theme-toggle .theme-icon-moon {
   padding: 0;
 }
 
-.scroll-top-btn.is-visible {
+.scroll-top-btn.is-visible,
+.scroll-top-btn.is-active {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
@@ -4574,6 +4640,87 @@ html[data-theme="dark"] .scroll-top-btn .scroll-top-icon {
   .scroll-top-btn .progress-ring {
     width: 42px;
     height: 42px;
+  }
+}
+
+/* ==========================================================================
+   Trending CSS #5 — Dynamic OKLCH color-mix() Interactive Hover States
+   ========================================================================== */
+@supports (background: color-mix(in oklch, red, blue)) {
+  /* Portfolio & Case Study Filter Chips */
+  .filter-btn:hover {
+    background-color: color-mix(in oklch, var(--forest) 86%, var(--gold-warm));
+    border-color: color-mix(in oklch, var(--forest) 80%, var(--gold));
+  }
+
+  .filter-btn.active {
+    background-color: color-mix(in oklch, var(--forest-deep) 90%, var(--gold-warm));
+    border-color: color-mix(in oklch, var(--forest-deep) 85%, var(--gold));
+  }
+
+  /* Services List Rows */
+  .svc-row:hover,
+  .svc-row.active {
+    background-color: color-mix(in oklch, var(--beige) 68%, var(--gold-light));
+  }
+
+  /* Trust Strip Stat Cards */
+  .strip-item:hover {
+    border-color: color-mix(in oklch, var(--gold-light) 48%, transparent);
+    background: color-mix(in oklch, var(--white) 9%, var(--gold-light) 4%);
+  }
+
+  /* Pricing Cards */
+  .b-card:hover {
+    background: color-mix(in oklch, var(--cream) 88%, var(--gold-light));
+    border-color: color-mix(in oklch, var(--gold-warm) 58%, transparent);
+  }
+
+  /* FAQ Accordion Cards */
+  .faq-item:hover {
+    background: color-mix(in oklch, var(--cream) 86%, var(--white));
+    border-color: color-mix(in oklch, var(--gold-warm) 52%, transparent);
+  }
+
+  /* Theme Toggle & Scroll-To-Top Glass Controls */
+  .theme-toggle:hover {
+    background: color-mix(in oklch, var(--cream) 76%, var(--gold-light));
+    border-color: color-mix(in oklch, var(--gold-warm) 65%, transparent);
+  }
+
+  .scroll-top-btn:hover {
+    background: color-mix(in oklch, var(--cream) 88%, var(--gold-light));
+  }
+
+  /* Evening Studio (Dark Mode) OKLCH Hovers */
+  [data-theme="dark"] .filter-btn:hover {
+    background-color: color-mix(in oklch, var(--champagne) 78%, var(--gold));
+    border-color: color-mix(in oklch, var(--gold) 55%, transparent);
+    color: #FFF8EB;
+  }
+
+  [data-theme="dark"] .svc-row:hover,
+  [data-theme="dark"] .svc-row.active {
+    background-color: color-mix(in oklch, var(--cream) 85%, var(--gold) 15%);
+  }
+
+  [data-theme="dark"] .b-card:hover {
+    background: color-mix(in oklch, var(--cream) 84%, var(--gold) 12%);
+    border-color: color-mix(in oklch, var(--gold-light) 50%, transparent);
+  }
+
+  [data-theme="dark"] .faq-item:hover {
+    background: color-mix(in oklch, var(--cream) 82%, var(--gold) 10%);
+    border-color: color-mix(in oklch, var(--gold-light) 45%, transparent);
+  }
+
+  html[data-theme="dark"] .theme-toggle:hover {
+    background: color-mix(in oklch, var(--cream) 78%, var(--gold) 18%);
+    border-color: color-mix(in oklch, var(--gold-light) 70%, transparent);
+  }
+
+  html[data-theme="dark"] .scroll-top-btn:hover {
+    background: color-mix(in oklch, var(--cream) 82%, var(--gold) 14%);
   }
 }
 
@@ -4780,6 +4927,21 @@ header.scrolled .logo picture img {
   background-color: rgba(44, 39, 32, 0.05);
   color: var(--forest) !important;
   padding-left: 20px;
+}
+
+@supports (background-color: color-mix(in oklch, red, blue)) {
+  .mega a:hover,
+  .mega a.active,
+  .mega a[aria-current="page"] {
+    background-color: color-mix(in oklch, var(--champagne) 48%, transparent);
+  }
+
+  [data-theme="dark"] .mega a:hover,
+  [data-theme="dark"] .mega a.active,
+  [data-theme="dark"] .mega a[aria-current="page"] {
+    background-color: color-mix(in oklch, var(--gold) 18%, transparent);
+    color: #FFF8EB !important;
+  }
 }
 
 .mega a:hover::before,
@@ -5717,4 +5879,143 @@ img.logo-img {
   opacity: 1 !important;
   filter: blur(0) !important;
   transform: scale(1) !important;
+}
+
+/* ==========================================================================
+   Trending CSS #4 — Scroll-Driven Animations (Native CSS animation-timeline)
+   Zero-JS compositor-thread scroll choreography with automatic progressive fallback
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* 1. Reusable Pure-CSS Scroll Reveal Utilities */
+    @keyframes scrollRevealUp {
+      from {
+        opacity: 0;
+        translate: 0 32px;
+      }
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+
+    @keyframes scrollRevealScale {
+      from {
+        opacity: 0;
+        scale: 0.94;
+      }
+      to {
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    @keyframes scrollRevealClip {
+      from {
+        opacity: 0.4;
+        clip-path: inset(10% 0 0 0 round 16px);
+      }
+      to {
+        opacity: 1;
+        clip-path: inset(0% 0 0 0 round 16px);
+      }
+    }
+
+    .reveal-css {
+      animation: scrollRevealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+    }
+
+    .reveal-css-scale {
+      animation: scrollRevealScale linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+    }
+
+    .reveal-css-clip {
+      animation: scrollRevealClip linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+
+    /* 2. Scroll-Scrubbed Architectural Joinery Line Draw */
+    @keyframes joineryScrollDraw {
+      from {
+        stroke-dashoffset: 1300;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .joinery path {
+      transition: none;
+      animation: joineryScrollDraw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+
+    /* 3. Pure-CSS Multi-Layer Parallax Depth on Section Backdrops */
+    @keyframes backdropScrollParallax {
+      from {
+        translate: 0 -7%;
+      }
+      to {
+        translate: 0 7%;
+      }
+    }
+
+    .strip-bg,
+    .why-layer .why-bg {
+      inset: -10% 0;
+      animation: backdropScrollParallax linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      will-change: translate;
+    }
+
+    /* 4. Portfolio Masonry Cards — Scroll-Linked Rise (Uses individual translate so hover transform is untouched) */
+    @keyframes cardScrollLift {
+      from {
+        opacity: 0.55;
+        translate: 0 28px;
+      }
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+
+    .p-card {
+      animation: cardScrollLift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+
+    /* 5. Eyebrow Architectural Hairline Scrub & Trust Seal Strip Entrance */
+    @keyframes eyebrowLineGrow {
+      from {
+        transform: scaleX(0.2);
+        opacity: 0.35;
+      }
+      to {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+    }
+
+    .eyebrow::before {
+      animation: eyebrowLineGrow linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+
+    .trust-seal-strip,
+    .foot-grid {
+      animation: scrollRevealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 32%;
+    }
+  }
 }

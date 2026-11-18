@@ -198,6 +198,21 @@ header.scrolled .logo picture img {
   padding-left: 20px;
 }
 
+@supports (background-color: color-mix(in oklch, red, blue)) {
+  .mega a:hover,
+  .mega a.active,
+  .mega a[aria-current="page"] {
+    background-color: color-mix(in oklch, var(--champagne) 48%, transparent);
+  }
+
+  [data-theme="dark"] .mega a:hover,
+  [data-theme="dark"] .mega a.active,
+  [data-theme="dark"] .mega a[aria-current="page"] {
+    background-color: color-mix(in oklch, var(--gold) 18%, transparent);
+    color: #FFF8EB !important;
+  }
+}
+
 .mega a:hover::before,
 .mega a.active::before,
 .mega a[aria-current="page"]::before {
