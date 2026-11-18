@@ -405,19 +405,6 @@ main.page-is-entered {
   background: transparent;
 }
 
-[data-theme="dark"] .img-skeleton-wrap {
-  background: linear-gradient(90deg, 
-    rgba(24, 32, 28, 0.6) 0%, 
-    rgba(40, 52, 46, 0.9) 50%, 
-    rgba(24, 32, 28, 0.6) 100%
-  );
-  background-size: 200% 100%;
-}
-
-[data-theme="dark"] .img-skeleton-wrap.skeleton-done {
-  background: transparent;
-}
-
 /* Progressive Blur-Up */
 img.blur-up {
   opacity: 0;

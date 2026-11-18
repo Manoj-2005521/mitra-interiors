@@ -33,22 +33,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </noscript>
   {% block preload %}{% endblock %}
-  
-  <!-- Anti-Flash Luxury Theme Bootstrapper -->
-  <script>
-    (function() {
-      try {
-        var stored = localStorage.getItem('mitra-theme');
-        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored || (prefersDark ? 'dark' : 'light');
-        if (theme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.removeAttribute('data-theme');
-        }
-      } catch (e) {}
-    })();
-  </script>
 
   <!-- PWA & Assets -->
   <link rel="manifest" href="/manifest.json">

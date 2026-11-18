@@ -1,63 +1,7 @@
 /* ==========================================================================
    MITRA Interior & Constructions — Performance & Technical Polish Modules
    - 4.1 Shimmer Skeleton Screens & Progressive Blur-Up Images
-   - 4.3 Luxury Dark / Light Architectural Mode (Evening Studio)
    ========================================================================== */
-
-/**
- * Initializes Luxury Dark / Light Architectural Mode Switcher
- */
-export function initThemeSwitcher() {
-  const toggleBtns = [
-    document.getElementById('themeToggleBtn'),
-    document.getElementById('mobileThemeToggleBtn')
-  ].filter(Boolean);
-
-  if (!toggleBtns.length) return;
-
-  function getCurrentTheme() {
-    return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-  }
-
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      try { localStorage.setItem('mitra-theme', 'dark'); } catch (e) {}
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-      try { localStorage.setItem('mitra-theme', 'light'); } catch (e) {}
-    }
-
-    toggleBtns.forEach(btn => {
-      btn.setAttribute('aria-label', theme === 'dark' 
-        ? 'Switch to Day Plaster Mode' 
-        : 'Switch to Evening Studio Mode');
-    });
-  }
-
-  // Bind click listeners
-  toggleBtns.forEach(btn => {
-    if (btn.dataset.themeBound) return;
-    btn.dataset.themeBound = 'true';
-
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const current = getCurrentTheme();
-      const nextTheme = current === 'dark' ? 'light' : 'dark';
-      applyTheme(nextTheme);
-    });
-  });
-
-  // Listen to OS theme changes if user hasn't explicitly set preference
-  if (window.matchMedia) {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', (e) => {
-      if (!localStorage.getItem('mitra-theme')) {
-        applyTheme(e.matches ? 'dark' : 'light');
-      }
-    });
-  }
-}
 
 /**
  * Progressive Blur-Up Image Loading with Shimmer Skeletons
@@ -98,6 +42,5 @@ export function initImageShimmerAndBlurUp() {
  * Master initializer for Section 4: Performance & Technical Polish
  */
 export function initTechPolish() {
-  initThemeSwitcher();
   initImageShimmerAndBlurUp();
 }

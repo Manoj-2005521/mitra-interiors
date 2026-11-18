@@ -205,17 +205,9 @@ body::after {
   transition: opacity 0.4s var(--ease);
 }
 
-[data-theme="dark"] body::after {
-  opacity: 0.042;
-  mix-blend-mode: soft-light;
-}
-
 @media (max-width: 768px) {
   body::after {
     opacity: 0.02;
-  }
-  [data-theme="dark"] body::after {
-    opacity: 0.032;
   }
 }
 
@@ -545,199 +537,6 @@ section {
 }
 
 /* ==========================================================================
-   4.3 Luxury Dark / Light Architectural Mode (Evening Studio Mode)
-   ========================================================================== */
-[data-theme="dark"] {
-  /* 60% Dominant (Evening Obsidian & Warm Charcoal Plaster) */
-  --beige: #121614;       /* Base dark studio background */
-  --cream: #18201C;       /* Card and tile background */
-  --champagne: #232C27;   /* Secondary containers & structural outlines */
-  --white: #FFFFFF;
-
-  /* 30% Secondary (Architectural Champagne Gold) */
-  --gold: #D5CDBF;        /* Elevated gold accent */
-  --gold-warm: #C5B8A5;
-  --gold-light: #EBE5DB;
-  --terracotta: #B89B8D;
-  --sage: #8A948D;
-
-  /* 10% Accent (Contrast Typography & Elements) */
-  --forest: #1F2A24;
-  --forest-deep: #F8F6F2; /* Cream contrast for headings in dark mode */
-  --forest-mid: #2C3A32;
-  --dark: #EDE9E3;        /* Reading text */
-  --slate: #B8B2A7;       /* Muted subtext */
-
-  /* Borders & Shadows in Dark Mode */
-  --line-gold: rgba(213, 205, 191, 0.22);
-  --line-dark: rgba(255, 255, 255, 0.12);
-  --line-light: rgba(255, 255, 255, 0.18);
-
-  --shadow-soft: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
-  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.45);
-  --shadow-luxe: 0 32px 64px -20px rgba(0, 0, 0, 0.7);
-}
-
-/* Smooth Transition between Day Plaster and Evening Studio */
-html {
-  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
-}
-
-body {
-  background-color: var(--beige);
-  color: var(--dark);
-  transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
-}
-
-[data-theme="dark"] #siteHeader,
-[data-theme="dark"] .case-subnav-bar {
-  background: rgba(18, 22, 20, 0.9);
-  border-bottom-color: rgba(213, 205, 191, 0.18);
-}
-
-[data-theme="dark"] .mega {
-  background: rgba(24, 32, 28, 0.96);
-  border-color: rgba(213, 205, 191, 0.25);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-}
-
-[data-theme="dark"] .mega a {
-  color: var(--dark);
-}
-
-[data-theme="dark"] .mega a:hover {
-  background: rgba(213, 205, 191, 0.12);
-  color: #FFF8EB;
-}
-
-[data-theme="dark"] .mobile-menu {
-  background: rgba(18, 22, 20, 0.98);
-}
-
-[data-theme="dark"] .faq-item {
-  background: rgba(24, 32, 28, 0.65);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .faq-item.open {
-  background: rgba(30, 40, 35, 0.85);
-  border-color: rgba(213, 205, 191, 0.4);
-}
-
-[data-theme="dark"] .b-card {
-  background: rgba(24, 32, 28, 0.6);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-[data-theme="dark"] .b-card:hover {
-  background: rgba(30, 40, 35, 0.8);
-  border-color: rgba(213, 205, 191, 0.45);
-}
-
-[data-theme="dark"] .trust-seal-strip {
-  background: rgba(24, 32, 28, 0.7);
-  border-color: rgba(213, 205, 191, 0.25);
-}
-
-[data-theme="dark"] .spec-sidebar {
-  background: rgba(24, 32, 28, 0.75);
-  border-color: rgba(213, 205, 191, 0.25);
-}
-
-[data-theme="dark"] .spatial-tab-panel {
-  background: rgba(24, 32, 28, 0.75);
-  border-color: rgba(213, 205, 191, 0.25);
-}
-
-[data-theme="dark"] .spatial-tab {
-  background: rgba(24, 32, 28, 0.6);
-  border-color: rgba(213, 205, 191, 0.25);
-  color: var(--slate);
-}
-
-[data-theme="dark"] .spatial-tab.active {
-  background: #FFF8EB;
-  color: #121614;
-  border-color: #FFF8EB;
-}
-
-[data-theme="dark"] .architect-field-notes {
-  background: linear-gradient(135deg, rgba(24, 32, 28, 0.8) 0%, rgba(18, 22, 20, 0.6) 100%);
-  border-color: rgba(213, 205, 191, 0.25);
-}
-
-[data-theme="dark"] .material-modal-box {
-  background: #18201C;
-  border-color: rgba(213, 205, 191, 0.3);
-  color: #EDE9E3;
-}
-
-[data-theme="dark"] .material-cert-box,
-[data-theme="dark"] .material-care-box {
-  background: rgba(18, 22, 20, 0.65);
-  border-color: rgba(213, 205, 191, 0.2);
-}
-
-[data-theme="dark"] .spatial-spec-row {
-  background: rgba(18, 22, 20, 0.55);
-  border-color: rgba(213, 205, 191, 0.15);
-}
-
-[data-theme="dark"] .adjacent-card {
-  background: rgba(24, 32, 28, 0.7);
-  border-color: rgba(213, 205, 191, 0.25);
-}
-
-[data-theme="dark"] .calculator-block {
-  background: rgba(24, 32, 28, 0.7);
-  border-color: rgba(213, 205, 191, 0.25);
-}
-
-[data-theme="dark"] .calc-result-box {
-  background: rgba(18, 22, 20, 0.85);
-  border-color: rgba(213, 205, 191, 0.3);
-}
-
-[data-theme="dark"] .form-box,
-[data-theme="dark"] .contact-form-card {
-  background: rgba(24, 32, 28, 0.85);
-  border-color: rgba(213, 205, 191, 0.25);
-}
-
-[data-theme="dark"] .input-wrap input,
-[data-theme="dark"] .input-wrap select,
-[data-theme="dark"] .input-wrap textarea {
-  background: rgba(18, 22, 20, 0.7);
-  border-color: rgba(213, 205, 191, 0.25);
-  color: #EDE9E3;
-}
-
-[data-theme="dark"] .input-wrap input:focus,
-[data-theme="dark"] .input-wrap select:focus,
-[data-theme="dark"] .input-wrap textarea:focus {
-  border-color: var(--gold);
-  background: rgba(18, 22, 20, 0.95);
-}
-
-[data-theme="dark"] .btn-outline {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-
-[data-theme="dark"] .btn-outline:hover {
-  background-color: var(--gold);
-  color: #121614;
-}
-
-[data-theme="dark"] .nav-links a {
-  color: #EDE9E3;
-}
-
-[data-theme="dark"] .nav-links a:hover {
-  color: var(--gold);
-}
-
-/* ==========================================================================
    Trending CSS #5 — Dynamic OKLCH color-mix() Button Hover States
    ========================================================================== */
 @supports (background-color: color-mix(in oklch, red, blue)) {
@@ -753,16 +552,6 @@ body {
   .btn-outline-light:hover {
     background-color: color-mix(in oklch, var(--white) 16%, transparent);
     border-color: color-mix(in oklch, var(--white) 85%, var(--gold-light));
-  }
-
-  [data-theme="dark"] .btn-primary:hover {
-    background-color: color-mix(in oklch, var(--forest-mid) 78%, var(--gold-warm));
-  }
-
-  [data-theme="dark"] .btn-outline:hover {
-    background-color: color-mix(in oklch, var(--gold) 88%, var(--white));
-    border-color: color-mix(in oklch, var(--gold) 88%, var(--white));
-    color: #121614;
   }
 }
 
@@ -4506,92 +4295,6 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   4.2 — Scroll-To-Top Circular Progress Ring & 4.3 — Theme Toggle
-   ========================================================================== */
-
-/* Theme Toggle Button (Header & Mobile Drawer) */
-.theme-toggle {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-pill, 9999px);
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid var(--line-gold, rgba(187, 174, 155, 0.3));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--forest-deep, #2C2720);
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.06);
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 16px rgba(187, 174, 155, 0.25);
-}
-
-.theme-toggle:active {
-  transform: scale(0.94);
-}
-
-.theme-toggle .theme-icon-sun,
-.theme-toggle .theme-icon-moon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.25s ease;
-}
-
-.theme-toggle .theme-icon-sun svg,
-.theme-toggle .theme-icon-moon svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.2;
-}
-
-/* Light mode defaults: show moon (indicates switch to evening dark mode), hide sun */
-.theme-toggle .theme-icon-sun {
-  display: none;
-}
-
-.theme-toggle .theme-icon-moon {
-  display: inline-flex;
-  color: var(--forest-deep, #2C2720);
-}
-
-/* Dark mode overrides */
-html[data-theme="dark"] .theme-toggle {
-  background: rgba(30, 40, 36, 0.6);
-  border-color: rgba(213, 205, 191, 0.25);
-  color: var(--gold-light, #D5CDBF);
-}
-
-html[data-theme="dark"] .theme-toggle:hover {
-  background: rgba(30, 40, 36, 0.85);
-  border-color: var(--gold-light, #D5CDBF);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-html[data-theme="dark"] .theme-toggle .theme-icon-sun {
-  display: inline-flex;
-  color: var(--gold-light, #D5CDBF);
-}
-
-html[data-theme="dark"] .theme-toggle .theme-icon-moon {
-  display: none;
-}
-
-/* ==========================================================================
    Trending CSS #5 — Dynamic OKLCH color-mix() Interactive Hover States
    ========================================================================== */
 @supports (background: color-mix(in oklch, red, blue)) {
@@ -4628,39 +4331,6 @@ html[data-theme="dark"] .theme-toggle .theme-icon-moon {
   .faq-item:hover {
     background: color-mix(in oklch, var(--cream) 86%, var(--white));
     border-color: color-mix(in oklch, var(--gold-warm) 52%, transparent);
-  }
-
-  /* Theme Toggle Glass Control */
-  .theme-toggle:hover {
-    background: color-mix(in oklch, var(--cream) 76%, var(--gold-light));
-    border-color: color-mix(in oklch, var(--gold-warm) 65%, transparent);
-  }
-
-  /* Evening Studio (Dark Mode) OKLCH Hovers */
-  [data-theme="dark"] .filter-btn:hover {
-    background-color: color-mix(in oklch, var(--champagne) 78%, var(--gold));
-    border-color: color-mix(in oklch, var(--gold) 55%, transparent);
-    color: #FFF8EB;
-  }
-
-  [data-theme="dark"] .svc-row:hover,
-  [data-theme="dark"] .svc-row.active {
-    background-color: color-mix(in oklch, var(--cream) 85%, var(--gold) 15%);
-  }
-
-  [data-theme="dark"] .b-card:hover {
-    background: color-mix(in oklch, var(--cream) 84%, var(--gold) 12%);
-    border-color: color-mix(in oklch, var(--gold-light) 50%, transparent);
-  }
-
-  [data-theme="dark"] .faq-item:hover {
-    background: color-mix(in oklch, var(--cream) 82%, var(--gold) 10%);
-    border-color: color-mix(in oklch, var(--gold-light) 45%, transparent);
-  }
-
-  html[data-theme="dark"] .theme-toggle:hover {
-    background: color-mix(in oklch, var(--cream) 78%, var(--gold) 18%);
-    border-color: color-mix(in oklch, var(--gold-light) 70%, transparent);
   }
 }
 
@@ -4709,13 +4379,6 @@ html[data-theme="dark"] .theme-toggle .theme-icon-moon {
 
   .filter-btn:hover {
     transform: translateY(-2px);
-  }
-
-  .theme-toggle {
-    transition: transform 0.48s var(--ease-bounce),
-                background 0.3s var(--ease),
-                border-color 0.3s var(--ease),
-                box-shadow 0.3s var(--ease);
   }
 }
 
@@ -4935,13 +4598,6 @@ header.scrolled .logo picture img {
   .mega a.active,
   .mega a[aria-current="page"] {
     background-color: color-mix(in oklch, var(--champagne) 48%, transparent);
-  }
-
-  [data-theme="dark"] .mega a:hover,
-  [data-theme="dark"] .mega a.active,
-  [data-theme="dark"] .mega a[aria-current="page"] {
-    background-color: color-mix(in oklch, var(--gold) 18%, transparent);
-    color: #FFF8EB !important;
   }
 }
 
@@ -5900,19 +5556,6 @@ main.page-is-entered {
 
 .img-skeleton-wrap.skeleton-done {
   animation: none;
-  background: transparent;
-}
-
-[data-theme="dark"] .img-skeleton-wrap {
-  background: linear-gradient(90deg, 
-    rgba(24, 32, 28, 0.6) 0%, 
-    rgba(40, 52, 46, 0.9) 50%, 
-    rgba(24, 32, 28, 0.6) 100%
-  );
-  background-size: 200% 100%;
-}
-
-[data-theme="dark"] .img-skeleton-wrap.skeleton-done {
   background: transparent;
 }
 

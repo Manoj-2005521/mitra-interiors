@@ -2951,92 +2951,6 @@ html.lenis, html.lenis body {
 }
 
 /* ==========================================================================
-   4.2 — Scroll-To-Top Circular Progress Ring & 4.3 — Theme Toggle
-   ========================================================================== */
-
-/* Theme Toggle Button (Header & Mobile Drawer) */
-.theme-toggle {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-pill, 9999px);
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid var(--line-gold, rgba(187, 174, 155, 0.3));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--forest-deep, #2C2720);
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.06);
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 16px rgba(187, 174, 155, 0.25);
-}
-
-.theme-toggle:active {
-  transform: scale(0.94);
-}
-
-.theme-toggle .theme-icon-sun,
-.theme-toggle .theme-icon-moon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.25s ease;
-}
-
-.theme-toggle .theme-icon-sun svg,
-.theme-toggle .theme-icon-moon svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.2;
-}
-
-/* Light mode defaults: show moon (indicates switch to evening dark mode), hide sun */
-.theme-toggle .theme-icon-sun {
-  display: none;
-}
-
-.theme-toggle .theme-icon-moon {
-  display: inline-flex;
-  color: var(--forest-deep, #2C2720);
-}
-
-/* Dark mode overrides */
-html[data-theme="dark"] .theme-toggle {
-  background: rgba(30, 40, 36, 0.6);
-  border-color: rgba(213, 205, 191, 0.25);
-  color: var(--gold-light, #D5CDBF);
-}
-
-html[data-theme="dark"] .theme-toggle:hover {
-  background: rgba(30, 40, 36, 0.85);
-  border-color: var(--gold-light, #D5CDBF);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-html[data-theme="dark"] .theme-toggle .theme-icon-sun {
-  display: inline-flex;
-  color: var(--gold-light, #D5CDBF);
-}
-
-html[data-theme="dark"] .theme-toggle .theme-icon-moon {
-  display: none;
-}
-
-/* ==========================================================================
    Trending CSS #5 — Dynamic OKLCH color-mix() Interactive Hover States
    ========================================================================== */
 @supports (background: color-mix(in oklch, red, blue)) {
@@ -3073,39 +2987,6 @@ html[data-theme="dark"] .theme-toggle .theme-icon-moon {
   .faq-item:hover {
     background: color-mix(in oklch, var(--cream) 86%, var(--white));
     border-color: color-mix(in oklch, var(--gold-warm) 52%, transparent);
-  }
-
-  /* Theme Toggle Glass Control */
-  .theme-toggle:hover {
-    background: color-mix(in oklch, var(--cream) 76%, var(--gold-light));
-    border-color: color-mix(in oklch, var(--gold-warm) 65%, transparent);
-  }
-
-  /* Evening Studio (Dark Mode) OKLCH Hovers */
-  [data-theme="dark"] .filter-btn:hover {
-    background-color: color-mix(in oklch, var(--champagne) 78%, var(--gold));
-    border-color: color-mix(in oklch, var(--gold) 55%, transparent);
-    color: #FFF8EB;
-  }
-
-  [data-theme="dark"] .svc-row:hover,
-  [data-theme="dark"] .svc-row.active {
-    background-color: color-mix(in oklch, var(--cream) 85%, var(--gold) 15%);
-  }
-
-  [data-theme="dark"] .b-card:hover {
-    background: color-mix(in oklch, var(--cream) 84%, var(--gold) 12%);
-    border-color: color-mix(in oklch, var(--gold-light) 50%, transparent);
-  }
-
-  [data-theme="dark"] .faq-item:hover {
-    background: color-mix(in oklch, var(--cream) 82%, var(--gold) 10%);
-    border-color: color-mix(in oklch, var(--gold-light) 45%, transparent);
-  }
-
-  html[data-theme="dark"] .theme-toggle:hover {
-    background: color-mix(in oklch, var(--cream) 78%, var(--gold) 18%);
-    border-color: color-mix(in oklch, var(--gold-light) 70%, transparent);
   }
 }
 
@@ -3154,13 +3035,6 @@ html[data-theme="dark"] .theme-toggle .theme-icon-moon {
 
   .filter-btn:hover {
     transform: translateY(-2px);
-  }
-
-  .theme-toggle {
-    transition: transform 0.48s var(--ease-bounce),
-                background 0.3s var(--ease),
-                border-color 0.3s var(--ease),
-                box-shadow 0.3s var(--ease);
   }
 }
 
